@@ -15,11 +15,11 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 interface Props {
   grailId: string;
-  initialItems: GrailItemRow[];
+  items: GrailItemRow[];
+  setItems: React.Dispatch<React.SetStateAction<GrailItemRow[]>>;
 }
 
-export function GrailChecklist({ grailId, initialItems }: Props) {
-  const [items, setItems] = useState(initialItems);
+export function GrailChecklist({ grailId, items, setItems }: Props) {
   const [, startTransition] = useTransition();
 
   // Filters
@@ -130,7 +130,7 @@ export function GrailChecklist({ grailId, initialItems }: Props) {
         </div>
 
         <button
-          onClick={() => setFilterPd2((v) => !v)}
+          onClick={() => setFilterPd2((v: boolean) => !v)}
           className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
             filterPd2
               ? "border-amber-700 bg-amber-900/30 text-amber-300"

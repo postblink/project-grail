@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { getCurrentSeason, getOrCreateGrail, getGrailItems, computeProgress } from "@/lib/grail";
-import { GrailChecklist } from "./_components/GrailChecklist";
+import { GrailView } from "./_components/GrailView";
 
 export default async function GrailPage() {
   const session = await auth();
@@ -44,7 +44,7 @@ export default async function GrailPage() {
         />
       </div>
 
-      <GrailChecklist grailId={grail.id} initialItems={items} />
+      <GrailView grailId={grail.id} initialItems={items} />
     </div>
   );
 }

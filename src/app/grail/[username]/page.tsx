@@ -81,5 +81,32 @@ export default async function PublicGrailPage({ params }: Props) {
 
 export async function generateMetadata({ params }: Props) {
   const { username } = await params;
-  return { title: `${username}'s Grail — Project Grail` };
+  const data = await getPublicGrailData(username);
+
+  if (!data) return { title: "Grail not found — Project Grail" };
+
+  const { user, season, items } = data;
+  const progress = computeProgress(items);
+  const displayName = user.display_name ?? username;
+  const title = `${displayName}'s Grail — Project Grail`;
+  const description = progress.total > 0
+    ? `${progress.pct}% complete · ${progress.found}/${progress.total} items found${season ? ` · ${season.name}` : ""}`
+    : `${displayName} is tracking their Holy Grail in Project Diablo 2.`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      siteName: "Project Grail",
+      title,
+      description,
+      url: `https://pd2grail.com/grail/${encodeURIComponent(username)}`,
+      type: "profile",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
 }

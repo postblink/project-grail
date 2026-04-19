@@ -13,8 +13,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Project Grail - pd2grail.com",
-  description: "Track your Holy Grail challenge progress in Project Diablo 2.",
+  title: "Project Grail",
+  description: "Track your Holy Grail challenge progress in Project Diablo 2. Find one of every item.",
+  openGraph: {
+    siteName: "Project Grail",
+    title: "Project Grail",
+    description: "Track your Holy Grail challenge progress in Project Diablo 2. Find one of every item.",
+    url: "https://pd2grail.com",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Project Grail",
+    description: "Track your Holy Grail challenge progress in Project Diablo 2. Find one of every item.",
+  },
 };
 
 export default function RootLayout({

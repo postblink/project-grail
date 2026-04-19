@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { getCurrentSeason, getOrCreateGrail, getGrailItems } from "@/lib/grail";
 import { GrailView } from "./_components/GrailView";
+import { ShareGrailButton } from "./_components/ShareGrailButton";
 
 export default async function GrailPage() {
   const session = await auth();
@@ -24,9 +25,14 @@ export default async function GrailPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-zinc-100">My Grail</h1>
-        <p className="mt-0.5 text-sm text-zinc-500">{season.name}</p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-zinc-100">My Grail</h1>
+          <p className="mt-0.5 text-sm text-zinc-500">{season.name}</p>
+        </div>
+        {session.user.display_name && (
+          <ShareGrailButton username={session.user.display_name} />
+        )}
       </div>
       <GrailView grailId={grail.id} initialItems={items} />
     </div>

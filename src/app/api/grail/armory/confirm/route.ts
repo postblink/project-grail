@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   const { grailId, itemIds, characters } = parsed.data;
 
-  const grail = await db.grail.findUnique({ where: { id: grailId }, select: { user_id: true } });
+  const grail = await db.grail.findUnique({ where: { id: grailId }, select: { user_id: true, season_id: true } });
   if (!grail || grail.user_id !== session.user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
@@ -60,6 +60,29 @@ export async function POST(req: NextRequest) {
         },
       }),
     ]);
+
+    // For hybrid leagues: upsert LeagueGrailEntry for each found item (first-finder semantics).
+    if (grail.season_id) {
+      const hybridMemberships = await db.leagueMember.findMany({
+        where: {
+          user_id: session.user.id,
+          league: { season_id: grail.season_id, league_type: "hybrid" },
+        },
+        select: { league_id: true },
+      });
+
+      await Promise.allSettled(
+        hybridMemberships.flatMap((m) =>
+          itemIds.map((itemId) =>
+            db.leagueGrailEntry.upsert({
+              where: { league_id_item_id: { league_id: m.league_id, item_id: itemId } },
+              update: {},
+              create: { league_id: m.league_id, item_id: itemId, found_by_user_id: session.user.id },
+            }),
+          ),
+        ),
+      );
+    }
 
     return NextResponse.json({ added: itemIds.length, importId: armoryImport.id });
   } catch (err) {

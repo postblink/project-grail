@@ -56,7 +56,6 @@ export async function PATCH(req: NextRequest) {
 
   // For hybrid leagues: record first finder in LeagueGrailEntry (best-effort).
   // Only on found=true; unchecking never removes the first-finder record.
-  // TODO: armory import bypasses this path — add the same write to the confirm route.
   if (found && grail.season_id) {
     const hybridMemberships = await db.leagueMember.findMany({
       where: {

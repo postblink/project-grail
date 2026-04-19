@@ -152,7 +152,7 @@ export function ArmoryImport({ grailId, onImportComplete }: Props) {
               rows={3}
               className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-zinc-500 resize-none"
             />
-            <p className="mt-1.5 text-xs text-zinc-600">
+            <p className="mt-1.5 text-xs text-zinc-500">
               Import reflects your characters&apos; current inventory. Items in your shared stash or
               previously traded away will need to be checked off manually.
             </p>
@@ -163,7 +163,7 @@ export function ArmoryImport({ grailId, onImportComplete }: Props) {
           <button
             onClick={handlePreview}
             disabled={step === "previewing" || !charInput.trim()}
-            className="rounded-lg bg-zinc-700 px-4 py-2 text-sm text-zinc-200 transition-colors hover:bg-zinc-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="rounded-lg bg-amber-700 px-4 py-2 text-sm font-medium text-amber-100 transition-colors hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {step === "previewing" ? "Fetching…" : "Preview Import"}
           </button>

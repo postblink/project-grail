@@ -16,10 +16,11 @@ const CATEGORY_LABELS: Record<string, string> = {
 interface Props {
   grailId: string;
   items: GrailItemRow[];
-  setItems: React.Dispatch<React.SetStateAction<GrailItemRow[]>>;
+  setItems?: React.Dispatch<React.SetStateAction<GrailItemRow[]>>;
+  readOnly?: boolean;
 }
 
-export function GrailChecklist({ grailId, items, setItems }: Props) {
+export function GrailChecklist({ grailId, items, setItems, readOnly = false }: Props) {
   const [, startTransition] = useTransition();
 
   // Filters
@@ -29,6 +30,7 @@ export function GrailChecklist({ grailId, items, setItems }: Props) {
   const [filterPd2, setFilterPd2] = useState(false);
 
   function toggle(itemId: string) {
+    if (readOnly || !setItems) return;
     const item = items.find((i) => i.id === itemId);
     if (!item) return;
     const nextFound = !item.found;
@@ -162,7 +164,7 @@ export function GrailChecklist({ grailId, items, setItems }: Props) {
             </div>
             <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
               {catItems.map((item) => (
-                <ItemRow key={item.id} item={item} onToggle={() => toggle(item.id)} />
+                <ItemRow key={item.id} item={item} onToggle={() => toggle(item.id)} readOnly={readOnly} />
               ))}
             </div>
           </section>
@@ -176,15 +178,16 @@ export function GrailChecklist({ grailId, items, setItems }: Props) {
   );
 }
 
-function ItemRow({ item, onToggle }: { item: GrailItemRow; onToggle: () => void }) {
+function ItemRow({ item, onToggle, readOnly }: { item: GrailItemRow; onToggle: () => void; readOnly?: boolean }) {
   return (
     <button
       onClick={onToggle}
+      disabled={readOnly}
       className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-left transition-colors ${
         item.found
           ? "border-amber-800/50 bg-amber-900/20 hover:bg-amber-900/30"
           : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"
-      }`}
+      } ${readOnly ? "cursor-default" : ""}`}
     >
       {/* Checkbox indicator */}
       <span

@@ -50,6 +50,23 @@ export async function getGrailItems(grailId: string): Promise<GrailItemRow[]> {
   });
 }
 
+export async function getPublicGrailData(username: string) {
+  const user = await db.user.findFirst({
+    where: { display_name: { equals: username, mode: "insensitive" }, deleted_at: null },
+    select: { id: true, display_name: true },
+  });
+  if (!user) return null;
+
+  const season = await getCurrentSeason();
+  if (!season) return { user, season: null, items: [] as GrailItemRow[], progress: null };
+
+  const grail = await db.grail.findUnique({
+    where: { user_id_season_id: { user_id: user.id, season_id: season.id } },
+  });
+  const items = grail ? await getGrailItems(grail.id) : ([] as GrailItemRow[]);
+  return { user, season, items, progress: computeProgress(items) };
+}
+
 export function computeProgress(items: GrailItemRow[]) {
   const total = items.length;
   const found = items.filter((i) => i.found).length;

@@ -42,7 +42,7 @@ export default function Home() {
             href="/login"
             className="rounded-xl bg-amber-600 px-8 py-3 text-sm font-semibold text-white transition hover:bg-amber-500"
           >
-            Get started — it&apos;s free
+            Get started
           </Link>
           <p className="text-xs text-zinc-600">
             Sign in with Discord or email · No password required

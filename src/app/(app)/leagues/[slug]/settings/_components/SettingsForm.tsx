@@ -2,6 +2,29 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+
+function CopyInviteButton({ slug, inviteCode }: { slug: string; inviteCode: string | null }) {
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopy() {
+    if (!inviteCode) return;
+    const url = `${window.location.origin}/leagues/${slug}?code=${inviteCode}`;
+    await navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      disabled={!inviteCode}
+      className="rounded-lg bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-300 hover:bg-zinc-700 transition-colors disabled:opacity-40"
+    >
+      {copied ? "Copied!" : "Copy invite link"}
+    </button>
+  );
+}
 import type { GrailScope } from "@/lib/leagues";
 
 interface Props {
@@ -131,18 +154,21 @@ export function SettingsForm({ slug, initialName, initialIsPrivate, initialInvit
 
       {/* Invite code management */}
       {isPrivate && (
-        <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-3 space-y-2">
+        <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-3 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-zinc-400">Invite code</span>
+            <span className="text-sm text-zinc-400">Invite link</span>
             <code className="font-mono text-sm text-amber-300">{inviteCode ?? "—"}</code>
           </div>
-          <button
-            type="button"
-            onClick={handleRegenerateCode}
-            className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
-          >
-            Regenerate code
-          </button>
+          <div className="flex items-center gap-2">
+            <CopyInviteButton slug={slug} inviteCode={inviteCode} />
+            <button
+              type="button"
+              onClick={handleRegenerateCode}
+              className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              Regenerate code
+            </button>
+          </div>
         </div>
       )}
 

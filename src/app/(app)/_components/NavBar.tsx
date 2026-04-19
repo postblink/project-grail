@@ -47,7 +47,9 @@ export function NavBar({ displayName, isAdmin }: { displayName: string | null; i
 
         {/* Desktop right side */}
         <div className="hidden sm:flex items-center gap-3">
-          <span className="text-sm text-zinc-500">{displayName ?? "Adventurer"}</span>
+          <Link href="/settings" className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
+            {displayName ?? "Adventurer"}
+          </Link>
           <button
             onClick={() => signOut({ callbackUrl: "/login" })}
             className="text-sm text-zinc-500 transition-colors hover:text-zinc-200"
@@ -92,7 +94,9 @@ export function NavBar({ displayName, isAdmin }: { displayName: string | null; i
             </Link>
           ))}
           <div className="pt-2 border-t border-zinc-800 flex items-center justify-between">
-            <span className="text-sm text-zinc-500">{displayName ?? "Adventurer"}</span>
+            <Link href="/settings" className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
+              {displayName ?? "Adventurer"}
+            </Link>
             <button
               onClick={() => signOut({ callbackUrl: "/login" })}
               className="text-sm text-zinc-500 hover:text-zinc-200"

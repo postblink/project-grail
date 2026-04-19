@@ -115,7 +115,7 @@ export interface CoopItemRow {
   found_by_name: string | null;
 }
 
-export async function getCoopGrailItems(
+export async function getLeagueGrailItems(
   leagueId: string,
   grailScope: GrailScope,
 ): Promise<CoopItemRow[]> {

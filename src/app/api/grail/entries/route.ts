@@ -26,7 +26,7 @@ export async function PATCH(req: NextRequest) {
   // Verify the grail belongs to the requesting user
   const grail = await db.grail.findUnique({
     where: { id: grailId },
-    select: { user_id: true },
+    select: { user_id: true, season_id: true },
   });
   if (!grail || grail.user_id !== session.user.id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -53,6 +53,29 @@ export async function PATCH(req: NextRequest) {
       import_source: "manual",
     },
   });
+
+  // For hybrid leagues: record first finder in LeagueGrailEntry (best-effort).
+  // Only on found=true; unchecking never removes the first-finder record.
+  // TODO: armory import bypasses this path — add the same write to the confirm route.
+  if (found && grail.season_id) {
+    const hybridMemberships = await db.leagueMember.findMany({
+      where: {
+        user_id: session.user.id,
+        league: { season_id: grail.season_id, league_type: "hybrid" },
+      },
+      select: { league_id: true },
+    });
+
+    await Promise.allSettled(
+      hybridMemberships.map((m) =>
+        db.leagueGrailEntry.upsert({
+          where: { league_id_item_id: { league_id: m.league_id, item_id: itemId } },
+          update: {},   // no-op — first finder keeps credit
+          create: { league_id: m.league_id, item_id: itemId, found_by_user_id: session.user.id },
+        }),
+      ),
+    );
+  }
 
   return NextResponse.json({ entry });
 }

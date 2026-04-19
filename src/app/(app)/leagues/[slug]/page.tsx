@@ -117,9 +117,9 @@ export default async function LeaguePage({ params }: Props) {
         {[
           { label: "Leaderboard", href: `/leagues/${slug}/leaderboard`, live: true },
           {
-            label: league.league_type === "cooperative" ? "Team Grail" : "Team Grail",
+            label: "Team Grail",
             href: `/leagues/${slug}/team`,
-            live: league.league_type === "cooperative",
+            live: league.league_type === "cooperative" || league.league_type === "hybrid",
           },
           { label: "Activity Feed", href: `/leagues/${slug}/activity`, live: false },
         ].map(({ label, href, live }) => (

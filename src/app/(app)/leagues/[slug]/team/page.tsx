@@ -1,7 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@/auth";
-import { getLeague, getMemberRole, getCoopGrailItems, type GrailScope } from "@/lib/leagues";
+import { getLeague, getMemberRole, getLeagueGrailItems, type GrailScope } from "@/lib/leagues";
 import { CoopChecklist } from "./_components/CoopChecklist";
 
 interface Props {
@@ -13,17 +13,17 @@ export default async function TeamGrailPage({ params }: Props) {
   const [league, session] = await Promise.all([getLeague(slug), auth()]);
   if (!league) notFound();
 
-  if (league.league_type !== "cooperative") {
-    redirect(`/leagues/${slug}`);
-  }
+  const isTeamLeague = league.league_type === "cooperative" || league.league_type === "hybrid";
+  if (!isTeamLeague) redirect(`/leagues/${slug}`);
 
   if (!session?.user.id) redirect(`/login?callbackUrl=/leagues/${slug}/team`);
 
   const role = await getMemberRole(league.id, session.user.id);
   if (!role) redirect(`/leagues/${slug}`);
 
+  const isCoop = league.league_type === "cooperative";
   const scope = league.grail_scope as unknown as GrailScope;
-  const items = await getCoopGrailItems(league.id, scope);
+  const items = await getLeagueGrailItems(league.id, scope);
   const found = items.filter((i) => i.found).length;
   const total = items.length;
   const pct = total > 0 ? Math.round((found / total) * 100) : 0;
@@ -39,7 +39,10 @@ export default async function TeamGrailPage({ params }: Props) {
       <div className="flex items-end justify-between">
         <div>
           <h1 className="text-2xl font-bold text-zinc-100">Team Grail</h1>
-          <p className="mt-0.5 text-sm text-zinc-500">{league.season.name} · Cooperative</p>
+          <p className="mt-0.5 text-sm text-zinc-500">
+            {league.season.name} · {isCoop ? "Cooperative" : "Hybrid"}
+            {!isCoop && <span className="ml-2 text-zinc-600">· read-only — items are marked found from individual grails</span>}
+          </p>
         </div>
         <p className="text-sm text-zinc-400">
           <span className="text-2xl font-bold text-zinc-100">{pct}%</span>
@@ -58,6 +61,7 @@ export default async function TeamGrailPage({ params }: Props) {
         slug={slug}
         initialItems={items}
         currentUserId={session.user.id}
+        readOnly={!isCoop}
       />
     </div>
   );

@@ -17,9 +17,10 @@ interface Props {
   slug: string;
   initialItems: CoopItemRow[];
   currentUserId: string;
+  readOnly?: boolean;
 }
 
-export function CoopChecklist({ slug, initialItems, currentUserId }: Props) {
+export function CoopChecklist({ slug, initialItems, currentUserId, readOnly = false }: Props) {
   const [items, setItems] = useState(initialItems);
   const [, startTransition] = useTransition();
   const [search, setSearch] = useState("");
@@ -27,6 +28,7 @@ export function CoopChecklist({ slug, initialItems, currentUserId }: Props) {
   const [filterFound, setFilterFound] = useState<"all" | "found" | "missing">("all");
 
   function toggle(itemId: string) {
+    if (readOnly) return;
     const item = items.find((i) => i.id === itemId);
     if (!item) return;
     const nextFound = !item.found;
@@ -146,7 +148,7 @@ export function CoopChecklist({ slug, initialItems, currentUserId }: Props) {
             </div>
             <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
               {catItems.map((item) => (
-                <CoopItemRow key={item.id} item={item} onToggle={() => toggle(item.id)} />
+                <CoopItemRow key={item.id} item={item} onToggle={() => toggle(item.id)} readOnly={readOnly} />
               ))}
             </div>
           </section>
@@ -160,15 +162,16 @@ export function CoopChecklist({ slug, initialItems, currentUserId }: Props) {
   );
 }
 
-function CoopItemRow({ item, onToggle }: { item: CoopItemRow; onToggle: () => void }) {
+function CoopItemRow({ item, onToggle, readOnly }: { item: CoopItemRow; onToggle: () => void; readOnly?: boolean }) {
   return (
     <button
       onClick={onToggle}
+      disabled={readOnly}
       className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-left transition-colors ${
         item.found
           ? "border-amber-800/50 bg-amber-900/20 hover:bg-amber-900/30"
           : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"
-      }`}
+      } ${readOnly ? "cursor-default" : ""}`}
     >
       <span
         className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border text-xs transition-colors ${

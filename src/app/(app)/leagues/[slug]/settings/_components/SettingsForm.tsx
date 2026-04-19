@@ -54,6 +54,7 @@ export function SettingsForm({ slug, initialName, initialIsPrivate, initialInvit
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
+  const [regenerateConfirming, setRegenerateConfirming] = useState(false);
 
   function toggleScope(key: keyof GrailScope) {
     setScope((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -94,8 +95,11 @@ export function SettingsForm({ slug, initialName, initialIsPrivate, initialInvit
   }
 
   async function handleRegenerateCode() {
-    if (!window.confirm("This will invalidate the current invite code. Continue?")) return;
+    setRegenerateConfirming(true);
+  }
 
+  async function confirmRegenerate() {
+    setRegenerateConfirming(false);
     const res = await fetch(`/api/leagues/${slug}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -161,13 +165,21 @@ export function SettingsForm({ slug, initialName, initialIsPrivate, initialInvit
           </div>
           <div className="flex items-center gap-2">
             <CopyInviteButton slug={slug} inviteCode={inviteCode} />
-            <button
-              type="button"
-              onClick={handleRegenerateCode}
-              className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
-            >
-              Regenerate code
-            </button>
+            {regenerateConfirming ? (
+              <>
+                <span className="text-xs text-zinc-500">Invalidates current link.</span>
+                <button type="button" onClick={confirmRegenerate} className="text-xs text-red-400 hover:text-red-300 transition-colors">Confirm</button>
+                <button type="button" onClick={() => setRegenerateConfirming(false)} className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors">Cancel</button>
+              </>
+            ) : (
+              <button
+                type="button"
+                onClick={handleRegenerateCode}
+                className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
+              >
+                Regenerate
+              </button>
+            )}
           </div>
         </div>
       )}

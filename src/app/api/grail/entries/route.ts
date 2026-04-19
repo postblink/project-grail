@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
+import { notifyItemFound, notifyMilestone, checkMilestoneCrossed } from "@/lib/discord";
 
 const schema = z.object({
   grailId: z.string().min(1),
@@ -33,7 +34,7 @@ export async function PATCH(req: NextRequest) {
   }
 
   // Verify the item exists
-  const item = await db.item.findUnique({ where: { id: itemId }, select: { id: true } });
+  const item = await db.item.findUnique({ where: { id: itemId }, select: { id: true, name: true } });
   if (!item) {
     return NextResponse.json({ error: "Item not found" }, { status: 404 });
   }
@@ -74,6 +75,46 @@ export async function PATCH(req: NextRequest) {
         }),
       ),
     );
+  }
+
+  // Discord webhook notifications — best-effort, never block the response
+  if (found && grail.season_id) {
+    const user = await db.user.findUnique({
+      where: { id: session.user.id },
+      select: { display_name: true },
+    });
+    const displayName = user?.display_name ?? "Someone";
+
+    const leagues = await db.league.findMany({
+      where: {
+        season_id: grail.season_id,
+        discord_webhook_url: { not: null },
+        members: { some: { user_id: session.user.id } },
+      },
+      select: { name: true, discord_webhook_url: true },
+    });
+
+    if (leagues.length > 0) {
+      const [totalItems, foundItems] = await Promise.all([
+        db.grailEntry.count({ where: { grail_id: grailId } }),
+        db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
+      ]);
+      const prevFound = foundItems - 1;
+      const milestone = checkMilestoneCrossed(prevFound, foundItems, totalItems);
+
+      await Promise.allSettled(
+        leagues.flatMap((league) => {
+          const url = league.discord_webhook_url!;
+          const tasks = [
+            notifyItemFound({ webhookUrl: url, displayName, itemName: item.name, leagueName: league.name, foundCount: foundItems, totalCount: totalItems }),
+          ];
+          if (milestone !== null) {
+            tasks.push(notifyMilestone({ webhookUrl: url, displayName, milestone, leagueName: league.name, foundCount: foundItems, totalCount: totalItems }));
+          }
+          return tasks;
+        }),
+      );
+    }
   }
 
   return NextResponse.json({ entry });

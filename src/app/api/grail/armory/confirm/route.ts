@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
+import { notifyMilestone, checkMilestoneCrossed } from "@/lib/discord";
 
 const schema = z.object({
   grailId: z.string().min(1),
@@ -82,6 +83,38 @@ export async function POST(req: NextRequest) {
           ),
         ),
       );
+    }
+
+    // Discord milestone notifications for armory imports (milestone only — not per-item for bulk)
+    if (grail.season_id) {
+      const user = await db.user.findUnique({ where: { id: session.user.id }, select: { display_name: true } });
+      const displayName = user?.display_name ?? "Someone";
+
+      const leagues = await db.league.findMany({
+        where: {
+          season_id: grail.season_id,
+          discord_webhook_url: { not: null },
+          members: { some: { user_id: session.user.id } },
+        },
+        select: { name: true, discord_webhook_url: true },
+      });
+
+      if (leagues.length > 0) {
+        const [totalItems, foundItems] = await Promise.all([
+          db.grailEntry.count({ where: { grail_id: grailId } }),
+          db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
+        ]);
+        const prevFound = foundItems - itemIds.length;
+        const milestone = checkMilestoneCrossed(Math.max(0, prevFound), foundItems, totalItems);
+
+        if (milestone !== null) {
+          await Promise.allSettled(
+            leagues.map((league) =>
+              notifyMilestone({ webhookUrl: league.discord_webhook_url!, displayName, milestone, leagueName: league.name, foundCount: foundItems, totalCount: totalItems })
+            ),
+          );
+        }
+      }
     }
 
     return NextResponse.json({ added: itemIds.length, importId: armoryImport.id });

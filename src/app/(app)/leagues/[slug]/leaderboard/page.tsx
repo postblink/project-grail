@@ -119,7 +119,6 @@ function BonusIndicators({ bonuses }: { bonuses: { firstSetItem: boolean; setsCo
 
 function IndividualLeaderboard({
   ranks,
-  leagueType,
 }: {
   ranks: Awaited<ReturnType<typeof computeIndividualRankings>>;
   leagueType: string;
@@ -128,32 +127,47 @@ function IndividualLeaderboard({
     return <p className="text-sm text-zinc-600">No members yet.</p>;
   }
 
+  const RANK_STYLES: Record<number, string> = {
+    1: "border-amber-700/50 bg-amber-900/10",
+    2: "border-zinc-600/50 bg-zinc-800/30",
+    3: "border-zinc-700/50 bg-zinc-800/20",
+  };
+  const RANK_LABELS: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
+
   return (
-    <div className="rounded-xl border border-zinc-800 overflow-hidden">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-zinc-800 text-xs text-zinc-600 uppercase tracking-wider">
-            <th className="px-4 py-2.5 text-left">#</th>
-            <th className="px-4 py-2.5 text-left">Player</th>
-            <th className="px-4 py-2.5 text-right">Found</th>
-            <th className="px-4 py-2.5 text-right">Total</th>
-            <th className="px-4 py-2.5 text-right">Complete</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-zinc-800">
-          {ranks.map((r, i) => (
-            <tr key={r.userId} className="hover:bg-zinc-800/50 transition-colors">
-              <td className="px-4 py-3 text-zinc-600">{i + 1}</td>
-              <td className="px-4 py-3 text-zinc-200 font-medium">
-                {r.displayName ?? "Unknown"}
-              </td>
-              <td className="px-4 py-3 text-right text-zinc-400">{r.found}</td>
-              <td className="px-4 py-3 text-right text-zinc-600">{r.total}</td>
-              <td className="px-4 py-3 text-right font-bold text-zinc-100">{r.pct}%</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="space-y-2">
+      {ranks.map((r, i) => {
+        const rank = i + 1;
+        const cardStyle = RANK_STYLES[rank] ?? "border-zinc-800 bg-zinc-900";
+        return (
+          <div key={r.userId} className={`rounded-xl border px-4 py-3 ${cardStyle}`}>
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-3">
+                <span className="w-6 text-center text-sm">
+                  {RANK_LABELS[rank] ?? <span className="text-zinc-600">{rank}</span>}
+                </span>
+                {r.displayName ? (
+                  <Link href={`/grail/${encodeURIComponent(r.displayName)}`} className="text-sm font-medium text-zinc-200 hover:text-amber-400 transition-colors">
+                    {r.displayName}
+                  </Link>
+                ) : (
+                  <span className="text-sm font-medium text-zinc-500">Unknown</span>
+                )}
+              </div>
+              <div className="text-right">
+                <span className="text-lg font-bold text-zinc-100">{r.pct}%</span>
+                <span className="ml-2 text-xs text-zinc-600">{r.found}/{r.total}</span>
+              </div>
+            </div>
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
+              <div
+                className="h-full rounded-full bg-amber-500 transition-all"
+                style={{ width: `${r.pct}%` }}
+              />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

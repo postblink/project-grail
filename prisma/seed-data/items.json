@@ -1,0 +1,6176 @@
+[
+  {
+    "name": "The Gnasher",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Gnasher"
+  },
+  {
+    "name": "Deathspade",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Deathspade"
+  },
+  {
+    "name": "Bladebone",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bladebone"
+  },
+  {
+    "name": "Skull Splitter",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skull_Splitter"
+  },
+  {
+    "name": "Rakescar",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rakescar"
+  },
+  {
+    "name": "Axe of Fechmar",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Axe_of_Fechmar"
+  },
+  {
+    "name": "Goreshovel",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Goreshovel"
+  },
+  {
+    "name": "The Chieftain",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Chieftain"
+  },
+  {
+    "name": "Brainhew",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Brainhew"
+  },
+  {
+    "name": "Humongous",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Humongous"
+  },
+  {
+    "name": "Coldkill",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Coldkill"
+  },
+  {
+    "name": "Butcher's Pupil",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Butcher's_Pupil"
+  },
+  {
+    "name": "Islestrike",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Islestrike"
+  },
+  {
+    "name": "Pompeii's Wrath",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Pompeii's_Wrath"
+  },
+  {
+    "name": "Guardian Naga",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Guardian_Naga"
+  },
+  {
+    "name": "Warlord's Trust",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Warlord's_Trust"
+  },
+  {
+    "name": "Spellsteel",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spellsteel"
+  },
+  {
+    "name": "Stormrider",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stormrider"
+  },
+  {
+    "name": "Boneslayer Blade",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Boneslayer_Blade"
+  },
+  {
+    "name": "The Minotaur",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Minotaur"
+  },
+  {
+    "name": "Razor's Edge",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Razor's_Edge"
+  },
+  {
+    "name": "Rune Master",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rune_Master"
+  },
+  {
+    "name": "Cranebeak",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cranebeak"
+  },
+  {
+    "name": "Death Cleaver",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Death_Cleaver"
+  },
+  {
+    "name": "Ethereal Edge",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ethereal_Edge"
+  },
+  {
+    "name": "Hellslayer",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hellslayer"
+  },
+  {
+    "name": "Messerschmidt's Reaver",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Messerschmidt's_Reaver"
+  },
+  {
+    "name": "Executioner's Justice",
+    "category": "unique",
+    "item_type": "axes",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Executioner's_Justice"
+  },
+  {
+    "name": "Felloak",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Felloak"
+  },
+  {
+    "name": "Stoutnail",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stoutnail"
+  },
+  {
+    "name": "Crushflange",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Crushflange"
+  },
+  {
+    "name": "Bloodrise",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bloodrise"
+  },
+  {
+    "name": "The General's Tan Do Li Ga",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_General's_Tan_Do_Li_Ga"
+  },
+  {
+    "name": "Ironstone",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ironstone"
+  },
+  {
+    "name": "Bonesnap",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bonesnap"
+  },
+  {
+    "name": "Steeldriver",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Steeldriver"
+  },
+  {
+    "name": "Dark Clan Crusher",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dark_Clan_Crusher"
+  },
+  {
+    "name": "Fleshrender",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Fleshrender"
+  },
+  {
+    "name": "Sureshrill Frost",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sureshrill_Frost"
+  },
+  {
+    "name": "Moonfall",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Moonfall"
+  },
+  {
+    "name": "Baezil's Vortex",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Baezil's_Vortex"
+  },
+  {
+    "name": "Earthshaker",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Earthshaker"
+  },
+  {
+    "name": "Bloodtree Stump",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bloodtree_Stump"
+  },
+  {
+    "name": "The Gavel of Pain",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Gavel_of_Pain"
+  },
+  {
+    "name": "Nord's Tenderizer",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nord's_Tenderizer"
+  },
+  {
+    "name": "Demon Limb",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Demon_Limb"
+  },
+  {
+    "name": "Baranar's Star",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Baranar's_Star"
+  },
+  {
+    "name": "Horizon's Tornado",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Horizon's_Tornado"
+  },
+  {
+    "name": "Stormlash",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stormlash"
+  },
+  {
+    "name": "Stone Crusher",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stone_Crusher"
+  },
+  {
+    "name": "Schaefer's Hammer",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Schaefer's_Hammer"
+  },
+  {
+    "name": "Windhammer",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Windhammer"
+  },
+  {
+    "name": "Earth Shifter",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Earth_Shifter"
+  },
+  {
+    "name": "The Cranium Basher",
+    "category": "unique",
+    "item_type": "maces",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Cranium_Basher"
+  },
+  {
+    "name": "Rixot's Keen",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rixot's_Keen"
+  },
+  {
+    "name": "Blood Crescent",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blood_Crescent"
+  },
+  {
+    "name": "Skewer of Krintiz",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skewer_of_Krintiz"
+  },
+  {
+    "name": "Gleamscythe",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gleamscythe"
+  },
+  {
+    "name": "Griswold's Edge",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Griswold's_Edge"
+  },
+  {
+    "name": "Hellplague",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hellplague"
+  },
+  {
+    "name": "Culwen's Point",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Culwen's_Point"
+  },
+  {
+    "name": "Shadowfang",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shadowfang"
+  },
+  {
+    "name": "Soulflay",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Soulflay"
+  },
+  {
+    "name": "Kinemil's Awl",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Kinemil's_Awl"
+  },
+  {
+    "name": "Blacktongue",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blacktongue"
+  },
+  {
+    "name": "Ripsaw",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ripsaw"
+  },
+  {
+    "name": "The Patriarch",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Patriarch"
+  },
+  {
+    "name": "Bloodletter",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bloodletter"
+  },
+  {
+    "name": "Coldsteel Eye",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Coldsteel_Eye"
+  },
+  {
+    "name": "Hexfire",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hexfire"
+  },
+  {
+    "name": "Blade of Ali Baba",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blade_of_Ali_Baba"
+  },
+  {
+    "name": "Ginther's Rift",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ginther's_Rift"
+  },
+  {
+    "name": "Headstriker",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Headstriker"
+  },
+  {
+    "name": "Plague Bearer",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Plague_Bearer"
+  },
+  {
+    "name": "The Atlantean",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Atlantean"
+  },
+  {
+    "name": "Crainte Vomir",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Crainte_Vomir"
+  },
+  {
+    "name": "Bing Sz Wang",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bing_Sz_Wang"
+  },
+  {
+    "name": "The Vile Husk",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Vile_Husk"
+  },
+  {
+    "name": "Cloudcrack",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cloudcrack"
+  },
+  {
+    "name": "Todesfaelle Flamme",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Todesfaelle_Flamme"
+  },
+  {
+    "name": "Swordguard",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Swordguard"
+  },
+  {
+    "name": "Djinn Slayer",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Djinn_Slayer"
+  },
+  {
+    "name": "Bloodmoon",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bloodmoon"
+  },
+  {
+    "name": "Lightsabre",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lightsabre"
+  },
+  {
+    "name": "Azurewrath",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Azurewrath"
+  },
+  {
+    "name": "Frostwind",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Frostwind"
+  },
+  {
+    "name": "Hadriel's Hand",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hadriel's_Hand"
+  },
+  {
+    "name": "Leoric's Mithril Bane",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Leoric's_Mithril_Bane"
+  },
+  {
+    "name": "Flamebellow",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Flamebellow"
+  },
+  {
+    "name": "Doombringer",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Doombringer"
+  },
+  {
+    "name": "Odium",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Odium"
+  },
+  {
+    "name": "The Grandfather",
+    "category": "unique",
+    "item_type": "swords",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Grandfather"
+  },
+  {
+    "name": "Gull",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gull"
+  },
+  {
+    "name": "The Diggler",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Diggler"
+  },
+  {
+    "name": "The Jade Tan Do",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Jade_Tan_Do"
+  },
+  {
+    "name": "Spectral Shard",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spectral_Shard"
+  },
+  {
+    "name": "Spineripper",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spineripper"
+  },
+  {
+    "name": "Heart Carver",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Heart_Carver"
+  },
+  {
+    "name": "Blackbog's Sharp",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blackbog's_Sharp"
+  },
+  {
+    "name": "Stormspike",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stormspike"
+  },
+  {
+    "name": "Wizardspike",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wizardspike"
+  },
+  {
+    "name": "Shatterblade",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shatterblade"
+  },
+  {
+    "name": "Fleshripper",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Fleshripper"
+  },
+  {
+    "name": "Ghostflame",
+    "category": "unique",
+    "item_type": "daggers",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ghostflame"
+  },
+  {
+    "name": "Deathbit",
+    "category": "unique",
+    "item_type": "throwing weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Deathbit"
+  },
+  {
+    "name": "The Scalper",
+    "category": "unique",
+    "item_type": "throwing weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Scalper"
+  },
+  {
+    "name": "Achilles Strike",
+    "category": "unique",
+    "item_type": "throwing weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Achilles_Strike"
+  },
+  {
+    "name": "Gimmershred",
+    "category": "unique",
+    "item_type": "throwing weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gimmershred"
+  },
+  {
+    "name": "Warshrike",
+    "category": "unique",
+    "item_type": "throwing weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Warshrike"
+  },
+  {
+    "name": "Lacerator",
+    "category": "unique",
+    "item_type": "throwing weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lacerator"
+  },
+  {
+    "name": "Demon's Arch",
+    "category": "unique",
+    "item_type": "throwing weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Demon's_Arch"
+  },
+  {
+    "name": "Wraith Flight",
+    "category": "unique",
+    "item_type": "throwing weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wraith_Flight"
+  },
+  {
+    "name": "Gargoyle's Bite",
+    "category": "unique",
+    "item_type": "throwing weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gargoyle's_Bite"
+  },
+  {
+    "name": "The Dragon Chang",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Dragon_Chang"
+  },
+  {
+    "name": "Razortine",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Razortine"
+  },
+  {
+    "name": "Bloodthief",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bloodthief"
+  },
+  {
+    "name": "Lance of Yaggai",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lance_of_Yaggai"
+  },
+  {
+    "name": "The Tannr Gorerod",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Tannr_Gorerod"
+  },
+  {
+    "name": "The Impaler",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Impaler"
+  },
+  {
+    "name": "Kelpie Snare",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Kelpie_Snare"
+  },
+  {
+    "name": "Soulfeast Tine",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Soulfeast_Tine"
+  },
+  {
+    "name": "Hone Sundan",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hone_Sundan"
+  },
+  {
+    "name": "Spire of Honor",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spire_of_Honor"
+  },
+  {
+    "name": "Arioc's Needle",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arioc's_Needle"
+  },
+  {
+    "name": "Viperfork",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Viperfork"
+  },
+  {
+    "name": "Uldyssian's Awakening",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Uldyssian's_Awakening"
+  },
+  {
+    "name": "Steel Pillar",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Steel_Pillar"
+  },
+  {
+    "name": "Dimoak's Hew",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dimoak's_Hew"
+  },
+  {
+    "name": "Steelgoad",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Steelgoad"
+  },
+  {
+    "name": "Soul Harvest",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Soul_Harvest"
+  },
+  {
+    "name": "The Battlebranch",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Battlebranch"
+  },
+  {
+    "name": "Woestave",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Woestave"
+  },
+  {
+    "name": "The Grim Reaper",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Grim_Reaper"
+  },
+  {
+    "name": "The Meat Scraper",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Meat_Scraper"
+  },
+  {
+    "name": "Blackleach Blade",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blackleach_Blade"
+  },
+  {
+    "name": "Athena's Wrath",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Athena's_Wrath"
+  },
+  {
+    "name": "Pierre Tombale Couant",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Pierre_Tombale_Couant"
+  },
+  {
+    "name": "Husoldal Evo",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Husoldal_Evo"
+  },
+  {
+    "name": "Grim's Burning Dead",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Grim's_Burning_Dead"
+  },
+  {
+    "name": "Bonehew",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bonehew"
+  },
+  {
+    "name": "The Reaper's Toll",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Reaper's_Toll"
+  },
+  {
+    "name": "Tomb Reaver",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tomb_Reaver"
+  },
+  {
+    "name": "Stormspire",
+    "category": "unique",
+    "item_type": "polearms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stormspire"
+  },
+  {
+    "name": "Pluckeye",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Pluckeye"
+  },
+  {
+    "name": "Witherstring",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Witherstring"
+  },
+  {
+    "name": "Raven Claw",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Raven_Claw"
+  },
+  {
+    "name": "Rogue's Bow",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rogue's_Bow"
+  },
+  {
+    "name": "Stormstrike",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stormstrike"
+  },
+  {
+    "name": "Wizendraw",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wizendraw"
+  },
+  {
+    "name": "Hellclap",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hellclap"
+  },
+  {
+    "name": "Blastbark",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blastbark"
+  },
+  {
+    "name": "Skystrike",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skystrike"
+  },
+  {
+    "name": "Riphook",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Riphook"
+  },
+  {
+    "name": "Kuko Shakaku",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Kuko_Shakaku"
+  },
+  {
+    "name": "Endlesshail",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Endlesshail"
+  },
+  {
+    "name": "Witchwild String",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Witchwild_String"
+  },
+  {
+    "name": "Cliffkiller",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cliffkiller"
+  },
+  {
+    "name": "Magewrath",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Magewrath"
+  },
+  {
+    "name": "Goldstrike Arch",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Goldstrike_Arch"
+  },
+  {
+    "name": "Crackleshot",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Crackleshot"
+  },
+  {
+    "name": "Eaglehorn",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Eaglehorn"
+  },
+  {
+    "name": "Widowmaker",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Widowmaker"
+  },
+  {
+    "name": "Windforce",
+    "category": "unique",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Windforce"
+  },
+  {
+    "name": "Leadcrow",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Leadcrow"
+  },
+  {
+    "name": "Ichorsting",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ichorsting"
+  },
+  {
+    "name": "Hellcast",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hellcast"
+  },
+  {
+    "name": "Doomslinger",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Doomslinger"
+  },
+  {
+    "name": "Langer Briser",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Langer_Briser"
+  },
+  {
+    "name": "Pus Spitter",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Pus_Spitter"
+  },
+  {
+    "name": "Buriza-Do Kyanon",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Buriza-Do_Kyanon"
+  },
+  {
+    "name": "Demon Machine",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Demon_Machine"
+  },
+  {
+    "name": "Gut Siphon",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gut_Siphon"
+  },
+  {
+    "name": "Hellrack",
+    "category": "unique",
+    "item_type": "crossbows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hellrack"
+  },
+  {
+    "name": "Knell Striker",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Knell_Striker"
+  },
+  {
+    "name": "Rusthandle",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rusthandle"
+  },
+  {
+    "name": "Stormeye",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stormeye"
+  },
+  {
+    "name": "Zakarum's Hand",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Zakarum's_Hand"
+  },
+  {
+    "name": "The Fetid Sprinkler",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Fetid_Sprinkler"
+  },
+  {
+    "name": "Hand of Blessed Light",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hand_of_Blessed_Light"
+  },
+  {
+    "name": "Heaven's Light",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Heaven's_Light"
+  },
+  {
+    "name": "The Redeemer",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Redeemer"
+  },
+  {
+    "name": "Akarat's Devotion",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Akarat's_Devotion"
+  },
+  {
+    "name": "Astreon's Iron Ward",
+    "category": "unique",
+    "item_type": "scepters",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Astreon's_Iron_Ward"
+  },
+  {
+    "name": "Bane Ash",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bane_Ash"
+  },
+  {
+    "name": "Serpent Lord",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Serpent_Lord"
+  },
+  {
+    "name": "Spire of Lazarus",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spire_of_Lazarus"
+  },
+  {
+    "name": "The Salamander",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Salamander"
+  },
+  {
+    "name": "The Iron Jang Bong",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Iron_Jang_Bong"
+  },
+  {
+    "name": "Razorswitch",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Razorswitch"
+  },
+  {
+    "name": "Ribcracker",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ribcracker"
+  },
+  {
+    "name": "Chromatic Ire",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Chromatic_Ire"
+  },
+  {
+    "name": "Warpspear",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Warpspear"
+  },
+  {
+    "name": "Skull Collector",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skull_Collector"
+  },
+  {
+    "name": "Brimstone Rain",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Brimstone_Rain"
+  },
+  {
+    "name": "Ondal's Wisdom",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ondal's_Wisdom"
+  },
+  {
+    "name": "Mang Song's Lesson",
+    "category": "unique",
+    "item_type": "staves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Mang_Song's_Lesson"
+  },
+  {
+    "name": "Torch of Iro",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Torch_of_Iro"
+  },
+  {
+    "name": "Maelstrom",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Maelstrom"
+  },
+  {
+    "name": "Gravenspine",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gravenspine"
+  },
+  {
+    "name": "Ume's Lament",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ume's_Lament"
+  },
+  {
+    "name": "Suicide Branch",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Suicide_Branch"
+  },
+  {
+    "name": "Carin Shard",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Carin_Shard"
+  },
+  {
+    "name": "Arm of King Leoric",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arm_of_King_Leoric"
+  },
+  {
+    "name": "Blackhand Key",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blackhand_Key"
+  },
+  {
+    "name": "Boneshade",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Boneshade"
+  },
+  {
+    "name": "Death's Web",
+    "category": "unique",
+    "item_type": "wands",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Death's_Web"
+  },
+  {
+    "name": "Bows",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bows"
+  },
+  {
+    "name": "Spears",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spears"
+  },
+  {
+    "name": "Javelins",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Javelins"
+  },
+  {
+    "name": "Mage Slayer",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Mage_Slayer"
+  },
+  {
+    "name": "Bartuc's Cut-Throat",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bartuc's_Cut-Throat"
+  },
+  {
+    "name": "Stalker's Cull",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stalker's_Cull"
+  },
+  {
+    "name": "Jade Talon",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Jade_Talon"
+  },
+  {
+    "name": "Firelizard's Talons",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Firelizard's_Talons"
+  },
+  {
+    "name": "Shadow Killer",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shadow_Killer"
+  },
+  {
+    "name": "Whispering Mirage",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Whispering_Mirage"
+  },
+  {
+    "name": "Aidan's Scar",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Aidan's_Scar"
+  },
+  {
+    "name": "Tempest",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tempest"
+  },
+  {
+    "name": "Skorn",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skorn"
+  },
+  {
+    "name": "The Oculus",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Oculus"
+  },
+  {
+    "name": "Eschuta's Temper",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Eschuta's_Temper"
+  },
+  {
+    "name": "Death's Fathom",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Death's_Fathom"
+  },
+  {
+    "name": "Armageddon's Blade",
+    "category": "unique",
+    "item_type": "class weapons",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Armageddon's_Blade"
+  },
+  {
+    "name": "Biggin's Bonnet",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Biggin's_Bonnet"
+  },
+  {
+    "name": "Tarnhelm",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tarnhelm"
+  },
+  {
+    "name": "Coif of Glory",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Coif_of_Glory"
+  },
+  {
+    "name": "Duskdeep",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Duskdeep"
+  },
+  {
+    "name": "The Face of Horror",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Face_of_Horror"
+  },
+  {
+    "name": "Wormskull",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wormskull"
+  },
+  {
+    "name": "Howltusk",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Howltusk"
+  },
+  {
+    "name": "Undead Crown",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Undead_Crown"
+  },
+  {
+    "name": "Peasant Crown",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Peasant_Crown"
+  },
+  {
+    "name": "Rockstopper",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rockstopper"
+  },
+  {
+    "name": "Stealskull",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stealskull"
+  },
+  {
+    "name": "Darksight Helm",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Darksight_Helm"
+  },
+  {
+    "name": "Blackhorn's Face",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blackhorn's_Face"
+  },
+  {
+    "name": "Vampire Gaze",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Vampire_Gaze"
+  },
+  {
+    "name": "Valkyrie Wing",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Valkyrie_Wing"
+  },
+  {
+    "name": "Crown of Thieves",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Crown_of_Thieves"
+  },
+  {
+    "name": "Harlequin Crest",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Harlequin_Crest"
+  },
+  {
+    "name": "Steel Shade",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Steel_Shade"
+  },
+  {
+    "name": "Andariel's Visage",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Andariel's_Visage"
+  },
+  {
+    "name": "Giant Skull",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Giant_Skull"
+  },
+  {
+    "name": "Veil of Steel",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Veil_of_Steel"
+  },
+  {
+    "name": "Nightwing's Veil",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nightwing's_Veil"
+  },
+  {
+    "name": "Crown of Ages",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Crown_of_Ages"
+  },
+  {
+    "name": "Overlord's Helm",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Overlord's_Helm"
+  },
+  {
+    "name": "Kira's Guardian",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Kira's_Guardian"
+  },
+  {
+    "name": "Griffon's Eye",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Griffon's_Eye"
+  },
+  {
+    "name": "Cyclopean Roar",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cyclopean_Roar"
+  },
+  {
+    "name": "Wildspeaker",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wildspeaker"
+  },
+  {
+    "name": "Arreat's Face",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arreat's_Face"
+  },
+  {
+    "name": "Wolfhowl",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wolfhowl"
+  },
+  {
+    "name": "Demonhorn's Edge",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Demonhorn's_Edge"
+  },
+  {
+    "name": "Halaberd's Reign",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Halaberd's_Reign"
+  },
+  {
+    "name": "Raekor's Virtue",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Raekor's_Virtue"
+  },
+  {
+    "name": "Quetzalcoatl",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Quetzalcoatl"
+  },
+  {
+    "name": "Fenris",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Fenris"
+  },
+  {
+    "name": "Jalal's Mane",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Jalal's_Mane"
+  },
+  {
+    "name": "Cerebus' Bite",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cerebus'_Bite"
+  },
+  {
+    "name": "Denmother",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Denmother"
+  },
+  {
+    "name": "Ravenlore",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ravenlore"
+  },
+  {
+    "name": "Spirit Keeper",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spirit_Keeper"
+  },
+  {
+    "name": "Ursa's Nightmare",
+    "category": "unique",
+    "item_type": "helms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ursa's_Nightmare"
+  },
+  {
+    "name": "Greyform",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Greyform"
+  },
+  {
+    "name": "Blinkbat's Form",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blinkbat's_Form"
+  },
+  {
+    "name": "The Centurion",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Centurion"
+  },
+  {
+    "name": "Twitchthroe",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Twitchthroe"
+  },
+  {
+    "name": "Darkglow",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Darkglow"
+  },
+  {
+    "name": "Hawkmail",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hawkmail"
+  },
+  {
+    "name": "Sparking Mail",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sparking_Mail"
+  },
+  {
+    "name": "Venom Ward",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Venom_Ward"
+  },
+  {
+    "name": "Iceblink",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Iceblink"
+  },
+  {
+    "name": "Boneflesh",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Boneflesh"
+  },
+  {
+    "name": "Rockfleece",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rockfleece"
+  },
+  {
+    "name": "Rattlecage",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rattlecage"
+  },
+  {
+    "name": "Heavenly Garb",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Heavenly_Garb"
+  },
+  {
+    "name": "Goldskin",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Goldskin"
+  },
+  {
+    "name": "Silks of the Victor",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Silks_of_the_Victor"
+  },
+  {
+    "name": "Spirit Shroud",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spirit_Shroud"
+  },
+  {
+    "name": "Skin of the Vipermagi",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skin_of_the_Vipermagi"
+  },
+  {
+    "name": "Skin of the Flayed One",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skin_of_the_Flayed_One"
+  },
+  {
+    "name": "Iron Pelt",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Iron_Pelt"
+  },
+  {
+    "name": "Spirit Forge",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spirit_Forge"
+  },
+  {
+    "name": "Crow Caw",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Crow_Caw"
+  },
+  {
+    "name": "Shaftstop",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shaftstop"
+  },
+  {
+    "name": "Duriel's Shell",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Duriel's_Shell"
+  },
+  {
+    "name": "Skullder's Ire",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skullder's_Ire"
+  },
+  {
+    "name": "Guardian Angel",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Guardian_Angel"
+  },
+  {
+    "name": "Toothrow",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Toothrow"
+  },
+  {
+    "name": "Atma's Wail",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Atma's_Wail"
+  },
+  {
+    "name": "Que-Hegan's Wisdom",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Que-Hegan's_Wisdom"
+  },
+  {
+    "name": "Black Hades",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Black_Hades"
+  },
+  {
+    "name": "Corpsemourn",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Corpsemourn"
+  },
+  {
+    "name": "Ormus' Robes",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ormus'_Robes"
+  },
+  {
+    "name": "The Gladiator's Bane",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Gladiator's_Bane"
+  },
+  {
+    "name": "Wraithskin",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wraithskin"
+  },
+  {
+    "name": "Arkaine's Valor",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arkaine's_Valor"
+  },
+  {
+    "name": "Leviathan",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Leviathan"
+  },
+  {
+    "name": "Purgatory",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Purgatory"
+  },
+  {
+    "name": "Steel Carapace",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Steel_Carapace"
+  },
+  {
+    "name": "Templar's Might",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Templar's_Might"
+  },
+  {
+    "name": "Tyrael's Might",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tyrael's_Might"
+  },
+  {
+    "name": "Dark Abyss",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dark_Abyss"
+  },
+  {
+    "name": "Cage of the Unsullied",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cage_of_the_Unsullied"
+  },
+  {
+    "name": "Pelta Lunata",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Pelta_Lunata"
+  },
+  {
+    "name": "Umbral Disk",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Umbral_Disk"
+  },
+  {
+    "name": "Stormguild",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stormguild"
+  },
+  {
+    "name": "Swordback Hold",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Swordback_Hold"
+  },
+  {
+    "name": "Steelclash",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Steelclash"
+  },
+  {
+    "name": "Wall of the Eyeless",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wall_of_the_Eyeless"
+  },
+  {
+    "name": "Bverrit Keep",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bverrit_Keep"
+  },
+  {
+    "name": "The Ward",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Ward"
+  },
+  {
+    "name": "Visceratuant",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Visceratuant"
+  },
+  {
+    "name": "Moser's Blessed Circle",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Moser's_Blessed_Circle"
+  },
+  {
+    "name": "Stormchaser",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stormchaser"
+  },
+  {
+    "name": "Lance Guard",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lance_Guard"
+  },
+  {
+    "name": "Tiamat's Rebuke",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tiamat's_Rebuke"
+  },
+  {
+    "name": "Lidless Wall",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lidless_Wall"
+  },
+  {
+    "name": "Gerke's Sanctuary",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gerke's_Sanctuary"
+  },
+  {
+    "name": "Radament's Sphere",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Radament's_Sphere"
+  },
+  {
+    "name": "Blackoak Shield",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blackoak_Shield"
+  },
+  {
+    "name": "Twilight's Reflection",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Twilight's_Reflection"
+  },
+  {
+    "name": "Spike Thorn",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spike_Thorn"
+  },
+  {
+    "name": "Stormshield",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stormshield"
+  },
+  {
+    "name": "Head Hunter's Glory",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Head_Hunter's_Glory"
+  },
+  {
+    "name": "Medusa's Gaze",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Medusa's_Gaze"
+  },
+  {
+    "name": "Spirit Ward",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spirit_Ward"
+  },
+  {
+    "name": "Kalan's Legacy",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Kalan's_Legacy"
+  },
+  {
+    "name": "Homunculus",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Homunculus"
+  },
+  {
+    "name": "Boneflame",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Boneflame"
+  },
+  {
+    "name": "Darkforce Spawn",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Darkforce_Spawn"
+  },
+  {
+    "name": "Sacred Totem",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sacred_Totem"
+  },
+  {
+    "name": "Martyrdom",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Martyrdom"
+  },
+  {
+    "name": "Sankekur's Fall",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sankekur's_Fall"
+  },
+  {
+    "name": "Herald of Zakarum",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Herald_of_Zakarum"
+  },
+  {
+    "name": "Alma Negra",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Alma_Negra"
+  },
+  {
+    "name": "Dragonscale",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dragonscale"
+  },
+  {
+    "name": "Skywarden",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skywarden"
+  },
+  {
+    "name": "Balefire",
+    "category": "unique",
+    "item_type": "arrows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Balefire"
+  },
+  {
+    "name": "Swiftwind Needle",
+    "category": "unique",
+    "item_type": "arrows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Swiftwind_Needle"
+  },
+  {
+    "name": "Tombsong",
+    "category": "unique",
+    "item_type": "arrows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tombsong"
+  },
+  {
+    "name": "Aetherwing",
+    "category": "unique",
+    "item_type": "arrows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Aetherwing"
+  },
+  {
+    "name": "Basilisk's Quill",
+    "category": "unique",
+    "item_type": "arrows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Basilisk's_Quill"
+  },
+  {
+    "name": "Doom's Finger",
+    "category": "unique",
+    "item_type": "arrows",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Doom's_Finger"
+  },
+  {
+    "name": "Ramfodder",
+    "category": "unique",
+    "item_type": "bolts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ramfodder"
+  },
+  {
+    "name": "Anvilguard Strap",
+    "category": "unique",
+    "item_type": "bolts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Anvilguard_Strap"
+  },
+  {
+    "name": "Shatterhead",
+    "category": "unique",
+    "item_type": "bolts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shatterhead"
+  },
+  {
+    "name": "Abyssal Ward",
+    "category": "unique",
+    "item_type": "bolts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Abyssal_Ward"
+  },
+  {
+    "name": "Bannerlord's Call",
+    "category": "unique",
+    "item_type": "bolts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bannerlord's_Call"
+  },
+  {
+    "name": "Frozen Sorrow",
+    "category": "unique",
+    "item_type": "bolts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Frozen_Sorrow"
+  },
+  {
+    "name": "The Hand of Broc",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Hand_of_Broc"
+  },
+  {
+    "name": "Bloodfist",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bloodfist"
+  },
+  {
+    "name": "Chance Guards",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Chance_Guards"
+  },
+  {
+    "name": "Magefist",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Magefist"
+  },
+  {
+    "name": "Frostburn",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Frostburn"
+  },
+  {
+    "name": "Venom Grip",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Venom_Grip"
+  },
+  {
+    "name": "Gravepalm",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gravepalm"
+  },
+  {
+    "name": "Ghoulhide",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ghoulhide"
+  },
+  {
+    "name": "Lava Gout",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lava_Gout"
+  },
+  {
+    "name": "Hellmouth",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hellmouth"
+  },
+  {
+    "name": "Titan's Grip",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Titan's_Grip"
+  },
+  {
+    "name": "Dracul's Grasp",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dracul's_Grasp"
+  },
+  {
+    "name": "Soul Drainer",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Soul_Drainer"
+  },
+  {
+    "name": "Occultist",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Occultist"
+  },
+  {
+    "name": "Steelrend",
+    "category": "unique",
+    "item_type": "gloves",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Steelrend"
+  },
+  {
+    "name": "Hotspur",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hotspur"
+  },
+  {
+    "name": "Gorefoot",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gorefoot"
+  },
+  {
+    "name": "Treads of Cthon",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Treads_of_Cthon"
+  },
+  {
+    "name": "Goblin Toe",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Goblin_Toe"
+  },
+  {
+    "name": "Tearhaunch",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tearhaunch"
+  },
+  {
+    "name": "Infernostride",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Infernostride"
+  },
+  {
+    "name": "Waterwalk",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Waterwalk"
+  },
+  {
+    "name": "Silkweave",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Silkweave"
+  },
+  {
+    "name": "War Traveler",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/War_Traveler"
+  },
+  {
+    "name": "Gore Rider",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gore_Rider"
+  },
+  {
+    "name": "Merman's Sprocket",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Merman's_Sprocket"
+  },
+  {
+    "name": "Sandstorm Trek",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sandstorm_Trek"
+  },
+  {
+    "name": "Marrowwalk",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Marrowwalk"
+  },
+  {
+    "name": "Shadow Dancer",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shadow_Dancer"
+  },
+  {
+    "name": "Itherael's Path",
+    "category": "unique",
+    "item_type": "boots",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Itherael's_Path"
+  },
+  {
+    "name": "Lenymo",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lenymo"
+  },
+  {
+    "name": "Snakecord",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Snakecord"
+  },
+  {
+    "name": "Nightsmoke",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nightsmoke"
+  },
+  {
+    "name": "Goldwrap",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Goldwrap"
+  },
+  {
+    "name": "Bladebuckle",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bladebuckle"
+  },
+  {
+    "name": "String of Ears",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/String_of_Ears"
+  },
+  {
+    "name": "Razortail",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Razortail"
+  },
+  {
+    "name": "Gloom's Trap",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gloom's_Trap"
+  },
+  {
+    "name": "Snowclash",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Snowclash"
+  },
+  {
+    "name": "Thundergod's Vigor",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Thundergod's_Vigor"
+  },
+  {
+    "name": "Arachnid Mesh",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arachnid_Mesh"
+  },
+  {
+    "name": "Nosferatu's Coil",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nosferatu's_Coil"
+  },
+  {
+    "name": "Verdungo's Hearty Cord",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Verdungo's_Hearty_Cord"
+  },
+  {
+    "name": "Siggard's Staunch",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Siggard's_Staunch"
+  },
+  {
+    "name": "Band of Skulls",
+    "category": "unique",
+    "item_type": "belts",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Band_of_Skulls"
+  },
+  {
+    "name": "Nokozan Relic",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nokozan_Relic"
+  },
+  {
+    "name": "The Eye of Etlich",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Eye_of_Etlich"
+  },
+  {
+    "name": "The Mahim-Oak Curio",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Mahim-Oak_Curio"
+  },
+  {
+    "name": "Saracen's Chance",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Saracen's_Chance"
+  },
+  {
+    "name": "Crescent Moon",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Crescent_Moon"
+  },
+  {
+    "name": "The Cat's Eye",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Cat's_Eye"
+  },
+  {
+    "name": "Atma's Scarab",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Atma's_Scarab"
+  },
+  {
+    "name": "Highlord's Wrath",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Highlord's_Wrath"
+  },
+  {
+    "name": "The Rising Sun",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Rising_Sun"
+  },
+  {
+    "name": "Seraph's Hymn",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Seraph's_Hymn"
+  },
+  {
+    "name": "Mara's Kaleidoscope",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Mara's_Kaleidoscope"
+  },
+  {
+    "name": "Metalgrid",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Metalgrid"
+  },
+  {
+    "name": "The Third Eye",
+    "category": "unique",
+    "item_type": "amulets",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Third_Eye"
+  },
+  {
+    "name": "Nagelring",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nagelring"
+  },
+  {
+    "name": "Manald Heal",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Manald_Heal"
+  },
+  {
+    "name": "The Stone of Jordan",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Stone_of_Jordan"
+  },
+  {
+    "name": "Dwarf Star",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dwarf_Star"
+  },
+  {
+    "name": "Raven Frost",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Raven_Frost"
+  },
+  {
+    "name": "Bul-Kathos' Wedding Band",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bul-Kathos'_Wedding_Band"
+  },
+  {
+    "name": "Carrion Wind",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Carrion_Wind"
+  },
+  {
+    "name": "Nature's Peace",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nature's_Peace"
+  },
+  {
+    "name": "Wisp Projector",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wisp_Projector"
+  },
+  {
+    "name": "Constricting Loop",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Constricting_Loop"
+  },
+  {
+    "name": "Kadala's Heirloom",
+    "category": "unique",
+    "item_type": "rings",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Kadala's_Heirloom"
+  },
+  {
+    "name": "Gheed's Fortune",
+    "category": "unique",
+    "item_type": "charms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gheed's_Fortune"
+  },
+  {
+    "name": "Hellfire Torch",
+    "category": "unique",
+    "item_type": "charms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hellfire_Torch"
+  },
+  {
+    "name": "Annihilus",
+    "category": "unique",
+    "item_type": "charms",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Annihilus"
+  },
+  {
+    "name": "Rainbow Facet (Fire)",
+    "category": "unique",
+    "item_type": "jewels",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rainbow_Facet_(Fire)"
+  },
+  {
+    "name": "Rainbow Facet (Cold)",
+    "category": "unique",
+    "item_type": "jewels",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rainbow_Facet_(Cold)"
+  },
+  {
+    "name": "Rainbow Facet (Lightning)",
+    "category": "unique",
+    "item_type": "jewels",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rainbow_Facet_(Lightning)"
+  },
+  {
+    "name": "Rainbow Facet (Poison)",
+    "category": "unique",
+    "item_type": "jewels",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rainbow_Facet_(Poison)"
+  },
+  {
+    "name": "Nadir",
+    "category": "runeword",
+    "item_type": "helm",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nadir"
+  },
+  {
+    "name": "Radiance",
+    "category": "runeword",
+    "item_type": "helm",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Radiance"
+  },
+  {
+    "name": "Lore",
+    "category": "runeword",
+    "item_type": "helm",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lore"
+  },
+  {
+    "name": "Wisdom",
+    "category": "runeword",
+    "item_type": "helm",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wisdom"
+  },
+  {
+    "name": "Delirium",
+    "category": "runeword",
+    "item_type": "helm",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Delirium"
+  },
+  {
+    "name": "Flickering Flame",
+    "category": "runeword",
+    "item_type": "helm",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Flickering_Flame"
+  },
+  {
+    "name": "Dream",
+    "category": "runeword",
+    "item_type": "helm",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dream"
+  },
+  {
+    "name": "Ferocity",
+    "category": "runeword",
+    "item_type": "helm",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ferocity"
+  },
+  {
+    "name": "Stealth",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stealth"
+  },
+  {
+    "name": "Peace",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Peace"
+  },
+  {
+    "name": "Myth",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Myth"
+  },
+  {
+    "name": "Smoke",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Smoke"
+  },
+  {
+    "name": "Hustle",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hustle"
+  },
+  {
+    "name": "Lionheart",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lionheart"
+  },
+  {
+    "name": "Treachery",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Treachery"
+  },
+  {
+    "name": "Wealth",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wealth"
+  },
+  {
+    "name": "Enlightenment",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Enlightenment"
+  },
+  {
+    "name": "Duress",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Duress"
+  },
+  {
+    "name": "Stone",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stone"
+  },
+  {
+    "name": "Gloom",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gloom"
+  },
+  {
+    "name": "Bone",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bone"
+  },
+  {
+    "name": "Prudence",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Prudence"
+  },
+  {
+    "name": "Rain",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rain"
+  },
+  {
+    "name": "Principle",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Principle"
+  },
+  {
+    "name": "Fortitude",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Fortitude"
+  },
+  {
+    "name": "Bramble",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bramble"
+  },
+  {
+    "name": "Dragon",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dragon"
+  },
+  {
+    "name": "Chains of Honor",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Chains_of_Honor"
+  },
+  {
+    "name": "Enigma",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Enigma"
+  },
+  {
+    "name": "Innocence",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Innocence"
+  },
+  {
+    "name": "Ancients' Pledge",
+    "category": "runeword",
+    "item_type": "shield",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ancients'_Pledge"
+  },
+  {
+    "name": "Spirit",
+    "category": "runeword",
+    "item_type": "shield",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spirit"
+  },
+  {
+    "name": "Rhyme",
+    "category": "runeword",
+    "item_type": "shield",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rhyme"
+  },
+  {
+    "name": "Splendor",
+    "category": "runeword",
+    "item_type": "shield",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Splendor"
+  },
+  {
+    "name": "Sanctuary",
+    "category": "runeword",
+    "item_type": "shield",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sanctuary"
+  },
+  {
+    "name": "Exile",
+    "category": "runeword",
+    "item_type": "shield",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Exile"
+  },
+  {
+    "name": "Epiphany",
+    "category": "runeword",
+    "item_type": "shield",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Epiphany"
+  },
+  {
+    "name": "Phoenix",
+    "category": "runeword",
+    "item_type": "shield",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Phoenix"
+  },
+  {
+    "name": "Shattered Wall",
+    "category": "runeword",
+    "item_type": "shield",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shattered_Wall"
+  },
+  {
+    "name": "Steel",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Steel"
+  },
+  {
+    "name": "Malice",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Malice"
+  },
+  {
+    "name": "Leaf",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Leaf"
+  },
+  {
+    "name": "Pattern",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Pattern"
+  },
+  {
+    "name": "Zephyr",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Zephyr"
+  },
+  {
+    "name": "Holy Thunder",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Holy_Thunder"
+  },
+  {
+    "name": "Neophyte",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Neophyte"
+  },
+  {
+    "name": "Strength",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Strength"
+  },
+  {
+    "name": "Edge",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Edge"
+  },
+  {
+    "name": "King's Grace",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/King's_Grace"
+  },
+  {
+    "name": "Purity",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Purity"
+  },
+  {
+    "name": "Insight",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Insight"
+  },
+  {
+    "name": "Honor",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Honor"
+  },
+  {
+    "name": "Rampage",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rampage"
+  },
+  {
+    "name": "Echo",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Echo"
+  },
+  {
+    "name": "Black",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Black"
+  },
+  {
+    "name": "White",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/White"
+  },
+  {
+    "name": "Memory",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Memory"
+  },
+  {
+    "name": "Harmony",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Harmony"
+  },
+  {
+    "name": "Melody",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Melody"
+  },
+  {
+    "name": "Unbending Will",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Unbending_Will"
+  },
+  {
+    "name": "Obedience",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Obedience"
+  },
+  {
+    "name": "Passion",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Passion"
+  },
+  {
+    "name": "Voice of Reason",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Voice_of_Reason"
+  },
+  {
+    "name": "Lawbringer",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lawbringer"
+  },
+  {
+    "name": "Loyalty",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Loyalty"
+  },
+  {
+    "name": "Venom",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Venom"
+  },
+  {
+    "name": "Oath",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Oath"
+  },
+  {
+    "name": "Rift",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rift"
+  },
+  {
+    "name": "Kingslayer",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Kingslayer"
+  },
+  {
+    "name": "Heart of the Oak",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Heart_of_the_Oak"
+  },
+  {
+    "name": "Silence",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Silence"
+  },
+  {
+    "name": "Death",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Death"
+  },
+  {
+    "name": "Chaos",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Chaos"
+  },
+  {
+    "name": "Call to Arms",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Call_to_Arms"
+  },
+  {
+    "name": "Grief",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Grief"
+  },
+  {
+    "name": "Wind",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wind"
+  },
+  {
+    "name": "Wrath",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wrath"
+  },
+  {
+    "name": "Beast",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Beast"
+  },
+  {
+    "name": "Eternity",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Eternity"
+  },
+  {
+    "name": "Infinity",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Infinity"
+  },
+  {
+    "name": "Fury",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Fury"
+  },
+  {
+    "name": "Famine",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Famine"
+  },
+  {
+    "name": "Faith",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Faith"
+  },
+  {
+    "name": "Ice",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ice"
+  },
+  {
+    "name": "Brand",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Brand"
+  },
+  {
+    "name": "Destruction",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Destruction"
+  },
+  {
+    "name": "Last Wish",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Last_Wish"
+  },
+  {
+    "name": "Rapture",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rapture"
+  },
+  {
+    "name": "Plague",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Plague"
+  },
+  {
+    "name": "Mist",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Mist"
+  },
+  {
+    "name": "Dominion",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dominion"
+  },
+  {
+    "name": "Doom",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Doom"
+  },
+  {
+    "name": "Hand of Justice",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hand_of_Justice"
+  },
+  {
+    "name": "Pride",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Pride"
+  },
+  {
+    "name": "Asylum",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Asylum"
+  },
+  {
+    "name": "Obsession",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Obsession"
+  },
+  {
+    "name": "Breath of the Dying",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Breath_of_the_Dying"
+  },
+  {
+    "name": "Zenith",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Zenith"
+  },
+  {
+    "name": "El",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/El"
+  },
+  {
+    "name": "Eld",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Eld"
+  },
+  {
+    "name": "Tir",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tir"
+  },
+  {
+    "name": "Nef",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nef"
+  },
+  {
+    "name": "Eth",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Eth"
+  },
+  {
+    "name": "Ith",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ith"
+  },
+  {
+    "name": "Tal",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tal"
+  },
+  {
+    "name": "Ral",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ral"
+  },
+  {
+    "name": "Ort",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ort"
+  },
+  {
+    "name": "Thul",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Thul"
+  },
+  {
+    "name": "Amn",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Amn"
+  },
+  {
+    "name": "Sol",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sol"
+  },
+  {
+    "name": "Shael",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shael"
+  },
+  {
+    "name": "Dol",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dol"
+  },
+  {
+    "name": "Hel",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hel"
+  },
+  {
+    "name": "Io",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Io"
+  },
+  {
+    "name": "Lum",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lum"
+  },
+  {
+    "name": "Ko",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ko"
+  },
+  {
+    "name": "Fal",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Fal"
+  },
+  {
+    "name": "Lem",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lem"
+  },
+  {
+    "name": "Pul",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Pul"
+  },
+  {
+    "name": "Um",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Um"
+  },
+  {
+    "name": "Mal",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Mal"
+  },
+  {
+    "name": "Ist",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ist"
+  },
+  {
+    "name": "Gul",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gul"
+  },
+  {
+    "name": "Vex",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Vex"
+  },
+  {
+    "name": "Ohm",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ohm"
+  },
+  {
+    "name": "Lo",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lo"
+  },
+  {
+    "name": "Sur",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sur"
+  },
+  {
+    "name": "Ber",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ber"
+  },
+  {
+    "name": "Jah",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Jah"
+  },
+  {
+    "name": "Cham",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cham"
+  },
+  {
+    "name": "Zod",
+    "category": "rune",
+    "item_type": null,
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Zod"
+  },
+  {
+    "name": "Arctic Furs",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Arctic Gear",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arctic_Furs"
+  },
+  {
+    "name": "Arctic Binding",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Arctic Gear",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arctic_Binding"
+  },
+  {
+    "name": "Arctic Mitts",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Arctic Gear",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arctic_Mitts"
+  },
+  {
+    "name": "Arctic Horn",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Arctic Gear",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arctic_Horn"
+  },
+  {
+    "name": "Hsarus' Iron Heel",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Hsarus' Defense",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hsarus'_Iron_Heel"
+  },
+  {
+    "name": "Hsarus' Iron Stay",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Hsarus' Defense",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hsarus'_Iron_Stay"
+  },
+  {
+    "name": "Hsarus' Iron Fist",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Hsarus' Defense",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hsarus'_Iron_Fist"
+  },
+  {
+    "name": "Berserker's Headgear",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Berserker's Arsenal",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Berserker's_Headgear"
+  },
+  {
+    "name": "Berserker's Hauberk",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Berserker's Arsenal",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Berserker's_Hauberk"
+  },
+  {
+    "name": "Berserker's Hatchet",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Berserker's Arsenal",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Berserker's_Hatchet"
+  },
+  {
+    "name": "Cleglaw's Pincers",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cleglaw's Brace",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cleglaw's_Pincers"
+  },
+  {
+    "name": "Cleglaw's Claw",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cleglaw's Brace",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cleglaw's_Claw"
+  },
+  {
+    "name": "Cleglaw's Tooth",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cleglaw's Brace",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cleglaw's_Tooth"
+  },
+  {
+    "name": "Infernal Cranium",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Infernal Tools",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Infernal_Cranium"
+  },
+  {
+    "name": "Infernal Sign",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Infernal Tools",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Infernal_Sign"
+  },
+  {
+    "name": "Infernal Spire (Infernal Torch)",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Infernal Tools",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Infernal_Spire_(Infernal_Torch)"
+  },
+  {
+    "name": "Death's Guard",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Death's Disguise",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Death's_Guard"
+  },
+  {
+    "name": "Death's Hand",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Death's Disguise",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Death's_Hand"
+  },
+  {
+    "name": "Death's Touch",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Death's Disguise",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Death's_Touch"
+  },
+  {
+    "name": "Sigon's Visor",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sigon's Complete Steel",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sigon's_Visor"
+  },
+  {
+    "name": "Sigon's Shelter",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sigon's Complete Steel",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sigon's_Shelter"
+  },
+  {
+    "name": "Sigon's Sabot",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sigon's Complete Steel",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sigon's_Sabot"
+  },
+  {
+    "name": "Sigon's Wrap",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sigon's Complete Steel",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sigon's_Wrap"
+  },
+  {
+    "name": "Sigon's Gage",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sigon's Complete Steel",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sigon's_Gage"
+  },
+  {
+    "name": "Sigon's Guard",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sigon's Complete Steel",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sigon's_Guard"
+  },
+  {
+    "name": "Isenhart's Horns",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Isenhart's Armory",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Isenhart's_Horns"
+  },
+  {
+    "name": "Isenhart's Case",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Isenhart's Armory",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Isenhart's_Case"
+  },
+  {
+    "name": "Isenhart's Parry",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Isenhart's Armory",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Isenhart's_Parry"
+  },
+  {
+    "name": "Isenhart's Lightbrand",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Isenhart's Armory",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Isenhart's_Lightbrand"
+  },
+  {
+    "name": "Civerb's Ward",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Civerb's Vestments",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Civerb's_Ward"
+  },
+  {
+    "name": "Civerb's Cudgel",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Civerb's Vestments",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Civerb's_Cudgel"
+  },
+  {
+    "name": "Civerb's Icon",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Civerb's Vestments",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Civerb's_Icon"
+  },
+  {
+    "name": "Cathan's Visage",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cathan's Traps",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cathan's_Visage"
+  },
+  {
+    "name": "Cathan's Mesh",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cathan's Traps",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cathan's_Mesh"
+  },
+  {
+    "name": "Cathan's Rule",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cathan's Traps",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cathan's_Rule"
+  },
+  {
+    "name": "Cathan's Sigil",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cathan's Traps",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cathan's_Sigil"
+  },
+  {
+    "name": "Cathan's Seal",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cathan's Traps",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cathan's_Seal"
+  },
+  {
+    "name": "Angelic Mantle",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Angelic Raiment",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Angelic_Mantle"
+  },
+  {
+    "name": "Angelic Sickle",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Angelic Raiment",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Angelic_Sickle"
+  },
+  {
+    "name": "Angelic Wings",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Angelic Raiment",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Angelic_Wings"
+  },
+  {
+    "name": "Angelic Halo",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Angelic Raiment",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Angelic_Halo"
+  },
+  {
+    "name": "Vidala's Ambush",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Vidala's Rig",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Vidala's_Ambush"
+  },
+  {
+    "name": "Vidala's Fetlock",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Vidala's Rig",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Vidala's_Fetlock"
+  },
+  {
+    "name": "Vidala's Barb",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Vidala's Rig",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Vidala's_Barb"
+  },
+  {
+    "name": "Vidala's Snare",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Vidala's Rig",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Vidala's_Snare"
+  },
+  {
+    "name": "Arcanna's Head",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Arcanna's Tricks",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arcanna's_Head"
+  },
+  {
+    "name": "Arcanna's Flesh",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Arcanna's Tricks",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arcanna's_Flesh"
+  },
+  {
+    "name": "Arcanna's Deathwand",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Arcanna's Tricks",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arcanna's_Deathwand"
+  },
+  {
+    "name": "Arcanna's Sign",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Arcanna's Tricks",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Arcanna's_Sign"
+  },
+  {
+    "name": "Iratha's Coil",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Iratha's Finery",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Iratha's_Coil"
+  },
+  {
+    "name": "Iratha's Cord",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Iratha's Finery",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Iratha's_Cord"
+  },
+  {
+    "name": "Iratha's Cuff",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Iratha's Finery",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Iratha's_Cuff"
+  },
+  {
+    "name": "Iratha's Collar",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Iratha's Finery",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Iratha's_Collar"
+  },
+  {
+    "name": "Milabrega's Diadem",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Milabrega's Regalia",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Milabrega's_Diadem"
+  },
+  {
+    "name": "Milabrega's Robe",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Milabrega's Regalia",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Milabrega's_Robe"
+  },
+  {
+    "name": "Milabrega's Orb",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Milabrega's Regalia",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Milabrega's_Orb"
+  },
+  {
+    "name": "Milabrega's Rod",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Milabrega's Regalia",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Milabrega's_Rod"
+  },
+  {
+    "name": "Tancred's Skull",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tancred's Battlegear",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tancred's_Skull"
+  },
+  {
+    "name": "Tancred's Spine",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tancred's Battlegear",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tancred's_Spine"
+  },
+  {
+    "name": "Tancred's Hobnails",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tancred's Battlegear",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tancred's_Hobnails"
+  },
+  {
+    "name": "Tancred's Crowbill",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tancred's Battlegear",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tancred's_Crowbill"
+  },
+  {
+    "name": "Tancred's Weird",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tancred's Battlegear",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tancred's_Weird"
+  },
+  {
+    "name": "Cow King's Horns",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cow King's Leathers",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cow_King's_Horns"
+  },
+  {
+    "name": "Cow King's Hide",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cow King's Leathers",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cow_King's_Hide"
+  },
+  {
+    "name": "Cow King's Hooves",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Cow King's Leathers",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cow_King's_Hooves"
+  },
+  {
+    "name": "Sander's Paragon",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sander's Folly",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sander's_Paragon"
+  },
+  {
+    "name": "Sander's Riprap",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sander's Folly",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sander's_Riprap"
+  },
+  {
+    "name": "Sander's Taboo",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sander's Folly",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sander's_Taboo"
+  },
+  {
+    "name": "Sander's Superstition",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sander's Folly",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sander's_Superstition"
+  },
+  {
+    "name": "Hwanin's Splendor",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Hwanin's Majesty",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hwanin's_Splendor"
+  },
+  {
+    "name": "Hwanin's Refuge",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Hwanin's Majesty",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hwanin's_Refuge"
+  },
+  {
+    "name": "Hwanin's Blessing",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Hwanin's Majesty",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hwanin's_Blessing"
+  },
+  {
+    "name": "Hwanin's Justice",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Hwanin's Majesty",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hwanin's_Justice"
+  },
+  {
+    "name": "Guillaume's Face",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Orphan's Call",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Guillaume's_Face"
+  },
+  {
+    "name": "Wilhelm's Pride",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Orphan's Call",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wilhelm's_Pride"
+  },
+  {
+    "name": "Magnus' Skin",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Orphan's Call",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Magnus'_Skin"
+  },
+  {
+    "name": "Whitstan's Guard",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Orphan's Call",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Whitstan's_Guard"
+  },
+  {
+    "name": "Dark Adherent",
+    "category": "set",
+    "item_type": null,
+    "set_name": "The Disciple",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dark_Adherent"
+  },
+  {
+    "name": "Rite of Passage",
+    "category": "set",
+    "item_type": null,
+    "set_name": "The Disciple",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rite_of_Passage"
+  },
+  {
+    "name": "Credendum",
+    "category": "set",
+    "item_type": null,
+    "set_name": "The Disciple",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Credendum"
+  },
+  {
+    "name": "Laying of Hands",
+    "category": "set",
+    "item_type": null,
+    "set_name": "The Disciple",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Laying_of_Hands"
+  },
+  {
+    "name": "Telling of Beads",
+    "category": "set",
+    "item_type": null,
+    "set_name": "The Disciple",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Telling_of_Beads"
+  },
+  {
+    "name": "Naj's Circlet",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Naj's Ancient Vestige",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Naj's_Circlet"
+  },
+  {
+    "name": "Naj's Light Plate",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Naj's Ancient Vestige",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Naj's_Light_Plate"
+  },
+  {
+    "name": "Naj's Puzzler",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Naj's Ancient Vestige",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Naj's_Puzzler"
+  },
+  {
+    "name": "Sazabi's Mental Sheath",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sazabi's Grand Tribute",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sazabi's_Mental_Sheath"
+  },
+  {
+    "name": "Sazabi's Ghost Liberator",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sazabi's Grand Tribute",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sazabi's_Ghost_Liberator"
+  },
+  {
+    "name": "Sazabi's Cobalt Redeemer",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Sazabi's Grand Tribute",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sazabi's_Cobalt_Redeemer"
+  },
+  {
+    "name": "Ondal's Almighty",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Heaven's Brethren",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ondal's_Almighty"
+  },
+  {
+    "name": "Haemosu's Adamant",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Heaven's Brethren",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Haemosu's_Adamant"
+  },
+  {
+    "name": "Taebaek's Glory",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Heaven's Brethren",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Taebaek's_Glory"
+  },
+  {
+    "name": "Dangoon's Teaching",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Heaven's Brethren",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dangoon's_Teaching"
+  },
+  {
+    "name": "Bul-Kathos' Death Band",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Bul-Kathos' Children",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bul-Kathos'_Death_Band"
+  },
+  {
+    "name": "Bul-Kathos' Tribal Guardian",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Bul-Kathos' Children",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bul-Kathos'_Tribal_Guardian"
+  },
+  {
+    "name": "Bul-Kathos' Sacred Charge",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Bul-Kathos' Children",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bul-Kathos'_Sacred_Charge"
+  },
+  {
+    "name": "Aldur's Stony Gaze",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Aldur's Watchtower",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Aldur's_Stony_Gaze"
+  },
+  {
+    "name": "Aldur's Deception",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Aldur's Watchtower",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Aldur's_Deception"
+  },
+  {
+    "name": "Aldur's Advance",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Aldur's Watchtower",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Aldur's_Advance"
+  },
+  {
+    "name": "Aldur's Rhythm",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Aldur's Watchtower",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Aldur's_Rhythm"
+  },
+  {
+    "name": "Griswold's Valor",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Griswold's Legacy",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Griswold's_Valor"
+  },
+  {
+    "name": "Griswold's Heart",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Griswold's Legacy",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Griswold's_Heart"
+  },
+  {
+    "name": "Griswold's Honor",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Griswold's Legacy",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Griswold's_Honor"
+  },
+  {
+    "name": "Griswold's Redemption",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Griswold's Legacy",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Griswold's_Redemption"
+  },
+  {
+    "name": "Immortal King's Will",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Immortal King",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Immortal_King's_Will"
+  },
+  {
+    "name": "Immortal King's Soul Cage",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Immortal King",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Immortal_King's_Soul_Cage"
+  },
+  {
+    "name": "Immortal King's Pillar",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Immortal King",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Immortal_King's_Pillar"
+  },
+  {
+    "name": "Immortal King's Detail",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Immortal King",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Immortal_King's_Detail"
+  },
+  {
+    "name": "Immortal King's Forge",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Immortal King",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Immortal_King's_Forge"
+  },
+  {
+    "name": "Immortal King's Stone Crusher",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Immortal King",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Immortal_King's_Stone_Crusher"
+  },
+  {
+    "name": "M'avina's True Sight",
+    "category": "set",
+    "item_type": null,
+    "set_name": "M'avina's Battle Hymn",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/M'avina's_True_Sight"
+  },
+  {
+    "name": "M'avina's Embrace",
+    "category": "set",
+    "item_type": null,
+    "set_name": "M'avina's Battle Hymn",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/M'avina's_Embrace"
+  },
+  {
+    "name": "M'avina's Tenet",
+    "category": "set",
+    "item_type": null,
+    "set_name": "M'avina's Battle Hymn",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/M'avina's_Tenet"
+  },
+  {
+    "name": "M'avina's Icy Clutch",
+    "category": "set",
+    "item_type": null,
+    "set_name": "M'avina's Battle Hymn",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/M'avina's_Icy_Clutch"
+  },
+  {
+    "name": "M'avina's Caster",
+    "category": "set",
+    "item_type": null,
+    "set_name": "M'avina's Battle Hymn",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/M'avina's_Caster"
+  },
+  {
+    "name": "Natalya's Totem",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Natalya's Odium",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Natalya's_Totem"
+  },
+  {
+    "name": "Natalya's Shadow",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Natalya's Odium",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Natalya's_Shadow"
+  },
+  {
+    "name": "Natalya's Soul",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Natalya's Odium",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Natalya's_Soul"
+  },
+  {
+    "name": "Natalya's Mark",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Natalya's Odium",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Natalya's_Mark"
+  },
+  {
+    "name": "Tal Rasha's Horadric Crest",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tal Rasha's Wrappings",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tal_Rasha's_Horadric_Crest"
+  },
+  {
+    "name": "Tal Rasha's Guardianship",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tal Rasha's Wrappings",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tal_Rasha's_Guardianship"
+  },
+  {
+    "name": "Tal Rasha's Fine-Spun Cloth",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tal Rasha's Wrappings",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tal_Rasha's_Fine-Spun_Cloth"
+  },
+  {
+    "name": "Tal Rasha's Lidless Eye",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tal Rasha's Wrappings",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tal_Rasha's_Lidless_Eye"
+  },
+  {
+    "name": "Tal Rasha's Adjudication",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Tal Rasha's Wrappings",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tal_Rasha's_Adjudication"
+  },
+  {
+    "name": "Trang-Oul's Guise",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Trang-Oul's Avatar",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Trang-Oul's_Guise"
+  },
+  {
+    "name": "Trang-Oul's Scales",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Trang-Oul's Avatar",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Trang-Oul's_Scales"
+  },
+  {
+    "name": "Trang-Oul's Girth",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Trang-Oul's Avatar",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Trang-Oul's_Girth"
+  },
+  {
+    "name": "Trang-Oul's Claws",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Trang-Oul's Avatar",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Trang-Oul's_Claws"
+  },
+  {
+    "name": "Trang-Oul's Wing",
+    "category": "set",
+    "item_type": null,
+    "set_name": "Trang-Oul's Avatar",
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Trang-Oul's_Wing"
+  }
+]

@@ -20,6 +20,9 @@ export default auth((req) => {
 
   const isAdmin = ADMIN_ONLY.some((p) => pathname.startsWith(p));
   if (isAdmin && !session?.user.is_admin) {
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 

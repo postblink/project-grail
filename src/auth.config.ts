@@ -13,5 +13,11 @@ export const authConfig: NextAuthConfig = {
     authorized({ auth }) {
       return !!auth;
     },
+    session({ session, token }) {
+      session.user.id = token.id as string;
+      session.user.is_admin = (token.is_admin as boolean) ?? false;
+      session.user.display_name = (token.display_name as string | null) ?? null;
+      return session;
+    },
   },
 };

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { getCurrentSeason, getOrCreateGrail, getGrailItems, computeProgress } from "@/lib/grail";
+import { getCurrentSeason, getOrCreateGrail, getGrailItems } from "@/lib/grail";
 import { GrailView } from "./_components/GrailView";
 
 export default async function GrailPage() {
@@ -21,29 +21,13 @@ export default async function GrailPage() {
 
   const grail = await getOrCreateGrail(session.user.id, season.id);
   const items = await getGrailItems(grail.id);
-  const progress = computeProgress(items);
 
   return (
     <div className="space-y-6">
-      <div className="flex items-end justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-zinc-100">My Grail</h1>
-          <p className="mt-0.5 text-sm text-zinc-500">{season.name}</p>
-        </div>
-        <p className="text-sm text-zinc-400">
-          <span className="text-2xl font-bold text-zinc-100">{progress.pct}%</span>
-          {" "}— {progress.found} / {progress.total} items
-        </p>
+      <div>
+        <h1 className="text-2xl font-bold text-zinc-100">My Grail</h1>
+        <p className="mt-0.5 text-sm text-zinc-500">{season.name}</p>
       </div>
-
-      {/* Progress bar */}
-      <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
-        <div
-          className="h-full rounded-full bg-amber-500 transition-all duration-500"
-          style={{ width: `${progress.pct}%` }}
-        />
-      </div>
-
       <GrailView grailId={grail.id} initialItems={items} />
     </div>
   );

@@ -1,10 +1,17 @@
 import NextAuth from "next-auth";
+import Resend from "next-auth/providers/resend";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db";
 import { authConfig } from "@/auth.config";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
+  providers: [
+    ...authConfig.providers,
+    Resend({
+      from: process.env.EMAIL_FROM ?? "noreply@example.com",
+    }),
+  ],
   // Prisma adapter manages users + accounts; JWT strategy keeps sessions out of DB
   // and allows Edge-compatible middleware (no Node.js modules needed at request time).
   adapter: PrismaAdapter(db),

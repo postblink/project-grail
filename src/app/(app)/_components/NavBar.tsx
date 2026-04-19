@@ -10,7 +10,7 @@ const NAV = [
   { href: "/leagues", label: "Leagues" },
 ];
 
-export function NavBar({ displayName }: { displayName: string | null }) {
+export function NavBar({ displayName, isAdmin }: { displayName: string | null; isAdmin?: boolean }) {
   const path = usePathname();
 
   return (
@@ -34,6 +34,18 @@ export function NavBar({ displayName }: { displayName: string | null }) {
                 {label}
               </Link>
             ))}
+            {isAdmin && (
+              <Link
+                href="/admin"
+                className={`rounded-md px-3 py-1.5 text-sm transition-colors ${
+                  path.startsWith("/admin")
+                    ? "bg-zinc-800 text-zinc-100"
+                    : "text-zinc-600 hover:text-zinc-300"
+                }`}
+              >
+                Admin
+              </Link>
+            )}
           </nav>
         </div>
         <div className="flex items-center gap-3">

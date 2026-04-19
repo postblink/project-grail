@@ -121,7 +121,7 @@ export default async function LeaguePage({ params }: Props) {
             href: `/leagues/${slug}/team`,
             live: league.league_type === "cooperative" || league.league_type === "hybrid",
           },
-          { label: "Activity Feed", href: `/leagues/${slug}/activity`, live: false },
+          { label: "Activity Feed", href: `/leagues/${slug}/activity`, live: true },
         ].map(({ label, href, live }) => (
           <div
             key={label}

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "reset-prod": "DATABASE_URL=$PROD_DATABASE_URL tsx --tsconfig tsconfig.scripts.json scripts/reset-user-data.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

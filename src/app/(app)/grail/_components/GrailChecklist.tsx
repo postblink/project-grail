@@ -98,7 +98,7 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false }: P
   return (
     <div className="space-y-5">
       {/* Filters */}
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="sticky top-0 z-10 -mx-1 bg-zinc-950/95 backdrop-blur-sm px-1 py-2 flex flex-wrap items-center gap-2">
         <input
           type="search"
           placeholder="Search items…"
@@ -124,7 +124,7 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false }: P
         </div>
 
         <div className="flex rounded-lg border border-zinc-700 overflow-hidden">
-          {(["all", "missing", "found"] as const).map((f) => (
+          {(["missing", "all", "found"] as const).map((f) => (
             <button
               key={f}
               onClick={() => setFilterFound(f)}
@@ -160,15 +160,68 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false }: P
         const catItems = grouped[cat];
         if (!catItems?.length) return null;
         const catFound = catItems.filter((i) => i.found).length;
+        const catPct = catItems.length > 0 ? Math.round((catFound / catItems.length) * 100) : 0;
+        const colors = CATEGORY_COLORS[cat];
+
+        // Sets get sub-grouped by set_name
+        if (cat === "set") {
+          const bySet = catItems.reduce<Record<string, GrailItemRow[]>>((acc, item) => {
+            const key = item.set_name ?? "Other";
+            (acc[key] ??= []).push(item);
+            return acc;
+          }, {});
+          const setNames = Object.keys(bySet).sort();
+
+          return (
+            <section key={cat}>
+              <div className="mb-3 flex items-center gap-3">
+                <h2 className={`text-xs font-semibold uppercase tracking-wider ${colors?.header ?? "text-zinc-500"}`}>
+                  {CATEGORY_LABELS[cat]}
+                </h2>
+                <div className="flex-1 h-1 overflow-hidden rounded-full bg-zinc-800">
+                  <div className={`h-full rounded-full transition-all ${colors ? "bg-emerald-500" : "bg-amber-500"}`} style={{ width: `${catPct}%` }} />
+                </div>
+                <span className="text-xs text-zinc-600 tabular-nums">{catFound}/{catItems.length}</span>
+              </div>
+              <div className="space-y-4">
+                {setNames.map((setName) => {
+                  const setItems = bySet[setName]!;
+                  const setFound = setItems.filter((i) => i.found).length;
+                  const complete = setFound === setItems.length;
+                  return (
+                    <div key={setName}>
+                      <div className="mb-1.5 flex items-center gap-2">
+                        <span className={`text-xs font-medium ${complete ? "text-emerald-400" : "text-zinc-400"}`}>
+                          {complete && <span className="mr-1">✓</span>}{setName}
+                        </span>
+                        <span className="text-xs text-zinc-700">{setFound}/{setItems.length}</span>
+                      </div>
+                      <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
+                        {setItems.map((item) => (
+                          <ItemRow key={item.id} item={item} onToggle={() => toggle(item.id)} readOnly={readOnly} />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        }
+
         return (
           <section key={cat}>
-            <div className="mb-2 flex items-center justify-between">
-              <h2 className={`text-xs font-semibold uppercase tracking-wider ${CATEGORY_COLORS[cat]?.header ?? "text-zinc-500"}`}>
+            <div className="mb-2 flex items-center gap-3">
+              <h2 className={`text-xs font-semibold uppercase tracking-wider ${colors?.header ?? "text-zinc-500"}`}>
                 {CATEGORY_LABELS[cat]}
               </h2>
-              <span className="text-xs text-zinc-600">
-                {catFound}/{catItems.length}
-              </span>
+              <div className="flex-1 h-1 overflow-hidden rounded-full bg-zinc-800">
+                <div
+                  className={`h-full rounded-full transition-all ${cat === "rune" ? "bg-amber-500" : cat === "runeword" ? "bg-orange-500" : "bg-amber-500"}`}
+                  style={{ width: `${catPct}%` }}
+                />
+              </div>
+              <span className="text-xs text-zinc-600 tabular-nums">{catFound}/{catItems.length}</span>
             </div>
             <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
               {catItems.map((item) => (

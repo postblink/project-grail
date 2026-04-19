@@ -2,7 +2,7 @@
  * Contribution scoring for cooperative leagues.
  *
  * Each member earns points for the items they personally find in the shared league grail.
- * Bonus points reward milestones like completing a set or being the first to find a set weapon.
+ * Bonus points reward milestones like completing a set or being the first to find any set item.
  *
  * Scoring constants are intentionally exposed so they can be surfaced in the UI.
  *
@@ -21,38 +21,17 @@ import type { GrailScope } from "@/lib/leagues";
 
 export const SCORING = {
   BASE_ITEM_POINTS: 1,
-  FIRST_SET_WEAPON_BONUS: 10,
+  FIRST_SET_ITEM_BONUS: 10,
   SET_COMPLETION_BONUS: 5,
 } as const;
-
-/**
- * item_type values (from the PD2 wiki seed) that classify an item as a weapon.
- * Used to determine eligibility for the "first set weapon" bonus.
- */
-export const WEAPON_ITEM_TYPES = new Set([
-  "axes",
-  "bows",
-  "class weapons",
-  "crossbows",
-  "daggers",
-  "maces",
-  "polearms",
-  "scepters",
-  "spears",
-  "staves",
-  "swords",
-  "throwing weapons",
-  "wands",
-  "weapon",
-]);
 
 // ──────────────────────────────────────────────
 // Output types
 // ──────────────────────────────────────────────
 
 export interface BonusBreakdown {
-  firstSetWeapon: boolean;   // did this member earn the first-set-weapon bonus?
-  setsCompleted: number;     // how many set completions did this member trigger?
+  firstSetItem: boolean;    // did this member earn the first-set-item bonus?
+  setsCompleted: number;    // how many set completions did this member trigger?
 }
 
 export interface ContributionScore {
@@ -111,7 +90,7 @@ export async function computeContributionScores(
       bonusPoints: 0,
       totalScore: 0,
       contributionPct: 0,
-      bonuses: { firstSetWeapon: false, setsCompleted: 0 },
+      bonuses: { firstSetItem: false, setsCompleted: 0 },
     });
   }
 
@@ -125,17 +104,15 @@ export async function computeContributionScores(
     s.baseScore += SCORING.BASE_ITEM_POINTS;
   }
 
-  // ── Bonus: first set weapon ──────────────────
-  // Awarded once per league to whoever first found a set item with a weapon item_type.
+  // ── Bonus: first set item ───────────────────
+  // Awarded once per league to whoever first finds any set item.
   // entries is already sorted ascending by found_at.
-  const firstSetWeaponEntry = entries.find(
-    (e) => e.item.category === "set" && WEAPON_ITEM_TYPES.has(e.item.item_type?.toLowerCase() ?? ""),
-  );
-  if (firstSetWeaponEntry) {
-    const s = scores.get(firstSetWeaponEntry.found_by_user_id);
+  const firstSetEntry = entries.find((e) => e.item.category === "set");
+  if (firstSetEntry) {
+    const s = scores.get(firstSetEntry.found_by_user_id);
     if (s) {
-      s.bonusPoints += SCORING.FIRST_SET_WEAPON_BONUS;
-      s.bonuses.firstSetWeapon = true;
+      s.bonusPoints += SCORING.FIRST_SET_ITEM_BONUS;
+      s.bonuses.firstSetItem = true;
     }
   }
 

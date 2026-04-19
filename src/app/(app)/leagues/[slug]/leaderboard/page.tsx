@@ -43,7 +43,7 @@ export default async function LeaderboardPage({ params }: Props) {
             <p className="text-xs font-semibold uppercase tracking-wider text-zinc-600 mb-2">Scoring</p>
             <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-zinc-500">
               <span>{SCORING.BASE_ITEM_POINTS} pt per item found</span>
-              <span>+{SCORING.FIRST_SET_WEAPON_BONUS} first set weapon</span>
+              <span>+{SCORING.FIRST_SET_ITEM_BONUS} first set item</span>
               <span>+{SCORING.SET_COMPLETION_BONUS} per set completed</span>
               <span className="text-zinc-700 italic">rarity weight: coming soon</span>
             </div>
@@ -102,11 +102,11 @@ function CoopLeaderboard({
   );
 }
 
-function BonusIndicators({ bonuses }: { bonuses: { firstSetWeapon: boolean; setsCompleted: number } }) {
+function BonusIndicators({ bonuses }: { bonuses: { firstSetItem: boolean; setsCompleted: number } }) {
   return (
     <span className="ml-2 inline-flex gap-1">
-      {bonuses.firstSetWeapon && (
-        <span title="First set weapon" className="rounded bg-amber-900/40 px-1 text-xs text-amber-500">⚔ First</span>
+      {bonuses.firstSetItem && (
+        <span title="First set item found" className="rounded bg-amber-900/40 px-1 text-xs text-amber-500">★ First</span>
       )}
       {bonuses.setsCompleted > 0 && (
         <span title={`Completed ${bonuses.setsCompleted} set${bonuses.setsCompleted > 1 ? "s" : ""}`} className="rounded bg-zinc-800 px-1 text-xs text-zinc-400">

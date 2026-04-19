@@ -4,18 +4,11 @@ import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
-function ErrorBanner() {
+function LoginInner() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
-  if (!error) return null;
-  return (
-    <p className="mb-4 rounded-lg bg-red-900/30 border border-red-800/40 px-3 py-2 text-sm text-red-400">
-      Sign-in failed. Please try again.
-    </p>
-  );
-}
+  const callbackUrl = searchParams.get("callbackUrl") ?? "/dashboard";
 
-export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -23,14 +16,13 @@ export default function LoginPage() {
   async function handleEmailSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    await signIn("resend", { email, redirect: false });
+    await signIn("resend", { email, redirect: false, callbackUrl });
     setEmailSent(true);
     setLoading(false);
   }
 
   return (
     <div className="w-full max-w-sm">
-      {/* Logo / title */}
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold tracking-tight">
           <span className="text-zinc-100">Project </span>
@@ -40,27 +32,26 @@ export default function LoginPage() {
       </div>
 
       <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6 shadow-xl">
-        <Suspense>
-          <ErrorBanner />
-        </Suspense>
+        {error && (
+          <p className="mb-4 rounded-lg bg-red-900/30 border border-red-800/40 px-3 py-2 text-sm text-red-400">
+            Sign-in failed. Please try again.
+          </p>
+        )}
 
-        {/* Discord — primary */}
         <button
-          onClick={() => signIn("discord", { callbackUrl: "/dashboard" })}
+          onClick={() => signIn("discord", { callbackUrl })}
           className="flex w-full items-center justify-center gap-3 rounded-lg bg-[#5865F2] px-4 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5865F2]"
         >
           <DiscordIcon />
           Sign in with Discord
         </button>
 
-        {/* Divider */}
         <div className="my-5 flex items-center gap-3">
           <div className="h-px flex-1 bg-zinc-800" />
           <span className="text-xs text-zinc-600">or</span>
           <div className="h-px flex-1 bg-zinc-800" />
         </div>
 
-        {/* Magic link — fallback */}
         {emailSent ? (
           <p className="text-center text-sm text-zinc-400">
             Check your inbox — a sign-in link is on its way to{" "}
@@ -91,6 +82,14 @@ export default function LoginPage() {
         No password required. Discord is recommended for online ladder players.
       </p>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginInner />
+    </Suspense>
   );
 }
 

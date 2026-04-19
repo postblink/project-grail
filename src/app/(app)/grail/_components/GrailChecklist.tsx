@@ -13,6 +13,14 @@ const CATEGORY_LABELS: Record<string, string> = {
   rune: "Rune",
 };
 
+// D2-authentic item category colors
+const CATEGORY_COLORS: Record<string, { name: string; found: string; header: string; badge: string; border: string; bg: string }> = {
+  unique:   { name: "text-[#C7B377]",  found: "text-[#e8d49a]",  header: "text-[#C7B377]",  badge: "bg-[#C7B377]/10 text-[#C7B377]",  border: "border-[#C7B377]/30", bg: "bg-[#C7B377]/10" },
+  set:      { name: "text-emerald-400", found: "text-emerald-300", header: "text-emerald-400", badge: "bg-emerald-900/30 text-emerald-400", border: "border-emerald-700/30", bg: "bg-emerald-900/15" },
+  runeword: { name: "text-orange-400",  found: "text-orange-300",  header: "text-orange-400",  badge: "bg-orange-900/30 text-orange-400",  border: "border-orange-700/30", bg: "bg-orange-900/15" },
+  rune:     { name: "text-amber-400",   found: "text-amber-300",   header: "text-amber-400",   badge: "bg-amber-900/30 text-amber-400",   border: "border-amber-700/30", bg: "bg-amber-900/15" },
+};
+
 interface Props {
   grailId: string;
   items: GrailItemRow[];
@@ -155,7 +163,7 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false }: P
         return (
           <section key={cat}>
             <div className="mb-2 flex items-center justify-between">
-              <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              <h2 className={`text-xs font-semibold uppercase tracking-wider ${CATEGORY_COLORS[cat]?.header ?? "text-zinc-500"}`}>
                 {CATEGORY_LABELS[cat]}
               </h2>
               <span className="text-xs text-zinc-600">
@@ -179,48 +187,75 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false }: P
 }
 
 function ItemRow({ item, onToggle, readOnly }: { item: GrailItemRow; onToggle: () => void; readOnly?: boolean }) {
-  return (
-    <button
-      onClick={onToggle}
-      disabled={readOnly}
-      className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-left transition-colors ${
-        item.found
-          ? "border-amber-800/50 bg-amber-900/20 hover:bg-amber-900/30"
-          : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"
-      } ${readOnly ? "cursor-default" : ""}`}
-    >
-      {/* Checkbox indicator */}
-      <span
-        className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border text-xs transition-colors ${
-          item.found
-            ? "border-amber-600 bg-amber-600 text-zinc-950"
-            : "border-zinc-600 bg-transparent"
-        }`}
-      >
-        {item.found && "✓"}
-      </span>
+  const colors = CATEGORY_COLORS[item.category];
 
-      <span className="flex-1 min-w-0">
+  return (
+    <div
+      className={`group relative flex items-center gap-3 rounded-lg border px-3 py-2 transition-colors ${
+        item.found
+          ? `${colors?.border ?? "border-amber-800/50"} ${colors?.bg ?? "bg-amber-900/20"}`
+          : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"
+      }`}
+    >
+      {/* Toggle area */}
+      <button
+        onClick={onToggle}
+        disabled={readOnly}
+        className={`flex items-center gap-3 flex-1 min-w-0 text-left ${readOnly ? "cursor-default" : ""}`}
+      >
+        {/* Checkbox */}
         <span
-          className={`block truncate text-sm font-medium ${
-            item.found ? "text-amber-200" : "text-zinc-300"
+          className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border text-xs transition-colors ${
+            item.found
+              ? `${colors?.badge ?? "bg-amber-600 text-zinc-950"} border-transparent`
+              : "border-zinc-600 bg-transparent"
           }`}
         >
-          {item.name}
+          {item.found && "✓"}
         </span>
-        {item.item_type && (
-          <span className="text-xs text-zinc-600">{item.item_type}</span>
-        )}
-        {item.set_name && (
-          <span className="text-xs text-zinc-600">{item.set_name}</span>
-        )}
-      </span>
 
-      {item.pd2_exclusive && (
-        <span className="flex-shrink-0 rounded bg-amber-900/40 px-1.5 py-0.5 text-xs text-amber-500">
-          PD2
+        <span className="flex-1 min-w-0">
+          <span
+            className={`block truncate text-sm font-medium transition-colors ${
+              item.found
+                ? (colors?.found ?? "text-amber-200")
+                : (colors?.name ?? "text-zinc-300")
+            }`}
+          >
+            {item.name}
+          </span>
+          {item.item_type && (
+            <span className="text-xs text-zinc-600">{item.item_type}</span>
+          )}
+          {item.set_name && (
+            <span className="text-xs text-zinc-600">{item.set_name}</span>
+          )}
         </span>
-      )}
-    </button>
+      </button>
+
+      {/* Right side badges + wiki link */}
+      <div className="flex flex-shrink-0 items-center gap-1.5">
+        {item.pd2_exclusive && (
+          <span className="rounded bg-amber-900/40 px-1.5 py-0.5 text-xs text-amber-500">
+            PD2
+          </span>
+        )}
+        {item.wiki_url && (
+          <a
+            href={item.wiki_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="opacity-0 group-hover:opacity-100 transition-opacity text-zinc-600 hover:text-zinc-300"
+            title="View on wiki"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7" />
+              <path d="M8 1h3v3M11 1 6 6" />
+            </svg>
+          </a>
+        )}
+      </div>
+    </div>
   );
 }

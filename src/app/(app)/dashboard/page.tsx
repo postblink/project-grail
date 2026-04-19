@@ -13,11 +13,13 @@ export default async function DashboardPage() {
     progress = computeProgress(items);
   }
 
+  const isNewUser = !!season && !!progress && progress.found === 0;
+
   return (
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold text-zinc-100">
-          Welcome back, {session?.user.display_name ?? "Adventurer"}
+          {isNewUser ? `Welcome, ${session?.user.display_name ?? "Adventurer"}` : `Welcome back, ${session?.user.display_name ?? "Adventurer"}`}
         </h1>
         {season ? (
           <p className="mt-1 text-sm text-zinc-500">Active season: {season.name}</p>
@@ -26,23 +28,53 @@ export default async function DashboardPage() {
         )}
       </div>
 
-      {progress && (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard label="Overall progress" value={`${progress.pct}%`} sub={`${progress.found} / ${progress.total} items`} />
-          {Object.entries(progress.byCategory).map(([cat, { pct, found, total }]) => (
-            <StatCard key={cat} label={cat} value={`${pct}%`} sub={`${found} / ${total}`} />
-          ))}
+      {isNewUser ? (
+        <div className="rounded-xl border border-zinc-700 bg-zinc-900 p-6 space-y-4 max-w-xl">
+          <div>
+            <h2 className="text-lg font-semibold text-amber-400">The Holy Grail Challenge</h2>
+            <p className="mt-2 text-sm text-zinc-300 leading-relaxed">
+              Find one of every unique, set, and runeword item in Project Diablo 2. Track your
+              progress here as you hunt across characters and seasons.
+            </p>
+          </div>
+          <div className="space-y-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">Get started</p>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <Link
+                href="/grail"
+                className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-medium text-white text-center transition hover:bg-amber-500"
+              >
+                Open my grail →
+              </Link>
+              <Link
+                href="/leagues"
+                className="rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-100 text-center transition hover:bg-zinc-700"
+              >
+                Browse leagues
+              </Link>
+            </div>
+          </div>
         </div>
+      ) : (
+        <>
+          {progress && (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <StatCard label="Overall progress" value={`${progress.pct}%`} sub={`${progress.found} / ${progress.total} items`} />
+              {Object.entries(progress.byCategory).map(([cat, { pct, found, total }]) => (
+                <StatCard key={cat} label={cat} value={`${pct}%`} sub={`${found} / ${total}`} />
+              ))}
+            </div>
+          )}
+          <div className="flex gap-3">
+            <Link
+              href="/grail"
+              className="rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-100 transition hover:bg-zinc-700"
+            >
+              Open grail checklist →
+            </Link>
+          </div>
+        </>
       )}
-
-      <div className="flex gap-3">
-        <Link
-          href="/grail"
-          className="rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-100 transition hover:bg-zinc-700"
-        >
-          Open grail checklist →
-        </Link>
-      </div>
     </div>
   );
 }

@@ -1,15 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+
+function ErrorBanner() {
+  const searchParams = useSearchParams();
+  const error = searchParams.get("error");
+  if (!error) return null;
+  return (
+    <p className="mb-4 rounded-lg bg-red-900/30 border border-red-800/40 px-3 py-2 text-sm text-red-400">
+      Sign-in failed. Please try again.
+    </p>
+  );
+}
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [loading, setLoading] = useState(false);
-  const searchParams = useSearchParams();
-  const error = searchParams.get("error");
 
   async function handleEmailSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -28,11 +37,9 @@ export default function LoginPage() {
       </div>
 
       <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6 shadow-xl">
-        {error && (
-          <p className="mb-4 rounded-lg bg-red-900/30 border border-red-800/40 px-3 py-2 text-sm text-red-400">
-            Sign-in failed. Please try again.
-          </p>
-        )}
+        <Suspense>
+          <ErrorBanner />
+        </Suspense>
 
         {/* Discord — primary */}
         <button

@@ -1,17 +1,25 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import { getCurrentSeason, getOrCreateGrail, getGrailItems, computeProgress } from "@/lib/grail";
+import { getUserAchievements } from "@/lib/achievements";
 import { SetDisplayName } from "./_components/SetDisplayName";
+import { AchievementBadge } from "./_components/AchievementBadge";
 
 export default async function DashboardPage() {
   const session = await auth();
   const season = await getCurrentSeason();
 
   let progress = null;
+  let recentAchievements: Awaited<ReturnType<typeof getUserAchievements>> = [];
+
   if (season && session?.user.id) {
     const grail = await getOrCreateGrail(session.user.id, season.id);
-    const items = await getGrailItems(grail.id);
+    const [items, allAchievements] = await Promise.all([
+      getGrailItems(grail.id),
+      getUserAchievements(session.user.id),
+    ]);
     progress = computeProgress(items);
+    recentAchievements = allAchievements.slice(0, 4);
   }
 
   const isNewUser = !!season && !!progress && progress.found === 0;
@@ -73,6 +81,20 @@ export default async function DashboardPage() {
               ))}
             </div>
           )}
+
+          {recentAchievements.length > 0 && (
+            <section>
+              <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                Recent Achievements
+              </h2>
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                {recentAchievements.map((a) => (
+                  <AchievementBadge key={a.key} achievement={a} />
+                ))}
+              </div>
+            </section>
+          )}
+
           <div className="flex gap-3">
             <Link
               href="/grail"

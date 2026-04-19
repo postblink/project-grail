@@ -3,6 +3,7 @@ import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { notifyItemFound, notifyMilestone, checkMilestoneCrossed } from "@/lib/discord";
+import { awardAchievements } from "@/lib/achievements";
 
 const schema = z.object({
   grailId: z.string().min(1),
@@ -34,7 +35,7 @@ export async function PATCH(req: NextRequest) {
   }
 
   // Verify the item exists
-  const item = await db.item.findUnique({ where: { id: itemId }, select: { id: true, name: true } });
+  const item = await db.item.findUnique({ where: { id: itemId }, select: { id: true, name: true, category: true, set_name: true } });
   if (!item) {
     return NextResponse.json({ error: "Item not found" }, { status: 404 });
   }
@@ -77,6 +78,23 @@ export async function PATCH(req: NextRequest) {
     );
   }
 
+  // Achievements — best-effort, fire in background alongside Discord
+  let foundItems = 0;
+  let totalItems = 0;
+  if (found) {
+    [totalItems, foundItems] = await Promise.all([
+      db.grailEntry.count({ where: { grail_id: grailId } }),
+      db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
+    ]);
+    void awardAchievements({
+      userId: session.user.id,
+      grailId,
+      foundCount: foundItems,
+      totalCount: totalItems,
+      item: { category: item.category, set_name: item.set_name },
+    });
+  }
+
   // Discord webhook notifications — best-effort, never block the response
   if (found && grail.season_id) {
     const user = await db.user.findUnique({
@@ -95,10 +113,6 @@ export async function PATCH(req: NextRequest) {
     });
 
     if (leagues.length > 0) {
-      const [totalItems, foundItems] = await Promise.all([
-        db.grailEntry.count({ where: { grail_id: grailId } }),
-        db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
-      ]);
       const prevFound = foundItems - 1;
       const milestone = checkMilestoneCrossed(prevFound, foundItems, totalItems);
 

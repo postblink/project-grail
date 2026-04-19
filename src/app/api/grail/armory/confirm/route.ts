@@ -3,6 +3,7 @@ import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { notifyMilestone, checkMilestoneCrossed } from "@/lib/discord";
+import { awardAchievements } from "@/lib/achievements";
 
 const schema = z.object({
   grailId: z.string().min(1),
@@ -32,7 +33,7 @@ export async function POST(req: NextRequest) {
   // Verify all submitted itemIds are real active items (prevents injecting arbitrary IDs)
   const validItems = await db.item.findMany({
     where: { id: { in: itemIds }, is_active: true },
-    select: { id: true },
+    select: { id: true, category: true, set_name: true },
   });
   if (validItems.length !== itemIds.length) {
     return NextResponse.json({ error: "One or more item IDs are invalid" }, { status: 400 });
@@ -85,6 +86,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Achievements — award for each imported item, best-effort
+    const [totalCount, foundCount] = await Promise.all([
+      db.grailEntry.count({ where: { grail_id: grailId } }),
+      db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
+    ]);
+    void Promise.allSettled(
+      validItems.map((item, i) =>
+        awardAchievements({
+          userId: session.user.id,
+          grailId,
+          foundCount: foundCount - validItems.length + i + 1,
+          totalCount,
+          item: { category: item.category, set_name: item.set_name },
+        }),
+      ),
+    );
+
     // Discord milestone notifications for armory imports (milestone only — not per-item for bulk)
     if (grail.season_id) {
       const user = await db.user.findUnique({ where: { id: session.user.id }, select: { display_name: true } });
@@ -100,17 +118,13 @@ export async function POST(req: NextRequest) {
       });
 
       if (leagues.length > 0) {
-        const [totalItems, foundItems] = await Promise.all([
-          db.grailEntry.count({ where: { grail_id: grailId } }),
-          db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
-        ]);
-        const prevFound = foundItems - itemIds.length;
-        const milestone = checkMilestoneCrossed(Math.max(0, prevFound), foundItems, totalItems);
+        const prevFound = foundCount - itemIds.length;
+        const milestone = checkMilestoneCrossed(Math.max(0, prevFound), foundCount, totalCount);
 
         if (milestone !== null) {
           await Promise.allSettled(
             leagues.map((league) =>
-              notifyMilestone({ webhookUrl: league.discord_webhook_url!, displayName, milestone, leagueName: league.name, foundCount: foundItems, totalCount: totalItems })
+              notifyMilestone({ webhookUrl: league.discord_webhook_url!, displayName, milestone, leagueName: league.name, foundCount, totalCount })
             ),
           );
         }

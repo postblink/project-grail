@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPublicGrailData, computeProgress } from "@/lib/grail";
+import { getUserAchievements } from "@/lib/achievements";
 import { GrailChecklist } from "@/app/(app)/grail/_components/GrailChecklist";
 
 interface Props {
@@ -14,7 +15,10 @@ export default async function PublicGrailPage({ params }: Props) {
   if (!data) notFound();
 
   const { user, season, items } = data;
-  const progress = computeProgress(items);
+  const [progress, achievements] = await Promise.all([
+    Promise.resolve(computeProgress(items)),
+    getUserAchievements(user.id),
+  ]);
   const displayName = user.display_name ?? username;
 
   return (
@@ -58,6 +62,21 @@ export default async function PublicGrailPage({ params }: Props) {
             className="h-full rounded-full bg-amber-500"
             style={{ width: `${progress.pct}%` }}
           />
+        </div>
+      )}
+
+      {achievements.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {achievements.map((a) => (
+            <div
+              key={a.key}
+              title={a.description}
+              className="flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/60 px-2.5 py-1.5"
+            >
+              <span className={`text-sm leading-none ${a.color}`}>{a.emoji}</span>
+              <span className="text-xs font-medium text-zinc-300">{a.name}</span>
+            </div>
+          ))}
         </div>
       )}
 

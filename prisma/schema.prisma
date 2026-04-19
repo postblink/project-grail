@@ -119,6 +119,7 @@ model User {
   league_members   LeagueMember[]
   armory_imports   ArmoryImport[]
   league_finds     LeagueGrailEntry[]
+  achievements     UserAchievement[]
 
   @@map("users")
 }
@@ -257,4 +258,17 @@ model LeagueGrailEntry {
 
   @@unique([league_id, item_id])
   @@map("league_grail_entries")
+}
+
+model UserAchievement {
+  id          String   @id @default(cuid())
+  user_id     String
+  key         String
+  unlocked_at DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, key])
+  @@index([user_id])
+  @@map("user_achievements")
 }

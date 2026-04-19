@@ -17,7 +17,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account, trigger }) {
+      if (trigger === "update") {
+        const dbUser = await db.user.findUnique({
+          where: { id: token.id as string },
+          select: { display_name: true, is_admin: true },
+        });
+        token.display_name = dbUser?.display_name ?? null;
+        token.is_admin = dbUser?.is_admin ?? false;
+        return token;
+      }
+
       // `user` is only present on initial sign-in
       if (user?.id) {
         token.id = user.id;

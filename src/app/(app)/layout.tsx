@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { NavBar } from "./_components/NavBar";
+import { Providers } from "./_components/Providers";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
@@ -17,7 +18,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       />
       <div className="relative z-10">
         <NavBar displayName={session.user.display_name} isAdmin={session.user.is_admin} />
-        <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
+        <main className="mx-auto max-w-6xl px-4 py-8">
+          <Providers>{children}</Providers>
+        </main>
       </div>
     </div>
   );

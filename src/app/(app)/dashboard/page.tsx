@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import { getCurrentSeason, getOrCreateGrail, getGrailItems, computeProgress } from "@/lib/grail";
+import { SetDisplayName } from "./_components/SetDisplayName";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -14,6 +15,7 @@ export default async function DashboardPage() {
   }
 
   const isNewUser = !!season && !!progress && progress.found === 0;
+  const needsDisplayName = !session?.user.display_name;
 
   return (
     <div className="space-y-8">
@@ -27,6 +29,8 @@ export default async function DashboardPage() {
           <p className="mt-1 text-sm text-amber-500">No active season — check back soon.</p>
         )}
       </div>
+
+      {needsDisplayName && <SetDisplayName />}
 
       {isNewUser ? (
         <div className="rounded-xl border border-zinc-700 bg-zinc-900 p-6 space-y-4 max-w-xl">

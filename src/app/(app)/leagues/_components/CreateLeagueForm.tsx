@@ -86,7 +86,7 @@ export function CreateLeagueForm() {
           required
           minLength={2}
           maxLength={60}
-          placeholder="Season 9 Grail Race"
+          placeholder="Season 13 Grail Race"
           className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-zinc-500"
         />
       </div>

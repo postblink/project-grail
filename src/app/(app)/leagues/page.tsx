@@ -54,7 +54,12 @@ export default async function LeaguesPage() {
           Public Leagues
         </h2>
         {publicLeagues.length === 0 ? (
-          <p className="text-sm text-zinc-600">No public leagues yet.</p>
+          <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-6 text-center">
+            <p className="text-sm text-zinc-500">No public leagues yet this season.</p>
+            <Link href="/leagues/create" className="mt-2 inline-block text-sm text-amber-500 hover:text-amber-400">
+              Create the first one →
+            </Link>
+          </div>
         ) : (
           <div className="space-y-2">
             {publicLeagues.map((league) => (
@@ -96,11 +101,12 @@ function LeagueRow({
           <span className="ml-2 rounded bg-zinc-800 px-1.5 py-0.5 text-xs text-zinc-400">Co-Commissioner</span>
         )}
       </div>
-      <div className="flex items-center gap-3 text-xs text-zinc-600">
+      <div className="flex items-center gap-3 text-xs text-zinc-500">
         <span>{TYPE_LABELS[league.league_type] ?? league.league_type}</span>
         <span>{LADDER_LABELS[league.ladder_mode] ?? league.ladder_mode}</span>
         <span>{league._count.members} {league._count.members === 1 ? "member" : "members"}</span>
-        {isMember && <span className="text-zinc-500">✓ Joined</span>}
+        {isMember && <span className="text-emerald-600">✓ Joined</span>}
+        <span className="text-zinc-600">→</span>
       </div>
     </Link>
   );

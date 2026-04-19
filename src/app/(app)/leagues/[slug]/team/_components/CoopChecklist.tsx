@@ -95,7 +95,7 @@ export function CoopChecklist({ slug, initialItems, currentUserId, readOnly = fa
   return (
     <div className="space-y-5">
       {/* Filters */}
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="sticky top-0 z-10 -mx-1 bg-zinc-950/95 backdrop-blur-sm px-1 py-2 flex flex-wrap items-center gap-2">
         <input
           type="search"
           placeholder="Search items…"
@@ -117,7 +117,7 @@ export function CoopChecklist({ slug, initialItems, currentUserId, readOnly = fa
         </div>
 
         <div className="flex rounded-lg border border-zinc-700 overflow-hidden">
-          {(["all", "missing", "found"] as const).map((f) => (
+          {(["missing", "all", "found"] as const).map((f) => (
             <button
               key={f}
               onClick={() => setFilterFound(f)}
@@ -138,13 +138,61 @@ export function CoopChecklist({ slug, initialItems, currentUserId, readOnly = fa
         const catItems = grouped[cat];
         if (!catItems?.length) return null;
         const catFound = catItems.filter((i) => i.found).length;
+        const catPct = catItems.length > 0 ? Math.round((catFound / catItems.length) * 100) : 0;
+
+        if (cat === "set") {
+          const bySet = catItems.reduce<Record<string, CoopItemRow[]>>((acc, item) => {
+            const key = item.set_name ?? "Other";
+            (acc[key] ??= []).push(item);
+            return acc;
+          }, {});
+          const setNames = Object.keys(bySet).sort();
+
+          return (
+            <section key={cat}>
+              <div className="mb-3 flex items-center gap-3">
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-emerald-400">{CATEGORY_LABELS[cat]}</h2>
+                <div className="flex-1 h-1 overflow-hidden rounded-full bg-zinc-800">
+                  <div className="h-full rounded-full bg-emerald-500 transition-all" style={{ width: `${catPct}%` }} />
+                </div>
+                <span className="text-xs text-zinc-600 tabular-nums">{catFound}/{catItems.length}</span>
+              </div>
+              <div className="space-y-4">
+                {setNames.map((setName) => {
+                  const setItems = bySet[setName]!;
+                  const setFound = setItems.filter((i) => i.found).length;
+                  const complete = setFound === setItems.length;
+                  return (
+                    <div key={setName}>
+                      <div className="mb-1.5 flex items-center gap-2">
+                        <span className={`text-xs font-medium ${complete ? "text-emerald-400" : "text-zinc-400"}`}>
+                          {complete && <span className="mr-1">✓</span>}{setName}
+                        </span>
+                        <span className="text-xs text-zinc-700">{setFound}/{setItems.length}</span>
+                      </div>
+                      <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
+                        {setItems.map((item) => (
+                          <CoopItemRow key={item.id} item={item} onToggle={() => toggle(item.id)} readOnly={readOnly} />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        }
+
         return (
           <section key={cat}>
-            <div className="mb-2 flex items-center justify-between">
+            <div className="mb-2 flex items-center gap-3">
               <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                 {CATEGORY_LABELS[cat]}
               </h2>
-              <span className="text-xs text-zinc-600">{catFound}/{catItems.length}</span>
+              <div className="flex-1 h-1 overflow-hidden rounded-full bg-zinc-800">
+                <div className="h-full rounded-full bg-amber-500 transition-all" style={{ width: `${catPct}%` }} />
+              </div>
+              <span className="text-xs text-zinc-600 tabular-nums">{catFound}/{catItems.length}</span>
             </div>
             <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
               {catItems.map((item) => (

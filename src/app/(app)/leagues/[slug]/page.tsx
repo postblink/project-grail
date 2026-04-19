@@ -99,9 +99,16 @@ export default async function LeaguePage({ params }: Props) {
               key={m.id}
               className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5"
             >
-              <span className="text-sm text-zinc-300">
-                {m.user.display_name ?? "Unknown"}
-              </span>
+              {m.user.display_name ? (
+                <Link
+                  href={`/grail/${encodeURIComponent(m.user.display_name)}`}
+                  className="text-sm text-zinc-300 hover:text-amber-400 transition-colors"
+                >
+                  {m.user.display_name}
+                </Link>
+              ) : (
+                <span className="text-sm text-zinc-500">Unknown</span>
+              )}
               <div className="flex items-center gap-3">
                 <span className="text-xs text-zinc-600">{ROLE_LABELS[m.role] ?? m.role}</span>
                 {userId === m.user_id && m.role !== "commissioner" && (

@@ -97,3 +97,59 @@ export async function getMemberRole(leagueId: string, userId: string) {
 export function isCommissioner(role: string | null): boolean {
   return role === "commissioner" || role === "co_commissioner";
 }
+
+// ──────────────────────────────────────────────
+// Cooperative grail data
+// ──────────────────────────────────────────────
+
+export interface CoopItemRow {
+  id: string;
+  name: string;
+  category: string;
+  item_type: string | null;
+  set_name: string | null;
+  pd2_exclusive: boolean;
+  found: boolean;
+  found_at: Date | null;
+  found_by_id: string | null;
+  found_by_name: string | null;
+}
+
+export async function getCoopGrailItems(
+  leagueId: string,
+  grailScope: GrailScope,
+): Promise<CoopItemRow[]> {
+  const activeCategories = (["unique", "set", "runeword", "rune"] as const).filter(
+    (cat) => grailScope[cat],
+  );
+
+  const [items, entries] = await Promise.all([
+    db.item.findMany({
+      where: {
+        is_active: true,
+        category: { in: activeCategories },
+        ...(grailScope.pd2_exclusive === false && { pd2_exclusive: false }),
+      },
+      orderBy: [{ category: "asc" }, { name: "asc" }],
+      select: { id: true, name: true, category: true, item_type: true, set_name: true, pd2_exclusive: true },
+    }),
+    db.leagueGrailEntry.findMany({
+      where: { league_id: leagueId },
+      include: { found_by: { select: { id: true, display_name: true } } },
+    }),
+  ]);
+
+  const entryMap = new Map(entries.map((e) => [e.item_id, e]));
+
+  return items.map((item) => {
+    const entry = entryMap.get(item.id);
+    return {
+      ...item,
+      category: item.category as string,
+      found: !!entry,
+      found_at: entry?.found_at ?? null,
+      found_by_id: entry?.found_by.id ?? null,
+      found_by_name: entry?.found_by.display_name ?? null,
+    };
+  });
+}

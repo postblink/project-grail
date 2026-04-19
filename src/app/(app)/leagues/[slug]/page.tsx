@@ -112,22 +112,26 @@ export default async function LeaguePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Future feature stubs */}
+      {/* Navigation links */}
       <section className="grid gap-2 sm:grid-cols-3">
         {[
-          { label: "Leaderboard", href: `/leagues/${slug}/leaderboard`, soon: true },
-          { label: "Team Grail", href: `/leagues/${slug}/team`, soon: true },
-          { label: "Activity Feed", href: `/leagues/${slug}/activity`, soon: true },
-        ].map(({ label, href, soon }) => (
+          { label: "Leaderboard", href: `/leagues/${slug}/leaderboard`, live: true },
+          {
+            label: league.league_type === "cooperative" ? "Team Grail" : "Team Grail",
+            href: `/leagues/${slug}/team`,
+            live: league.league_type === "cooperative",
+          },
+          { label: "Activity Feed", href: `/leagues/${slug}/activity`, live: false },
+        ].map(({ label, href, live }) => (
           <div
             key={label}
             className="rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-3 flex items-center justify-between"
           >
             <span className="text-sm text-zinc-400">{label}</span>
-            {soon ? (
-              <span className="text-xs text-zinc-700">Coming soon</span>
+            {live ? (
+              <Link href={href} className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">View →</Link>
             ) : (
-              <Link href={href} className="text-xs text-zinc-500 hover:text-zinc-300">View →</Link>
+              <span className="text-xs text-zinc-700">Coming soon</span>
             )}
           </div>
         ))}

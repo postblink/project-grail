@@ -32,8 +32,11 @@ export default function LoginPage() {
     <div className="w-full max-w-sm">
       {/* Logo / title */}
       <div className="mb-8 text-center">
-        <h1 className="text-2xl font-bold text-zinc-50 tracking-tight">Project Grail</h1>
-        <p className="mt-1 text-sm text-zinc-500">PD2 Holy Grail Tracker</p>
+        <h1 className="text-3xl font-bold tracking-tight">
+          <span className="text-zinc-100">Project </span>
+          <span className="text-amber-400">Grail</span>
+        </h1>
+        <p className="mt-2 text-sm text-zinc-500">Hunt every item. Claim the Grail.</p>
       </div>
 
       <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6 shadow-xl">

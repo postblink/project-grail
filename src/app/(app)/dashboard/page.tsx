@@ -21,7 +21,11 @@ export default async function DashboardPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold text-zinc-100">
-          {isNewUser ? `Welcome, ${session?.user.display_name ?? "Adventurer"}` : `Welcome back, ${session?.user.display_name ?? "Adventurer"}`}
+          {needsDisplayName
+            ? "Welcome!"
+            : isNewUser
+              ? `Welcome, ${session?.user.display_name}`
+              : `Welcome back, ${session?.user.display_name}`}
         </h1>
         {season ? (
           <p className="mt-1 text-sm text-zinc-500">Active season: {season.name}</p>

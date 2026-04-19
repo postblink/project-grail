@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { auth } from "@/auth";
 import { getCurrentSeason, getOrCreateGrail, getGrailItems } from "@/lib/grail";
 import { GrailView } from "./_components/GrailView";
@@ -30,8 +31,12 @@ export default async function GrailPage() {
           <h1 className="text-2xl font-bold text-zinc-100">My Grail</h1>
           <p className="mt-0.5 text-sm text-zinc-500">{season.name}</p>
         </div>
-        {session.user.display_name && (
+        {session.user.display_name ? (
           <ShareGrailButton username={session.user.display_name} />
+        ) : (
+          <Link href="/settings" className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
+            Set a name to share →
+          </Link>
         )}
       </div>
       <GrailView grailId={grail.id} initialItems={items} />

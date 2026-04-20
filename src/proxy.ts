@@ -11,6 +11,12 @@ export default auth((req) => {
   const { pathname } = req.nextUrl;
   const session = req.auth;
 
+  // Redirect authenticated users away from the login page
+  if (pathname === "/login" && session) {
+    const callbackUrl = req.nextUrl.searchParams.get("callbackUrl") ?? "/dashboard";
+    return NextResponse.redirect(new URL(callbackUrl, req.url));
+  }
+
   const isProtected = PROTECTED.some((p) => pathname.startsWith(p));
   if (isProtected && !session) {
     const loginUrl = new URL("/login", req.url);

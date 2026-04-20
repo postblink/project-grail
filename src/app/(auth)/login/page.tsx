@@ -85,20 +85,7 @@ function LoginInner() {
   );
 }
 
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
-
-export default async function LoginPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ callbackUrl?: string }>;
-}) {
-  const session = await auth();
-  if (session) {
-    const { callbackUrl } = await searchParams;
-    redirect(callbackUrl ?? "/dashboard");
-  }
-
+export default function LoginPage() {
   return (
     <Suspense>
       <LoginInner />

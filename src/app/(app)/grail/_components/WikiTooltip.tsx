@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
+import type { WikiItemInfo } from "@/app/api/wiki-item/route";
 
 interface Props {
   wikiUrl: string;
@@ -11,6 +12,11 @@ interface Props {
   category: string;
 }
 
+type FetchState = "idle" | "loading" | "done" | "error";
+
+// Module-level cache keyed by wiki title
+const infoCache = new Map<string, WikiItemInfo | null>();
+
 const CATEGORY_COLORS: Record<string, string> = {
   unique: "text-[#C7B377]",
   set: "text-emerald-400",
@@ -18,20 +24,39 @@ const CATEGORY_COLORS: Record<string, string> = {
   rune: "text-amber-400",
 };
 
-const CATEGORY_LABELS: Record<string, string> = {
-  unique: "Unique",
-  set: "Set Item",
-  runeword: "Runeword",
-  rune: "Rune",
-};
-
 export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName, category }: Props) {
   const [visible, setVisible] = useState(false);
+  const [fetchState, setFetchState] = useState<FetchState>("idle");
+  const [info, setInfo] = useState<WikiItemInfo | null>(null);
   const [imgError, setImgError] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const fetchInfo = useCallback(async () => {
+    const title = wikiUrl.split("/wiki/").pop() ?? encodeURIComponent(itemName);
+
+    if (infoCache.has(title)) {
+      setInfo(infoCache.get(title) ?? null);
+      setFetchState("done");
+      return;
+    }
+
+    setFetchState("loading");
+    try {
+      const res = await fetch(`/api/wiki-item?title=${title}`);
+      const data = (await res.json()) as { info: WikiItemInfo | null };
+      infoCache.set(title, data.info);
+      setInfo(data.info);
+      setFetchState("done");
+    } catch {
+      setFetchState("error");
+    }
+  }, [wikiUrl, itemName]);
+
   function handleMouseEnter() {
-    timerRef.current = setTimeout(() => setVisible(true), 180);
+    timerRef.current = setTimeout(() => {
+      setVisible(true);
+      if (fetchState === "idle") fetchInfo();
+    }, 200);
   }
 
   function handleMouseLeave() {
@@ -40,7 +65,6 @@ export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName
   }
 
   const nameColor = CATEGORY_COLORS[category] ?? "text-zinc-300";
-  const categoryLabel = CATEGORY_LABELS[category] ?? category;
 
   return (
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
@@ -61,38 +85,70 @@ export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName
 
       {/* Tooltip card */}
       {visible && (
-        <div
-          className="absolute bottom-full right-0 mb-2 z-50 pointer-events-none w-48"
-        >
+        <div className="absolute bottom-full right-0 mb-2 z-50 pointer-events-none w-56">
           <div className="rounded-xl border border-zinc-700 bg-zinc-900 shadow-2xl overflow-hidden">
+
             {/* Item image */}
             {!imgError && (
-              <div className="flex items-center justify-center bg-zinc-950 px-4 py-3 min-h-[80px]">
+              <div className="flex items-center justify-center bg-zinc-950 px-4 py-3 min-h-[72px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={wikiImageUrl}
                   alt={itemName}
                   onError={() => setImgError(true)}
-                  className="max-h-28 max-w-full object-contain"
+                  className="max-h-24 max-w-full object-contain"
                   style={{ imageRendering: "pixelated" }}
                 />
               </div>
             )}
 
-            {/* Item info */}
-            <div className="px-3 py-2 space-y-0.5 border-t border-zinc-800">
+            {/* Header: name + base info */}
+            <div className="px-3 pt-2 pb-1.5 border-t border-zinc-800">
               <p className={`text-sm font-bold leading-tight ${nameColor}`}>{itemName}</p>
-              {setName && <p className="text-xs text-zinc-400">{setName}</p>}
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="text-xs text-zinc-600">{categoryLabel}</span>
-                {itemType && (
-                  <>
-                    <span className="text-xs text-zinc-700">·</span>
-                    <span className="text-xs text-zinc-600 capitalize">{itemType}</span>
-                  </>
-                )}
-              </div>
+              {setName && <p className="text-xs text-zinc-400 mt-0.5">{setName}</p>}
+
+              {fetchState === "done" && info && (
+                <div className="mt-1 space-y-0.5">
+                  {info.baseType && (
+                    <p className="text-xs text-zinc-400">{info.baseType}</p>
+                  )}
+                  {info.runeCombo && (
+                    <p className="text-xs text-amber-600/80">{info.runeCombo}</p>
+                  )}
+                  <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
+                    {info.defense && (
+                      <span className="text-xs text-zinc-500">Def: {info.defense}</span>
+                    )}
+                    {info.damage && (
+                      <span className="text-xs text-zinc-500">{info.damage}</span>
+                    )}
+                    {info.requiredLevel !== null && (
+                      <span className="text-xs text-zinc-500">Req Lvl: {info.requiredLevel}</span>
+                    )}
+                    {info.requiredStrength !== null && (
+                      <span className="text-xs text-zinc-500">Str: {info.requiredStrength}</span>
+                    )}
+                    {info.requiredDexterity !== null && (
+                      <span className="text-xs text-zinc-500">Dex: {info.requiredDexterity}</span>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {(fetchState === "idle" || fetchState === "loading") && (
+                <p className="text-xs text-zinc-700 mt-1">Loading…</p>
+              )}
             </div>
+
+            {/* Stats list */}
+            {fetchState === "done" && info && info.stats.length > 0 && (
+              <div className="px-3 pb-2.5 pt-1 border-t border-zinc-800 space-y-0.5">
+                {info.stats.map((stat, i) => (
+                  <p key={i} className="text-xs text-sky-300/80 leading-snug">{stat}</p>
+                ))}
+              </div>
+            )}
+
           </div>
         </div>
       )}

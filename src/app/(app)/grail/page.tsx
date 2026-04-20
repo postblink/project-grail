@@ -32,25 +32,25 @@ export default async function GrailPage() {
         <div>
           <h1 className="text-2xl font-bold text-zinc-100">My Grail</h1>
           <p className="mt-0.5 text-sm text-zinc-500">{season.name}</p>
+          <div className="mt-2">
+            {session.user.display_name ? (
+              <ShareGrailButton username={session.user.display_name} />
+            ) : (
+              <Link href="/settings" className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
+                Set a name to share →
+              </Link>
+            )}
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <a
-            href={filterForgeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
-            title="Open your found items in FilterForge"
-          >
-            Open in FilterForge →
-          </a>
-          {session.user.display_name ? (
-            <ShareGrailButton username={session.user.display_name} />
-          ) : (
-            <Link href="/settings" className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
-              Set a name to share →
-            </Link>
-          )}
-        </div>
+        <a
+          href={filterForgeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+          title="Open your found items in FilterForge"
+        >
+          Open in FilterForge →
+        </a>
       </div>
       <GrailView grailId={grail.id} initialItems={items} />
     </div>

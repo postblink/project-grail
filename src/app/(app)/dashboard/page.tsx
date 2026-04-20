@@ -2,6 +2,7 @@ import Link from "next/link";
 import { auth } from "@/auth";
 import { getCurrentSeason, getOrCreateGrail, getGrailItems, computeProgress } from "@/lib/grail";
 import { getUserAchievements } from "@/lib/achievements";
+import { getUserLeagues } from "@/lib/leagues";
 import { db } from "@/lib/db";
 import { SetDisplayName } from "./_components/SetDisplayName";
 import { AchievementBadge } from "./_components/AchievementBadge";
@@ -12,14 +13,16 @@ export default async function DashboardPage() {
 
   let progress = null;
   let recentAchievements: Awaited<ReturnType<typeof getUserAchievements>> = [];
+  let myLeagues: Awaited<ReturnType<typeof getUserLeagues>> = [];
   let isSeasonTransition = false;
 
   if (season && session?.user.id) {
-    const [grail, priorGrailCount] = await Promise.all([
+    const [grail, priorGrailCount, leagueMemberships] = await Promise.all([
       getOrCreateGrail(session.user.id, season.id),
       db.grail.count({
         where: { user_id: session.user.id, season_id: { not: season.id } },
       }),
+      getUserLeagues(session.user.id),
     ]);
     const [items, allAchievements] = await Promise.all([
       getGrailItems(grail.id),
@@ -28,6 +31,8 @@ export default async function DashboardPage() {
     progress = computeProgress(items);
     recentAchievements = allAchievements.slice(0, 4);
     isSeasonTransition = priorGrailCount > 0 && progress.found === 0;
+    // Only show leagues for the current season on the dashboard
+    myLeagues = leagueMemberships.filter((m) => m.league.season.slug === season.slug);
   }
 
   const isNewUser = !!season && !!progress && progress.found === 0 && !isSeasonTransition;
@@ -105,6 +110,40 @@ export default async function DashboardPage() {
                 <StatCard key={cat} label={cat} value={`${pct}%`} sub={`${found} / ${total}`} />
               ))}
             </div>
+          )}
+
+          {myLeagues.length > 0 && (
+            <section>
+              <div className="mb-3 flex items-center justify-between">
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">My Leagues</h2>
+                <Link href="/leagues" className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
+                  View all →
+                </Link>
+              </div>
+              <div className="space-y-2">
+                {myLeagues.map(({ league, role }) => (
+                  <Link
+                    key={league.id}
+                    href={`/leagues/${league.slug}`}
+                    className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 hover:border-zinc-700 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-zinc-200">{league.name}</span>
+                      {role === "commissioner" && (
+                        <span className="rounded bg-amber-900/40 px-1.5 py-0.5 text-xs text-amber-500">Commissioner</span>
+                      )}
+                      {role === "co_commissioner" && (
+                        <span className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs text-zinc-400">Co-Commissioner</span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-zinc-500">
+                      <span>{league._count.members} {league._count.members === 1 ? "member" : "members"}</span>
+                      <span className="text-zinc-600">→</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
           )}
 
           {recentAchievements.length > 0 && (

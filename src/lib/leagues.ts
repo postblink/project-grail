@@ -122,6 +122,7 @@ export interface MissingItemRow {
   item_type: string | null;
   set_name: string | null;
   pd2_exclusive: boolean;
+  wiki_url: string | null;
 }
 
 export async function getLeagueMissingItems(
@@ -145,7 +146,7 @@ export async function getLeagueMissingItems(
       ...(grailScope.pd2_exclusive === false && { pd2_exclusive: false }),
     },
     orderBy: [{ category: "asc" }, { set_name: "asc" }, { name: "asc" }],
-    select: { id: true, name: true, category: true, item_type: true, set_name: true, pd2_exclusive: true },
+    select: { id: true, name: true, category: true, item_type: true, set_name: true, pd2_exclusive: true, wiki_url: true },
   });
 
   return items.filter((item) => !foundSet.has(item.id));

@@ -92,8 +92,14 @@ function CoopLeaderboard({
           {scores.map((s, i) => (
             <tr key={s.userId} className="hover:bg-zinc-800/50 transition-colors">
               <td className="px-4 py-3 text-zinc-600">{i + 1}</td>
-              <td className="px-4 py-3 text-zinc-200 font-medium">
-                {s.displayName ?? "Unknown"}
+              <td className="px-4 py-3 font-medium">
+                {s.displayName ? (
+                  <Link href={`/grail/${encodeURIComponent(s.displayName)}`} className="text-zinc-200 hover:text-amber-400 transition-colors">
+                    {s.displayName}
+                  </Link>
+                ) : (
+                  <span className="text-zinc-500">Unknown</span>
+                )}
                 <BonusIndicators bonuses={s.bonuses} />
               </td>
               <td className="px-4 py-3 text-right text-zinc-400">{s.itemsFound}</td>

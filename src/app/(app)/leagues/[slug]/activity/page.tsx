@@ -57,9 +57,16 @@ export default async function ActivityPage({ params }: Props) {
               <span className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border-2 border-zinc-900 bg-zinc-700" />
 
               <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                <span className="text-sm font-semibold text-zinc-200">
-                  {event.displayName ?? "Unknown"}
-                </span>
+                {event.displayName ? (
+                  <Link
+                    href={`/grail/${encodeURIComponent(event.displayName)}`}
+                    className="text-sm font-semibold text-zinc-200 hover:text-amber-400 transition-colors"
+                  >
+                    {event.displayName}
+                  </Link>
+                ) : (
+                  <span className="text-sm font-semibold text-zinc-500">Unknown</span>
+                )}
                 <span className="text-sm text-zinc-500">found</span>
                 <span className={`text-sm font-medium ${CATEGORY_COLORS[event.itemCategory] ?? "text-zinc-300"}`}>
                   {event.itemName}

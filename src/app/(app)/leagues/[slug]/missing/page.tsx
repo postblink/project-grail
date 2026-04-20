@@ -128,7 +128,7 @@ function ItemRow({
   color: string;
 }) {
   return (
-    <div className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2">
+    <div className="group flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2">
       <span className={`text-sm font-medium ${color}`}>{item.name}</span>
       <div className="flex items-center gap-2">
         {item.pd2_exclusive && (
@@ -136,6 +136,20 @@ function ItemRow({
         )}
         {item.item_type && (
           <span className="text-xs text-zinc-600">{item.item_type}</span>
+        )}
+        {item.wiki_url && (
+          <a
+            href={item.wiki_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="opacity-0 group-hover:opacity-100 transition-opacity text-zinc-600 hover:text-zinc-300"
+            title="View on wiki"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7" />
+              <path d="M8 1h3v3M11 1 6 6" />
+            </svg>
+          </a>
         )}
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import type { GrailItemRow } from "@/lib/grail";
+import { WikiTooltip } from "./WikiTooltip";
 
 const CATEGORIES = ["unique", "set", "runeword", "rune"] as const;
 type Category = (typeof CATEGORIES)[number];
@@ -299,19 +300,14 @@ function ItemRow({ item, onToggle, readOnly }: { item: GrailItemRow; onToggle: (
           </span>
         )}
         {item.wiki_url && (
-          <a
-            href={item.wiki_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="opacity-30 hover:opacity-100 transition-opacity text-zinc-400 hover:text-zinc-200"
-            title="View on wiki"
-          >
-            <svg width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7" />
-              <path d="M8 1h3v3M11 1 6 6" />
-            </svg>
-          </a>
+          <WikiTooltip
+            wikiUrl={item.wiki_url}
+            wikiImageUrl={item.wiki_image_url}
+            itemName={item.name}
+            itemType={item.item_type}
+            setName={item.set_name}
+            category={item.category}
+          />
         )}
       </div>
     </div>

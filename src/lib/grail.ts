@@ -1,4 +1,12 @@
+import crypto from "crypto";
 import { db } from "@/lib/db";
+
+/** Computes the static.wikitide.net image URL for a PD2 wiki item. */
+export function wikiImageUrl(itemName: string): string {
+  const filename = itemName.replace(/ /g, "_") + ".png";
+  const hash = crypto.createHash("md5").update(filename).digest("hex");
+  return `https://static.wikitide.net/projectdiablo2wiki/${hash[0]}/${hash.slice(0, 2)}/${filename}`;
+}
 
 export async function getCurrentSeason() {
   return db.season.findFirst({ where: { is_current: true } });
@@ -20,6 +28,7 @@ export interface GrailItemRow {
   set_name: string | null;
   pd2_exclusive: boolean;
   wiki_url: string | null;
+  wiki_image_url: string;
   found: boolean;
   found_at: Date | null;
 }
@@ -44,6 +53,7 @@ export async function getGrailItems(grailId: string): Promise<GrailItemRow[]> {
     return {
       ...item,
       category: item.category as string,
+      wiki_image_url: wikiImageUrl(item.name),
       found: entry?.found ?? false,
       found_at: entry?.found_at ?? null,
     };

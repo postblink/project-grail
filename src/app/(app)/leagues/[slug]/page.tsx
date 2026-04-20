@@ -124,7 +124,7 @@ export default async function LeaguePage({ params }: Props) {
       </section>
 
       {/* Navigation links */}
-      <section className="grid gap-2 sm:grid-cols-3">
+      <section className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         {[
           { label: "Leaderboard", href: `/leagues/${slug}/leaderboard`, live: true },
           {
@@ -133,6 +133,7 @@ export default async function LeaguePage({ params }: Props) {
             live: league.league_type === "cooperative" || league.league_type === "hybrid",
           },
           { label: "Activity Feed", href: `/leagues/${slug}/activity`, live: true },
+          { label: "Missing Items", href: `/leagues/${slug}/missing`, live: true },
         ].map(({ label, href, live }) =>
           live ? (
             <Link

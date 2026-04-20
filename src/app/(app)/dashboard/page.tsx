@@ -2,6 +2,7 @@ import Link from "next/link";
 import { auth } from "@/auth";
 import { getCurrentSeason, getOrCreateGrail, getGrailItems, computeProgress } from "@/lib/grail";
 import { getUserAchievements } from "@/lib/achievements";
+import { db } from "@/lib/db";
 import { SetDisplayName } from "./_components/SetDisplayName";
 import { AchievementBadge } from "./_components/AchievementBadge";
 
@@ -11,18 +12,25 @@ export default async function DashboardPage() {
 
   let progress = null;
   let recentAchievements: Awaited<ReturnType<typeof getUserAchievements>> = [];
+  let isSeasonTransition = false;
 
   if (season && session?.user.id) {
-    const grail = await getOrCreateGrail(session.user.id, season.id);
+    const [grail, priorGrailCount] = await Promise.all([
+      getOrCreateGrail(session.user.id, season.id),
+      db.grail.count({
+        where: { user_id: session.user.id, season_id: { not: season.id } },
+      }),
+    ]);
     const [items, allAchievements] = await Promise.all([
       getGrailItems(grail.id),
       getUserAchievements(session.user.id),
     ]);
     progress = computeProgress(items);
     recentAchievements = allAchievements.slice(0, 4);
+    isSeasonTransition = priorGrailCount > 0 && progress.found === 0;
   }
 
-  const isNewUser = !!season && !!progress && progress.found === 0;
+  const isNewUser = !!season && !!progress && progress.found === 0 && !isSeasonTransition;
   const needsDisplayName = !session?.user.display_name;
 
   return (
@@ -43,6 +51,23 @@ export default async function DashboardPage() {
       </div>
 
       {needsDisplayName && <SetDisplayName />}
+
+      {isSeasonTransition && season && (
+        <div className="rounded-xl border border-amber-700/50 bg-amber-900/10 px-5 py-4 flex items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-amber-400">A new season has begun — {season.name}</p>
+            <p className="mt-0.5 text-sm text-zinc-400">
+              Your previous grail has been archived. Import from the armory or start checking off items to kick off your new season.
+            </p>
+          </div>
+          <Link
+            href="/grail"
+            className="shrink-0 rounded-lg bg-amber-700 px-3 py-1.5 text-xs font-semibold text-amber-100 hover:bg-amber-600 transition-colors"
+          >
+            Open grail →
+          </Link>
+        </div>
+      )}
 
       {isNewUser ? (
         <div className="rounded-xl border border-zinc-700 bg-zinc-900 p-6 space-y-4 max-w-xl">

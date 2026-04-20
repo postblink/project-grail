@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { getCurrentSeason } from "@/lib/grail";
 
-export default function Home() {
+export default async function Home() {
+  const season = await getCurrentSeason();
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center bg-zinc-950 px-4 text-zinc-100">
       {/* Glow */}
@@ -51,9 +53,11 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <p className="absolute bottom-6 text-xs text-zinc-700">
-        Season 13 — Betrayal · pd2grail.com
-      </p>
+      {season && (
+        <p className="absolute bottom-6 text-xs text-zinc-700">
+          {season.name} · pd2grail.com
+        </p>
+      )}
     </main>
   );
 }

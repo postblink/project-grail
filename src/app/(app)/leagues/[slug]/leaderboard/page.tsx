@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getLeague, type GrailScope } from "@/lib/leagues";
 import { computeContributionScores, computeIndividualRankings, SCORING } from "@/lib/contribution";
+import { RelativeTime } from "../activity/_components/RelativeTime";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -150,13 +151,20 @@ function IndividualLeaderboard({
                 <span className="w-6 text-center text-sm">
                   {RANK_LABELS[rank] ?? <span className="text-zinc-600">{rank}</span>}
                 </span>
-                {r.displayName ? (
-                  <Link href={`/grail/${encodeURIComponent(r.displayName)}`} className="text-sm font-medium text-zinc-200 hover:text-amber-400 transition-colors">
-                    {r.displayName}
-                  </Link>
-                ) : (
-                  <span className="text-sm font-medium text-zinc-500">Unknown</span>
-                )}
+                <div>
+                  {r.displayName ? (
+                    <Link href={`/grail/${encodeURIComponent(r.displayName)}`} className="text-sm font-medium text-zinc-200 hover:text-amber-400 transition-colors">
+                      {r.displayName}
+                    </Link>
+                  ) : (
+                    <span className="text-sm font-medium text-zinc-500">Unknown</span>
+                  )}
+                  {r.lastActive && (
+                    <p className="text-xs text-zinc-600">
+                      <RelativeTime date={new Date(r.lastActive)} />
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="text-right">
                 <span className="text-lg font-bold text-zinc-100">{r.pct}%</span>

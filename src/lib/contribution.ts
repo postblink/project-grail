@@ -172,6 +172,7 @@ export interface IndividualRank {
   found: number;
   total: number;
   pct: number;
+  lastActive: Date | null;
 }
 
 export async function computeIndividualRankings(
@@ -197,7 +198,7 @@ export async function computeIndividualRankings(
               ...(grailScope.pd2_exclusive === false && { pd2_exclusive: false }),
             },
           },
-          select: { item_id: true },
+          select: { item_id: true, found_at: true },
         },
       },
     }),
@@ -210,17 +211,23 @@ export async function computeIndividualRankings(
     }),
   ]);
 
-  const grailMap = new Map(grails.map((g) => [g.user_id, g.entries.length]));
+  const grailMap = new Map(grails.map((g) => [g.user_id, g.entries]));
 
   return members
     .map((m) => {
-      const found = grailMap.get(m.user_id) ?? 0;
+      const entries = grailMap.get(m.user_id) ?? [];
+      const found = entries.length;
+      const lastActive = entries.reduce<Date | null>((max, e) => {
+        if (!e.found_at) return max;
+        return max === null || e.found_at > max ? e.found_at : max;
+      }, null);
       return {
         userId: m.user_id,
         displayName: m.user.display_name,
         found,
         total: totalItems,
         pct: totalItems > 0 ? Math.round((found / totalItems) * 100) : 0,
+        lastActive,
       };
     })
     .sort((a, b) => b.found - a.found);

@@ -115,6 +115,42 @@ export interface CoopItemRow {
   found_by_name: string | null;
 }
 
+export interface MissingItemRow {
+  id: string;
+  name: string;
+  category: string;
+  item_type: string | null;
+  set_name: string | null;
+  pd2_exclusive: boolean;
+}
+
+export async function getLeagueMissingItems(
+  leagueId: string,
+  grailScope: GrailScope,
+): Promise<MissingItemRow[]> {
+  const activeCategories = (["unique", "set", "runeword", "rune"] as const).filter(
+    (cat) => grailScope[cat],
+  );
+
+  const foundItemIds = await db.leagueGrailEntry.findMany({
+    where: { league_id: leagueId },
+    select: { item_id: true },
+  });
+  const foundSet = new Set(foundItemIds.map((e) => e.item_id));
+
+  const items = await db.item.findMany({
+    where: {
+      is_active: true,
+      category: { in: activeCategories },
+      ...(grailScope.pd2_exclusive === false && { pd2_exclusive: false }),
+    },
+    orderBy: [{ category: "asc" }, { set_name: "asc" }, { name: "asc" }],
+    select: { id: true, name: true, category: true, item_type: true, set_name: true, pd2_exclusive: true },
+  });
+
+  return items.filter((item) => !foundSet.has(item.id));
+}
+
 export async function getLeagueGrailItems(
   leagueId: string,
   grailScope: GrailScope,

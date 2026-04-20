@@ -62,7 +62,7 @@ export async function getLeague(slug: string) {
 
 export async function listPublicLeagues() {
   return db.league.findMany({
-    where: { is_private: false },
+    where: { is_private: false, season: { is_current: true } },
     include: {
       season: { select: { name: true, slug: true } },
       _count: { select: { members: true } },

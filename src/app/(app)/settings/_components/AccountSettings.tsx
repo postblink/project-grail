@@ -4,7 +4,15 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-export function AccountSettings({ currentDisplayName }: { currentDisplayName: string | null }) {
+export function AccountSettings({
+  currentDisplayName,
+  email,
+  providers,
+}: {
+  currentDisplayName: string | null;
+  email: string | null;
+  providers: string[];
+}) {
   const { update } = useSession();
   const router = useRouter();
   const [name, setName] = useState(currentDisplayName ?? "");
@@ -39,7 +47,38 @@ export function AccountSettings({ currentDisplayName }: { currentDisplayName: st
     router.refresh();
   }
 
+  const PROVIDER_LABELS: Record<string, string> = {
+    discord: "Discord",
+    resend: "Magic link (email)",
+  };
+
   return (
+    <div className="space-y-8">
+    {/* Linked accounts */}
+    <section className="space-y-3">
+      <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Account</h2>
+      <div className="rounded-lg border border-zinc-800 bg-zinc-900 divide-y divide-zinc-800">
+        {email && (
+          <div className="flex items-center justify-between px-4 py-3">
+            <span className="text-xs text-zinc-500">Email</span>
+            <span className="text-sm text-zinc-300">{email}</span>
+          </div>
+        )}
+        <div className="flex items-center justify-between px-4 py-3">
+          <span className="text-xs text-zinc-500">Linked providers</span>
+          <div className="flex gap-2">
+            {providers.length === 0 ? (
+              <span className="text-sm text-zinc-600">None</span>
+            ) : providers.map((p) => (
+              <span key={p} className="rounded bg-zinc-800 px-2 py-0.5 text-xs text-zinc-300">
+                {PROVIDER_LABELS[p] ?? p}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section className="space-y-4">
       <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Display Name</h2>
 
@@ -72,5 +111,6 @@ export function AccountSettings({ currentDisplayName }: { currentDisplayName: st
         </button>
       </form>
     </section>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPublicGrailData, computeProgress } from "@/lib/grail";
+import { buildFilterForgeUrl } from "@/lib/filterforge";
 import { getUserAchievements } from "@/lib/achievements";
 import { GrailChecklist } from "@/app/(app)/grail/_components/GrailChecklist";
 
@@ -15,6 +16,7 @@ export default async function PublicGrailPage({ params }: Props) {
   if (!data) notFound();
 
   const { user, season, items } = data;
+  const filterForgeUrl = buildFilterForgeUrl(items);
   const [progress, achievements] = await Promise.all([
     Promise.resolve(computeProgress(items)),
     getUserAchievements(user.id),
@@ -55,7 +57,7 @@ export default async function PublicGrailPage({ params }: Props) {
             </p>
           )}
           <a
-            href={`https://maaaaaarrk.github.io/FilterForge/editor.html?grail=${encodeURIComponent(displayName)}`}
+            href={filterForgeUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"

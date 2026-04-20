@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { getCurrentSeason, getOrCreateGrail, getGrailItems } from "@/lib/grail";
 import { GrailView } from "./_components/GrailView";
 import { ShareGrailButton } from "./_components/ShareGrailButton";
+import { buildFilterForgeUrl } from "@/lib/filterforge";
 
 export default async function GrailPage() {
   const session = await auth();
@@ -23,6 +24,7 @@ export default async function GrailPage() {
 
   const grail = await getOrCreateGrail(session.user.id, season.id);
   const items = await getGrailItems(grail.id);
+  const filterForgeUrl = buildFilterForgeUrl(items);
 
   return (
     <div className="space-y-6">
@@ -32,17 +34,15 @@ export default async function GrailPage() {
           <p className="mt-0.5 text-sm text-zinc-500">{season.name}</p>
         </div>
         <div className="flex items-center gap-2">
-          {session.user.display_name && (
-            <a
-              href={`https://maaaaaarrk.github.io/FilterForge/editor.html?grail=${encodeURIComponent(session.user.display_name)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
-              title="Open your found items in FilterForge"
-            >
-              Open in FilterForge →
-            </a>
-          )}
+          <a
+            href={filterForgeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+            title="Open your found items in FilterForge"
+          >
+            Open in FilterForge →
+          </a>
           {session.user.display_name ? (
             <ShareGrailButton username={session.user.display_name} />
           ) : (

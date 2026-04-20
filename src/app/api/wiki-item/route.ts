@@ -135,7 +135,9 @@ export async function GET(req: Request) {
     const wikitext = data?.parse?.wikitext?.["*"];
     if (!wikitext) return NextResponse.json({ info: null });
 
-    const info = parseWikitext(wikitext, decoded);
+    // Wiki headings use spaces; URL titles use underscores — normalise before searching
+    const itemName = decoded.replace(/_/g, " ");
+    const info = parseWikitext(wikitext, itemName);
     return NextResponse.json({ info });
   } catch {
     return NextResponse.json({ info: null });

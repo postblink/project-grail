@@ -9,6 +9,7 @@ const NAV = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/grail", label: "My Grail" },
   { href: "/leagues", label: "Leagues" },
+  { href: "/achievements", label: "Achievements" },
 ];
 
 export function NavBar({ displayName, isAdmin }: { displayName: string | null; isAdmin?: boolean }) {

@@ -1,5 +1,14 @@
 const MILESTONES = [25, 50, 75, 100];
 
+// Achievement keys announced via Discord (set completions only — pct milestones have their own embed)
+const ANNOUNCE_ACHIEVEMENTS = new Set([
+  "first_set_complete", "all_sets_complete",
+]);
+
+export function shouldAnnounceAchievement(key: string): boolean {
+  return ANNOUNCE_ACHIEVEMENTS.has(key) || key.startsWith("set_complete:");
+}
+
 const MILESTONE_COLORS: Record<number, number> = {
   25:  0xC7B377, // D2 gold
   50:  0xF59E0B, // amber
@@ -57,6 +66,27 @@ export function checkMilestoneCrossed(prevFound: number, newFound: number, total
     if (prevPct < m && newPct >= m) return m;
   }
   return null;
+}
+
+interface AchievementPayload {
+  webhookUrl: string;
+  displayName: string;
+  achievementName: string;
+  achievementDescription: string;
+  achievementEmoji: string;
+  leagueName: string;
+}
+
+export async function notifyAchievementUnlocked(payload: AchievementPayload): Promise<void> {
+  await postWebhook(payload.webhookUrl, {
+    embeds: [{
+      color: 0xF59E0B, // amber — consistent with achievement UI
+      title: `${payload.achievementEmoji} Achievement Unlocked`,
+      description: `**${payload.displayName}** unlocked **${payload.achievementName}**`,
+      fields: [{ name: "\u200b", value: payload.achievementDescription, inline: false }],
+      footer: { text: payload.leagueName },
+    }],
+  });
 }
 
 async function postWebhook(url: string, body: object): Promise<void> {

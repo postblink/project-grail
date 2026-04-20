@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
-import { notifyItemFound, notifyMilestone, checkMilestoneCrossed } from "@/lib/discord";
+import { notifyItemFound, notifyMilestone, checkMilestoneCrossed, notifyAchievementUnlocked, shouldAnnounceAchievement } from "@/lib/discord";
 import { awardAchievements } from "@/lib/achievements";
+import { getAchievementDef } from "@/lib/achievement-defs";
 
 const schema = z.object({
   grailId: z.string().min(1),
@@ -116,6 +117,7 @@ export async function PATCH(req: NextRequest) {
     if (leagues.length > 0) {
       const prevFound = foundItems - 1;
       const milestone = checkMilestoneCrossed(prevFound, foundItems, totalItems);
+      const announceableAchievements = newAchievements.filter(shouldAnnounceAchievement);
 
       await Promise.allSettled(
         leagues.flatMap((league) => {
@@ -125,6 +127,17 @@ export async function PATCH(req: NextRequest) {
           ];
           if (milestone !== null) {
             tasks.push(notifyMilestone({ webhookUrl: url, displayName, milestone, leagueName: league.name, foundCount: foundItems, totalCount: totalItems }));
+          }
+          for (const key of announceableAchievements) {
+            const def = getAchievementDef(key);
+            tasks.push(notifyAchievementUnlocked({
+              webhookUrl: url,
+              displayName,
+              achievementName: def.name,
+              achievementDescription: def.description,
+              achievementEmoji: def.emoji,
+              leagueName: league.name,
+            }));
           }
           return tasks;
         }),

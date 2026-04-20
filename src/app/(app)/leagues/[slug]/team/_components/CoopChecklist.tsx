@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useTransition } from "react";
 import type { CoopItemRow } from "@/lib/leagues";
 
@@ -212,38 +213,53 @@ export function CoopChecklist({ slug, initialItems, currentUserId, readOnly = fa
 
 function CoopItemRow({ item, onToggle, readOnly }: { item: CoopItemRow; onToggle: () => void; readOnly?: boolean }) {
   return (
-    <button
-      onClick={onToggle}
-      disabled={readOnly}
-      className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-left transition-colors ${
+    <div
+      className={`group flex items-center gap-3 rounded-lg border px-3 py-2 transition-colors ${
         item.found
-          ? "border-amber-800/50 bg-amber-900/20 hover:bg-amber-900/30"
-          : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"
-      } ${readOnly ? "cursor-default" : ""}`}
+          ? "border-amber-800/50 bg-amber-900/20"
+          : "border-zinc-800 bg-zinc-900"
+      }`}
     >
-      <span
-        className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border text-xs transition-colors ${
-          item.found ? "border-amber-600 bg-amber-600 text-zinc-950" : "border-zinc-600 bg-transparent"
-        }`}
+      {/* Toggle area */}
+      <button
+        onClick={onToggle}
+        disabled={readOnly}
+        className={`flex items-center gap-3 flex-1 min-w-0 text-left ${readOnly ? "cursor-default" : item.found ? "hover:opacity-80" : "hover:opacity-90"}`}
       >
-        {item.found && "✓"}
-      </span>
-
-      <span className="flex-1 min-w-0">
-        <span className={`block truncate text-sm font-medium ${item.found ? "text-amber-200" : "text-zinc-300"}`}>
-          {item.name}
+        <span
+          className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border text-xs transition-colors ${
+            item.found ? "border-amber-600 bg-amber-600 text-zinc-950" : "border-zinc-600 bg-transparent"
+          }`}
+        >
+          {item.found && "✓"}
         </span>
-        {item.found && item.found_by_name && (
-          <span className="text-xs text-zinc-600">Found by {item.found_by_name}</span>
-        )}
-        {!item.found && item.item_type && (
-          <span className="text-xs text-zinc-600">{item.item_type}</span>
-        )}
-      </span>
 
-      {item.pd2_exclusive && (
-        <span className="flex-shrink-0 rounded bg-amber-900/40 px-1.5 py-0.5 text-xs text-amber-500">PD2</span>
-      )}
-    </button>
+        <span className="flex-1 min-w-0">
+          <span className={`block truncate text-sm font-medium ${item.found ? "text-amber-200" : "text-zinc-300"}`}>
+            {item.name}
+          </span>
+          {!item.found && item.item_type && (
+            <span className="text-xs text-zinc-600">{item.item_type}</span>
+          )}
+        </span>
+      </button>
+
+      {/* Right side: found-by link + PD2 badge */}
+      <div className="flex flex-shrink-0 items-center gap-1.5">
+        {item.found && item.found_by_name && (
+          <Link
+            href={`/grail/${encodeURIComponent(item.found_by_name)}`}
+            onClick={(e) => e.stopPropagation()}
+            className="text-xs text-zinc-600 hover:text-amber-400 transition-colors"
+            title={`View ${item.found_by_name}'s grail`}
+          >
+            {item.found_by_name}
+          </Link>
+        )}
+        {item.pd2_exclusive && (
+          <span className="rounded bg-amber-900/40 px-1.5 py-0.5 text-xs text-amber-500">PD2</span>
+        )}
+      </div>
+    </div>
   );
 }

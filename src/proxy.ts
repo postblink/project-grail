@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 const { auth } = NextAuth(authConfig);
 
-const PROTECTED = ["/dashboard", "/grail", "/leagues", "/admin", "/settings"];
+const PROTECTED = ["/dashboard", "/grail", "/leagues", "/admin", "/settings", "/achievements"];
 const ADMIN_ONLY = ["/admin"];
 
 export default auth((req) => {

@@ -1854,31 +1854,85 @@
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Death's_Web"
   },
   {
-    "name": "Bows",
+    "name": "Lycander's Aim",
     "category": "unique",
-    "item_type": "class weapons",
+    "item_type": "bows",
     "set_name": null,
     "pd2_exclusive": false,
     "is_active": true,
-    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bows"
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lycander's_Aim"
   },
   {
-    "name": "Spears",
+    "name": "Blood Raven's Charge",
     "category": "unique",
-    "item_type": "class weapons",
+    "item_type": "bows",
     "set_name": null,
     "pd2_exclusive": false,
     "is_active": true,
-    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spears"
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Blood_Raven's_Charge"
   },
   {
-    "name": "Javelins",
+    "name": "Ebonbane",
     "category": "unique",
-    "item_type": "class weapons",
+    "item_type": "bows",
+    "set_name": null,
+    "pd2_exclusive": true,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ebonbane"
+  },
+  {
+    "name": "Lycander's Flank",
+    "category": "unique",
+    "item_type": "spears",
     "set_name": null,
     "pd2_exclusive": false,
     "is_active": true,
-    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Javelins"
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lycander's_Flank"
+  },
+  {
+    "name": "Stoneraven",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stoneraven"
+  },
+  {
+    "name": "Zerae's Resolve",
+    "category": "unique",
+    "item_type": "spears",
+    "set_name": null,
+    "pd2_exclusive": true,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Zerae's_Resolve"
+  },
+  {
+    "name": "True Silver",
+    "category": "unique",
+    "item_type": "javelins",
+    "set_name": null,
+    "pd2_exclusive": true,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/True_Silver"
+  },
+  {
+    "name": "Titan's Revenge",
+    "category": "unique",
+    "item_type": "javelins",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Titan's_Revenge"
+  },
+  {
+    "name": "Thunderstroke",
+    "category": "unique",
+    "item_type": "javelins",
+    "set_name": null,
+    "pd2_exclusive": false,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Thunderstroke"
   },
   {
     "name": "Mage Slayer",

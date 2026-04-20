@@ -50,30 +50,49 @@ async function scrapeMainPage(): Promise<ScrapedItem[]> {
   const items: ScrapedItem[] = [];
 
   let currentH2Id = "";
+  let currentH4SubType = ""; // weapon-type sub-header within class weapons (e.g. "bows", "javelins")
 
-  $("h2[id], h3[id], h4[id]").each((_, el) => {
+  // The Amazon class weapons section uses an extra heading level:
+  // h2 Unique_Class_Weapons → h3 Amazon → h4 Bows/Spears/Javelins → h5 item
+  // All other classes: h2 Unique_Class_Weapons → h3 Class → h4 item
+  // Track h4 sub-type headers so we can capture h5 items with the right item_type.
+  const CLASS_WEAPON_SUBTYPES = new Set(["Bows_2", "Spears_2", "Javelins"]);
+
+  $("h2[id], h3[id], h4[id], h5[id]").each((_, el) => {
     const tag = el.tagName.toLowerCase();
     const id = $(el).attr("id") ?? "";
     const name = $(el).text().trim();
 
     if (tag === "h2") {
       currentH2Id = id;
+      currentH4SubType = "";
       return;
     }
 
     // Unique items under any Unique_* section:
     // - h4 elements (most unique items, all weapon/armor types)
     // - h3 elements with d2-gold class (amulets, rings, charms, jewels use h3 instead of h4)
+    // - h5 elements under class-weapon sub-type headers (Amazon bows/spears/javelins)
     // The Unique_Jewels h4s are embedded set pieces — skip them; set items come from All_Set_Items.
     const isUnderUniqueSection = currentH2Id.startsWith("Unique_");
+
+    // h4 sub-type headers within class weapons (e.g. "Bows", "Javelins") — track but don't emit
+    if (tag === "h4" && currentH2Id === "Unique_Class_Weapons" && CLASS_WEAPON_SUBTYPES.has(id)) {
+      currentH4SubType = id.replace(/_2$/, "").toLowerCase();
+      return;
+    }
+    // Any other h4 clears the sub-type (we're back to a real item or new class)
+    if (tag === "h4") currentH4SubType = "";
+
     const isH4Unique = tag === "h4" && isUnderUniqueSection && currentH2Id !== "Unique_Jewels";
     const isH3Unique = tag === "h3" && isUnderUniqueSection && $(el).find(".d2-gold").length > 0;
+    const isH5Unique = tag === "h5" && isUnderUniqueSection && currentH4SubType !== "";
 
-    if ((isH4Unique || isH3Unique) && name) {
+    if ((isH4Unique || isH3Unique || isH5Unique) && name) {
       items.push({
         name,
         category: "unique",
-        item_type: sectionToItemType(currentH2Id),
+        item_type: isH5Unique ? currentH4SubType : sectionToItemType(currentH2Id),
         set_name: null,
         pd2_exclusive: false,
         is_active: true,

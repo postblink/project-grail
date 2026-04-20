@@ -8,6 +8,12 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const league = await getLeague(slug);
+  return { title: league ? `${league.name} Team Grail — Project Grail` : "Team Grail — Project Grail" };
+}
+
 export default async function TeamGrailPage({ params }: Props) {
   const { slug } = await params;
   const [league, session] = await Promise.all([getLeague(slug), auth()]);

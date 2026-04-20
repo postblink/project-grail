@@ -133,19 +133,26 @@ export default async function LeaguePage({ params }: Props) {
             live: league.league_type === "cooperative" || league.league_type === "hybrid",
           },
           { label: "Activity Feed", href: `/leagues/${slug}/activity`, live: true },
-        ].map(({ label, href, live }) => (
-          <div
-            key={label}
-            className="rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-3 flex items-center justify-between"
-          >
-            <span className="text-sm text-zinc-400">{label}</span>
-            {live ? (
-              <Link href={href} className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">View →</Link>
-            ) : (
-              <span className="text-xs text-zinc-700">Coming soon</span>
-            )}
-          </div>
-        ))}
+        ].map(({ label, href, live }) =>
+          live ? (
+            <Link
+              key={label}
+              href={href}
+              className="rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-3 flex items-center justify-between hover:border-zinc-700 hover:bg-zinc-900 transition-colors"
+            >
+              <span className="text-sm text-zinc-300">{label}</span>
+              <span className="text-xs text-zinc-500">View →</span>
+            </Link>
+          ) : (
+            <div
+              key={label}
+              className="rounded-lg border border-zinc-800 bg-zinc-900/30 px-4 py-3 flex items-center justify-between opacity-50"
+            >
+              <span className="text-sm text-zinc-500">{label}</span>
+              <span className="text-xs text-zinc-700">Members only</span>
+            </div>
+          )
+        )}
       </section>
     </div>
   );

@@ -7,6 +7,12 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const league = await getLeague(slug);
+  return { title: league ? `${league.name} Leaderboard — Project Grail` : "Leaderboard — Project Grail" };
+}
+
 export default async function LeaderboardPage({ params }: Props) {
   const { slug } = await params;
   const league = await getLeague(slug);
@@ -45,7 +51,6 @@ export default async function LeaderboardPage({ params }: Props) {
               <span>{SCORING.BASE_ITEM_POINTS} pt per item found</span>
               <span>+{SCORING.FIRST_SET_ITEM_BONUS} first set item</span>
               <span>+{SCORING.SET_COMPLETION_BONUS} per set completed</span>
-              <span className="text-zinc-700 italic">rarity weight: coming soon</span>
             </div>
           </div>
 
@@ -54,7 +59,7 @@ export default async function LeaderboardPage({ params }: Props) {
       )}
 
       {!isCoop && individualRanks && (
-        <IndividualLeaderboard ranks={individualRanks} leagueType={league.league_type} />
+        <IndividualLeaderboard ranks={individualRanks} />
       )}
     </div>
   );
@@ -121,7 +126,6 @@ function IndividualLeaderboard({
   ranks,
 }: {
   ranks: Awaited<ReturnType<typeof computeIndividualRankings>>;
-  leagueType: string;
 }) {
   if (ranks.length === 0) {
     return <p className="text-sm text-zinc-600">No members yet.</p>;

@@ -22,6 +22,12 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const league = await getLeague(slug);
+  return { title: league ? `${league.name} Activity — Project Grail` : "Activity — Project Grail" };
+}
+
 export default async function ActivityPage({ params }: Props) {
   const { slug } = await params;
   const league = await getLeague(slug);

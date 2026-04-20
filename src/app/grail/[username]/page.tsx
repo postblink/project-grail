@@ -47,12 +47,22 @@ export default async function PublicGrailPage({ params }: Props) {
             {season ? season.name : "No active season"}
           </p>
         </div>
-        {progress.total > 0 && (
-          <p className="text-sm text-zinc-400">
-            <span className="text-2xl font-bold text-zinc-100">{progress.pct}%</span>
-            {" "}— {progress.found} / {progress.total} items
-          </p>
-        )}
+        <div className="flex items-center gap-3">
+          {progress.total > 0 && (
+            <p className="text-sm text-zinc-400">
+              <span className="text-2xl font-bold text-zinc-100">{progress.pct}%</span>
+              {" "}— {progress.found} / {progress.total} items
+            </p>
+          )}
+          <a
+            href={`https://maaaaaarrk.github.io/FilterForge/editor.html?grail=${encodeURIComponent(displayName)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+          >
+            Open in FilterForge →
+          </a>
+        </div>
       </div>
 
       {/* Progress bar */}

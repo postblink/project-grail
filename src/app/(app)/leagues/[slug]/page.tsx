@@ -77,14 +77,18 @@ export default async function LeaguePage({ params }: Props) {
         </div>
       </div>
 
-      {/* Invite code — only shown to commissioner */}
-      {canManage && league.invite_code && (
+      {/* Invite / share link — only shown to commissioner */}
+      {canManage && (
         <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <span className="text-sm text-zinc-400">Invite link</span>
-            <code className="font-mono text-sm text-amber-300">{league.invite_code}</code>
+            <span className="text-sm text-zinc-400">
+              {league.invite_code ? "Invite link" : "Share link"}
+            </span>
+            {league.invite_code && (
+              <code className="font-mono text-sm text-amber-300">{league.invite_code}</code>
+            )}
           </div>
-          <CopyInviteLink slug={slug} inviteCode={league.invite_code} />
+          <CopyInviteLink slug={slug} inviteCode={league.invite_code ?? ""} />
         </div>
       )}
 

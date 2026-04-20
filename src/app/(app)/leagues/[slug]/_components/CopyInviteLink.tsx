@@ -6,7 +6,9 @@ export function CopyInviteLink({ slug, inviteCode }: { slug: string; inviteCode:
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
-    const url = `${window.location.origin}/leagues/${slug}?code=${inviteCode}`;
+    const url = inviteCode
+      ? `${window.location.origin}/leagues/${slug}?code=${inviteCode}`
+      : `${window.location.origin}/leagues/${slug}`;
     await navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

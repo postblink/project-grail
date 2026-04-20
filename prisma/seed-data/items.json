@@ -778,7 +778,7 @@
     "category": "unique",
     "item_type": "swords",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hadriel's_Hand"
   },
@@ -787,7 +787,7 @@
     "category": "unique",
     "item_type": "swords",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Leoric's_Mithril_Bane"
   },
@@ -814,7 +814,7 @@
     "category": "unique",
     "item_type": "swords",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Odium"
   },
@@ -913,7 +913,7 @@
     "category": "unique",
     "item_type": "daggers",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shatterblade"
   },
@@ -958,7 +958,7 @@
     "category": "unique",
     "item_type": "throwing weapons",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Achilles_Strike"
   },
@@ -1129,7 +1129,7 @@
     "category": "unique",
     "item_type": "spears",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Uldyssian's_Awakening"
   },
@@ -1435,7 +1435,7 @@
     "category": "unique",
     "item_type": "bows",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Crackleshot"
   },
@@ -1633,7 +1633,7 @@
     "category": "unique",
     "item_type": "scepters",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Akarat's_Devotion"
   },
@@ -1741,7 +1741,7 @@
     "category": "unique",
     "item_type": "staves",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Brimstone_Rain"
   },
@@ -1885,7 +1885,7 @@
     "category": "unique",
     "item_type": "class weapons",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Mage_Slayer"
   },
@@ -1903,7 +1903,7 @@
     "category": "unique",
     "item_type": "class weapons",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Stalker's_Cull"
   },
@@ -1939,7 +1939,7 @@
     "category": "unique",
     "item_type": "class weapons",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Whispering_Mirage"
   },
@@ -1948,7 +1948,7 @@
     "category": "unique",
     "item_type": "class weapons",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Aidan's_Scar"
   },
@@ -1957,7 +1957,7 @@
     "category": "unique",
     "item_type": "class weapons",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tempest"
   },
@@ -1966,7 +1966,7 @@
     "category": "unique",
     "item_type": "class weapons",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skorn"
   },
@@ -2002,7 +2002,7 @@
     "category": "unique",
     "item_type": "class weapons",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Armageddon's_Blade"
   },
@@ -2218,7 +2218,7 @@
     "category": "unique",
     "item_type": "helms",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Overlord's_Helm"
   },
@@ -2245,7 +2245,7 @@
     "category": "unique",
     "item_type": "helms",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cyclopean_Roar"
   },
@@ -2254,7 +2254,7 @@
     "category": "unique",
     "item_type": "helms",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wildspeaker"
   },
@@ -2299,7 +2299,7 @@
     "category": "unique",
     "item_type": "helms",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Raekor's_Virtue"
   },
@@ -2308,7 +2308,7 @@
     "category": "unique",
     "item_type": "helms",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Quetzalcoatl"
   },
@@ -2317,7 +2317,7 @@
     "category": "unique",
     "item_type": "helms",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Fenris"
   },
@@ -2344,7 +2344,7 @@
     "category": "unique",
     "item_type": "helms",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Denmother"
   },
@@ -2371,7 +2371,7 @@
     "category": "unique",
     "item_type": "helms",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ursa's_Nightmare"
   },
@@ -2515,7 +2515,7 @@
     "category": "unique",
     "item_type": "chests",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spirit_Shroud"
   },
@@ -2668,7 +2668,7 @@
     "category": "unique",
     "item_type": "chests",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Wraithskin"
   },
@@ -2695,7 +2695,7 @@
     "category": "unique",
     "item_type": "chests",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Purgatory"
   },
@@ -2731,7 +2731,7 @@
     "category": "unique",
     "item_type": "chests",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dark_Abyss"
   },
@@ -2740,7 +2740,7 @@
     "category": "unique",
     "item_type": "chests",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cage_of_the_Unsullied"
   },
@@ -2902,7 +2902,7 @@
     "category": "unique",
     "item_type": "shields",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Twilight's_Reflection"
   },
@@ -2956,7 +2956,7 @@
     "category": "unique",
     "item_type": "shields",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Kalan's_Legacy"
   },
@@ -2992,7 +2992,7 @@
     "category": "unique",
     "item_type": "shields",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sacred_Totem"
   },
@@ -3001,7 +3001,7 @@
     "category": "unique",
     "item_type": "shields",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Martyrdom"
   },
@@ -3010,7 +3010,7 @@
     "category": "unique",
     "item_type": "shields",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sankekur's_Fall"
   },
@@ -3046,7 +3046,7 @@
     "category": "unique",
     "item_type": "shields",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Skywarden"
   },
@@ -3055,7 +3055,7 @@
     "category": "unique",
     "item_type": "arrows",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Balefire"
   },
@@ -3064,7 +3064,7 @@
     "category": "unique",
     "item_type": "arrows",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Swiftwind_Needle"
   },
@@ -3073,7 +3073,7 @@
     "category": "unique",
     "item_type": "arrows",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tombsong"
   },
@@ -3082,7 +3082,7 @@
     "category": "unique",
     "item_type": "arrows",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Aetherwing"
   },
@@ -3091,7 +3091,7 @@
     "category": "unique",
     "item_type": "arrows",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Basilisk's_Quill"
   },
@@ -3100,7 +3100,7 @@
     "category": "unique",
     "item_type": "arrows",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Doom's_Finger"
   },
@@ -3109,7 +3109,7 @@
     "category": "unique",
     "item_type": "bolts",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ramfodder"
   },
@@ -3118,7 +3118,7 @@
     "category": "unique",
     "item_type": "bolts",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Anvilguard_Strap"
   },
@@ -3127,7 +3127,7 @@
     "category": "unique",
     "item_type": "bolts",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shatterhead"
   },
@@ -3136,7 +3136,7 @@
     "category": "unique",
     "item_type": "bolts",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Abyssal_Ward"
   },
@@ -3145,7 +3145,7 @@
     "category": "unique",
     "item_type": "bolts",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bannerlord's_Call"
   },
@@ -3154,7 +3154,7 @@
     "category": "unique",
     "item_type": "bolts",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Frozen_Sorrow"
   },
@@ -3253,7 +3253,7 @@
     "category": "unique",
     "item_type": "gloves",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Titan's_Grip"
   },
@@ -3280,7 +3280,7 @@
     "category": "unique",
     "item_type": "gloves",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Occultist"
   },
@@ -3388,7 +3388,7 @@
     "category": "unique",
     "item_type": "boots",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Merman's_Sprocket"
   },
@@ -3424,7 +3424,7 @@
     "category": "unique",
     "item_type": "boots",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Itherael's_Path"
   },
@@ -3550,7 +3550,7 @@
     "category": "unique",
     "item_type": "belts",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Siggard's_Staunch"
   },
@@ -3559,7 +3559,7 @@
     "category": "unique",
     "item_type": "belts",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Band_of_Skulls"
   },
@@ -3676,7 +3676,7 @@
     "category": "unique",
     "item_type": "amulets",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Third_Eye"
   },
@@ -3703,7 +3703,7 @@
     "category": "unique",
     "item_type": "rings",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/The_Stone_of_Jordan"
   },
@@ -3766,7 +3766,7 @@
     "category": "unique",
     "item_type": "rings",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Constricting_Loop"
   },
@@ -3775,7 +3775,7 @@
     "category": "unique",
     "item_type": "rings",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Kadala's_Heirloom"
   },
@@ -3811,7 +3811,7 @@
     "category": "unique",
     "item_type": "jewels",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rainbow_Facet_(Fire)"
   },
@@ -3820,7 +3820,7 @@
     "category": "unique",
     "item_type": "jewels",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rainbow_Facet_(Cold)"
   },
@@ -3829,7 +3829,7 @@
     "category": "unique",
     "item_type": "jewels",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rainbow_Facet_(Lightning)"
   },
@@ -3838,7 +3838,7 @@
     "category": "unique",
     "item_type": "jewels",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rainbow_Facet_(Poison)"
   },
@@ -3910,7 +3910,7 @@
     "category": "runeword",
     "item_type": "helm",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ferocity"
   },
@@ -4108,7 +4108,7 @@
     "category": "runeword",
     "item_type": "chest",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Innocence"
   },
@@ -4117,7 +4117,7 @@
     "category": "runeword",
     "item_type": "shield",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ancients'_Pledge"
   },
@@ -4126,7 +4126,7 @@
     "category": "runeword",
     "item_type": "shield",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spirit"
   },
@@ -4171,7 +4171,7 @@
     "category": "runeword",
     "item_type": "shield",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Epiphany"
   },
@@ -4189,7 +4189,7 @@
     "category": "runeword",
     "item_type": "shield",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shattered_Wall"
   },
@@ -4252,7 +4252,7 @@
     "category": "runeword",
     "item_type": "weapon",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Neophyte"
   },
@@ -4288,7 +4288,7 @@
     "category": "runeword",
     "item_type": "weapon",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Purity"
   },
@@ -4315,7 +4315,7 @@
     "category": "runeword",
     "item_type": "weapon",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rampage"
   },
@@ -4324,7 +4324,7 @@
     "category": "runeword",
     "item_type": "weapon",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Echo"
   },
@@ -4423,7 +4423,7 @@
     "category": "runeword",
     "item_type": "weapon",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Loyalty"
   },
@@ -4630,7 +4630,7 @@
     "category": "runeword",
     "item_type": "weapon",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Rapture"
   },
@@ -4657,7 +4657,7 @@
     "category": "runeword",
     "item_type": "weapon",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dominion"
   },
@@ -4693,7 +4693,7 @@
     "category": "runeword",
     "item_type": "weapon",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Asylum"
   },
@@ -4720,7 +4720,7 @@
     "category": "runeword",
     "item_type": "weapon",
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Zenith"
   },
@@ -4729,7 +4729,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/El"
   },
@@ -4738,7 +4738,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Eld"
   },
@@ -4747,7 +4747,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tir"
   },
@@ -4756,7 +4756,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Nef"
   },
@@ -4765,7 +4765,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Eth"
   },
@@ -4774,7 +4774,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ith"
   },
@@ -4783,7 +4783,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Tal"
   },
@@ -4792,7 +4792,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ral"
   },
@@ -4801,7 +4801,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ort"
   },
@@ -4810,7 +4810,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Thul"
   },
@@ -4819,7 +4819,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Amn"
   },
@@ -4828,7 +4828,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sol"
   },
@@ -4837,7 +4837,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Shael"
   },
@@ -4846,7 +4846,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Dol"
   },
@@ -4855,7 +4855,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Hel"
   },
@@ -4864,7 +4864,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Io"
   },
@@ -4873,7 +4873,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lum"
   },
@@ -4882,7 +4882,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ko"
   },
@@ -4891,7 +4891,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Fal"
   },
@@ -4900,7 +4900,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lem"
   },
@@ -4909,7 +4909,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Pul"
   },
@@ -4918,7 +4918,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Um"
   },
@@ -4927,7 +4927,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Mal"
   },
@@ -4936,7 +4936,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ist"
   },
@@ -4945,7 +4945,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Gul"
   },
@@ -4954,7 +4954,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Vex"
   },
@@ -4963,7 +4963,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ohm"
   },
@@ -4972,7 +4972,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Lo"
   },
@@ -4981,7 +4981,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Sur"
   },
@@ -4990,7 +4990,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Ber"
   },
@@ -4999,7 +4999,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Jah"
   },
@@ -5008,7 +5008,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Cham"
   },
@@ -5017,7 +5017,7 @@
     "category": "rune",
     "item_type": null,
     "set_name": null,
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Zod"
   },
@@ -5161,7 +5161,7 @@
     "category": "set",
     "item_type": null,
     "set_name": "Infernal Tools",
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Infernal_Spire_(Infernal_Torch)"
   },
@@ -5854,7 +5854,7 @@
     "category": "set",
     "item_type": null,
     "set_name": "Bul-Kathos' Children",
-    "pd2_exclusive": false,
+    "pd2_exclusive": true,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Bul-Kathos'_Death_Band"
   },

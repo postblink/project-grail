@@ -6,7 +6,13 @@ import Discord from "next-auth/providers/discord";
 // src/auth.ts extends this with the Prisma adapter, Resend provider, and DB callbacks.
 export const authConfig: NextAuthConfig = {
   providers: [
-    Discord({ clientId: process.env.DISCORD_CLIENT_ID!, clientSecret: process.env.DISCORD_CLIENT_SECRET! }),
+    Discord({
+      clientId: process.env.DISCORD_CLIENT_ID!,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET!,
+      // Link Discord to an existing email-based account (magic link) if the email matches.
+      // Safe here: Discord only exposes verified emails.
+      allowDangerousEmailAccountLinking: true,
+    }),
   ],
   pages: { signIn: "/login", error: "/login" },
   callbacks: {

@@ -142,7 +142,7 @@ function ItemRow({
             href={item.wiki_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="opacity-0 group-hover:opacity-100 transition-opacity text-zinc-600 hover:text-zinc-300"
+            className="opacity-30 hover:opacity-100 transition-opacity text-zinc-400 hover:text-zinc-200"
             title="View on wiki"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">

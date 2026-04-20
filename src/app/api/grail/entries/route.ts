@@ -78,15 +78,16 @@ export async function PATCH(req: NextRequest) {
     );
   }
 
-  // Achievements — best-effort, fire in background alongside Discord
+  // Achievements — await so we can return newly unlocked keys to the client
   let foundItems = 0;
   let totalItems = 0;
+  let newAchievements: string[] = [];
   if (found) {
     [totalItems, foundItems] = await Promise.all([
       db.grailEntry.count({ where: { grail_id: grailId } }),
       db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
     ]);
-    void awardAchievements({
+    newAchievements = await awardAchievements({
       userId: session.user.id,
       grailId,
       foundCount: foundItems,
@@ -131,5 +132,5 @@ export async function PATCH(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ entry });
+  return NextResponse.json({ entry, newAchievements });
 }

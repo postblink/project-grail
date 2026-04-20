@@ -84,9 +84,14 @@ export default async function DashboardPage() {
 
           {recentAchievements.length > 0 && (
             <section>
-              <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                Recent Achievements
-              </h2>
+              <div className="mb-3 flex items-center justify-between">
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                  Recent Achievements
+                </h2>
+                <Link href="/achievements" className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
+                  View all →
+                </Link>
+              </div>
               <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
                 {recentAchievements.map((a) => (
                   <AchievementBadge key={a.key} achievement={a} />

@@ -1,70 +1,24 @@
 import { db } from "@/lib/db";
+import { type AchievementDef, getAchievementDef } from "@/lib/achievement-defs";
 
-// ──────────────────────────────────────────────
-// Achievement definitions
-// ──────────────────────────────────────────────
+export type { AchievementDef };
+export { getAchievementDef };
 
-export interface AchievementDef {
-  key: string;
-  name: string;
-  description: string;
-  emoji: string;
-  color: string; // tailwind text color class
-}
-
-const ITEM_MILESTONES: Array<[number, string, string, string]> = [
-  [1,   "first_item",  "First Find",       "Found your very first item."],
-  [10,  "items_10",   "Getting Started",   "Found 10 items."],
-  [50,  "items_50",   "Seasoned Hunter",   "Found 50 items."],
-  [100, "items_100",  "Grail Initiate",    "Found 100 items."],
-  [250, "items_250",  "Item Collector",    "Found 250 items."],
-  [500, "items_500",  "Veteran Hunter",    "Found 500 items."],
+const ITEM_MILESTONES: Array<[number, string]> = [
+  [1,   "first_item"],
+  [10,  "items_10"],
+  [50,  "items_50"],
+  [100, "items_100"],
+  [250, "items_250"],
+  [500, "items_500"],
 ];
 
-const PCT_MILESTONES: Array<[number, string, string, string]> = [
-  [25,  "milestone_25",  "Quarter Quest",   "Reached 25% completion."],
-  [50,  "milestone_50",  "Halfway There",   "Reached 50% completion."],
-  [75,  "milestone_75",  "Almost There",    "Reached 75% completion."],
-  [100, "milestone_100", "The Holy Grail",  "Found every item. The Grail is yours."],
+const PCT_MILESTONES: Array<[number, string]> = [
+  [25,  "milestone_25"],
+  [50,  "milestone_50"],
+  [75,  "milestone_75"],
+  [100, "milestone_100"],
 ];
-
-// Static achievements (key, name, description, emoji, color)
-const STATIC: AchievementDef[] = [
-  { key: "first_item",     name: "First Find",       description: "Found your very first item.",             emoji: "✦",  color: "text-zinc-300" },
-  { key: "items_10",       name: "Getting Started",  description: "Found 10 items.",                         emoji: "⚔",  color: "text-zinc-400" },
-  { key: "items_50",       name: "Seasoned Hunter",  description: "Found 50 items.",                         emoji: "🗡",  color: "text-zinc-300" },
-  { key: "items_100",      name: "Grail Initiate",   description: "Found 100 items.",                        emoji: "⚗",  color: "text-amber-400" },
-  { key: "items_250",      name: "Item Collector",   description: "Found 250 items.",                        emoji: "💎",  color: "text-amber-400" },
-  { key: "items_500",      name: "Veteran Hunter",   description: "Found 500 items.",                        emoji: "👑",  color: "text-amber-300" },
-  { key: "milestone_25",   name: "Quarter Quest",    description: "Reached 25% completion.",                 emoji: "◈",  color: "text-zinc-400" },
-  { key: "milestone_50",   name: "Halfway There",    description: "Reached 50% completion.",                 emoji: "◈",  color: "text-amber-500" },
-  { key: "milestone_75",   name: "Almost There",     description: "Reached 75% completion.",                 emoji: "◈",  color: "text-amber-400" },
-  { key: "milestone_100",  name: "The Holy Grail",   description: "Found every item. The Grail is yours.",   emoji: "⚗",  color: "text-amber-300" },
-  { key: "first_rune",     name: "The Alphabet",     description: "Found your first rune.",                  emoji: "ᚱ",  color: "text-violet-400" },
-  { key: "first_set_piece",name: "Set Collector",    description: "Found your first set item.",              emoji: "◆",  color: "text-emerald-400" },
-  { key: "first_set_complete", name: "Set Master",   description: "Completed your first full item set.",     emoji: "◆◆", color: "text-emerald-400" },
-  { key: "all_sets_complete",  name: "Set Grandmaster", description: "Completed every item set.",            emoji: "◆◆◆", color: "text-emerald-300" },
-  { key: "first_runeword", name: "Word of Power",    description: "Found your first runeword.",              emoji: "ᚹ",  color: "text-orange-400" },
-];
-
-export function getAchievementDef(key: string): AchievementDef {
-  const static_ = STATIC.find((a) => a.key === key);
-  if (static_) return static_;
-
-  // Dynamic: set_complete:{setName}
-  if (key.startsWith("set_complete:")) {
-    const setName = key.slice("set_complete:".length);
-    return {
-      key,
-      name: `${setName} Complete`,
-      description: `Completed the full ${setName} item set.`,
-      emoji: "◆",
-      color: "text-emerald-400",
-    };
-  }
-
-  return { key, name: key, description: "", emoji: "✦", color: "text-zinc-500" };
-}
 
 // ──────────────────────────────────────────────
 // Award logic

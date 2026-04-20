@@ -26,9 +26,10 @@ interface Props {
   items: GrailItemRow[];
   setItems?: React.Dispatch<React.SetStateAction<GrailItemRow[]>>;
   readOnly?: boolean;
+  onAchievementsUnlocked?: (keys: string[]) => void;
 }
 
-export function GrailChecklist({ grailId, items, setItems, readOnly = false }: Props) {
+export function GrailChecklist({ grailId, items, setItems, readOnly = false, onAchievementsUnlocked }: Props) {
   const [, startTransition] = useTransition();
 
   // Filters
@@ -60,12 +61,16 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false }: P
           body: JSON.stringify({ grailId, itemId, found: nextFound }),
         });
         if (!res.ok) {
-          // Roll back on error
           setItems((prev) =>
             prev.map((i) =>
               i.id === itemId ? { ...i, found: item.found, found_at: item.found_at } : i
             )
           );
+        } else if (nextFound && onAchievementsUnlocked) {
+          const data = await res.json() as { newAchievements?: string[] };
+          if (data.newAchievements && data.newAchievements.length > 0) {
+            onAchievementsUnlocked(data.newAchievements);
+          }
         }
       } catch {
         setItems((prev) =>

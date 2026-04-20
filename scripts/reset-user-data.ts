@@ -20,6 +20,7 @@ async function main() {
     prisma.armoryImport.deleteMany(),
     prisma.grailEntry.deleteMany(),
     prisma.grail.deleteMany(),
+    prisma.userAchievement.deleteMany(),
     prisma.session.deleteMany(),
     prisma.account.deleteMany(),
     prisma.verificationToken.deleteMany(),

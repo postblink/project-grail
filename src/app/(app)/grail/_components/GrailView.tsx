@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { GrailItemRow } from "@/lib/grail";
 import { GrailChecklist } from "./GrailChecklist";
 import { ArmoryImport } from "./ArmoryImport";
+import { AchievementToast } from "./AchievementToast";
 
 interface Props {
   grailId: string;
@@ -18,6 +19,7 @@ function computeProgress(items: GrailItemRow[]) {
 
 export function GrailView({ grailId, initialItems }: Props) {
   const [items, setItems] = useState(initialItems);
+  const [pendingAchievements, setPendingAchievements] = useState<string[]>([]);
   const progress = computeProgress(items);
 
   function handleImportComplete(foundItemIds: string[]) {
@@ -44,7 +46,16 @@ export function GrailView({ grailId, initialItems }: Props) {
           style={{ width: `${progress.pct}%` }}
         />
       </div>
-      <GrailChecklist grailId={grailId} items={items} setItems={setItems} />
+      <GrailChecklist
+        grailId={grailId}
+        items={items}
+        setItems={setItems}
+        onAchievementsUnlocked={setPendingAchievements}
+      />
+      <AchievementToast
+        keys={pendingAchievements}
+        onDismissAll={() => setPendingAchievements([])}
+      />
     </div>
   );
 }

@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import { CreateLeagueForm } from "../_components/CreateLeagueForm";
+
+export const metadata: Metadata = { title: "Create League — Project Grail" };
 
 export default function CreateLeaguePage() {
   return (

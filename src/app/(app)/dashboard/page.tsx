@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@/auth";
+
+export const metadata: Metadata = { title: "Dashboard — Project Grail" };
 import { getCurrentSeason, getOrCreateGrail, getGrailItems, computeProgress } from "@/lib/grail";
 import { getUserAchievements } from "@/lib/achievements";
 import { getUserLeagues } from "@/lib/leagues";

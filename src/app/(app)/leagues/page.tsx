@@ -1,6 +1,9 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@/auth";
 import { listPublicLeagues, getUserLeagues } from "@/lib/leagues";
+
+export const metadata: Metadata = { title: "Leagues — Project Grail" };
 
 const TYPE_LABELS: Record<string, string> = {
   hybrid: "Hybrid",

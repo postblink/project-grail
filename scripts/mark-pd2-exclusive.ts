@@ -64,42 +64,28 @@ async function fetchVanillaRunewords(): Promise<Set<string>> {
   return names;
 }
 
-async function fetchVanillaRunes(): Promise<Set<string>> {
-  const $ = await fetchHtml("https://d2grail.com/items/runes");
-  const names = new Set<string>();
-  // Rune names appear in heading elements and strong tags
-  $("h3, h4, strong, td").each((_, el) => {
-    const text = $(el).text().trim();
-    // Rune names are short (2-5 chars) and end with "Rune"
-    if (/^\w{2,5}\s+Rune$/.test(text)) {
-      names.add(normalize(text.replace(/\s+Rune$/, "").trim() + " Rune"));
-    }
-    // Also match bare rune names (El, Eld, Tir, etc.)
-    if (/^[A-Z][a-z]{1,4}$/.test(text)) {
-      names.add(normalize(text + " Rune"));
-    }
-  });
-  // Fallback: all 33 known vanilla runes
+function vanillaRuneNames(): Set<string> {
+  // All 33 vanilla LoD runes — stored in DB as bare names (e.g. "El", not "El Rune")
   const VANILLA_RUNES = [
     "El","Eld","Tir","Nef","Eth","Ith","Tal","Ral","Ort","Thul",
     "Amn","Sol","Shael","Dol","Hel","Io","Lum","Ko","Fal","Lem",
     "Pul","Um","Mal","Ist","Gul","Vex","Ohm","Lo","Sur","Ber",
     "Jah","Cham","Zod",
   ];
-  for (const r of VANILLA_RUNES) names.add(normalize(r + " Rune"));
-  console.log(`    → ${names.size} rune names (+ 33 hardcoded vanilla runes)`);
+  const names = new Set(VANILLA_RUNES.map(normalize));
+  console.log(`    → ${names.size} rune names (hardcoded vanilla list)`);
   return names;
 }
 
 async function main() {
   console.log("Fetching vanilla D2 item lists from d2grail.com...");
 
-  const [vanillaUniques, vanillaSets, vanillaRunewords, vanillaRunes] = await Promise.all([
+  const [vanillaUniques, vanillaSets, vanillaRunewords] = await Promise.all([
     fetchVanillaUniques(),
     fetchVanillaSets(),
     fetchVanillaRunewords(),
-    fetchVanillaRunes(),
   ]);
+  const vanillaRunes = vanillaRuneNames();
 
   const vanillaByCategory: Record<string, Set<string>> = {
     unique: vanillaUniques,

@@ -91,15 +91,22 @@ function parseWikitext(wikitext: string, itemName: string): WikiItemInfo | null 
     const rows = tableText.split(/^\|-/m).slice(1); // first entry is table header
 
     for (const row of rows) {
-      // Each data row: | Before || After
-      const cellMatch = row.match(/^\|\s*([\s\S]*?)\s*\|\|\s*([\s\S]*?)(?:\n|$)/m);
-      if (!cellMatch) continue;
-      const afterRaw = cellMatch[2].trim();
-      if (!afterRaw || afterRaw.startsWith("!")) continue; // skip header rows
+      let statRaw: string;
 
-      // Strip omod spans (removed/changed vanilla values shown in After column)
-      const afterClean = afterRaw.replace(/<span class="omod">[\s\S]*?<\/span>/gi, "").trim();
-      const stat = stripMarkup(afterClean);
+      // Two-column table (Before || After) — standard items with vanilla counterparts
+      const twoColMatch = row.match(/^\|\s*([\s\S]*?)\s*\|\|\s*([\s\S]*?)(?:\n|$)/m);
+      if (twoColMatch) {
+        const afterRaw = twoColMatch[2].trim();
+        if (!afterRaw || afterRaw.startsWith("!")) continue;
+        statRaw = afterRaw.replace(/<span class="omod">[\s\S]*?<\/span>/gi, "").trim();
+      } else {
+        // Single-column table (PD2-exclusive items with no vanilla counterpart)
+        const singleMatch = row.match(/^\|\s*([^|!\n][\s\S]*?)(?:\n|$)/m);
+        if (!singleMatch) continue;
+        statRaw = singleMatch[1].trim();
+      }
+
+      const stat = stripMarkup(statRaw);
       if (stat && stat !== "—" && stat !== "-") stats.push(stat);
     }
   }

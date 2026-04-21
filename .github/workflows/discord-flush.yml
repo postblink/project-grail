@@ -1,0 +1,22 @@
+name: Discord batch flush
+
+on:
+  schedule:
+    # GitHub Actions minimum interval is 5 minutes
+    - cron: "*/5 * * * *"
+  workflow_dispatch: # allow manual runs
+
+jobs:
+  flush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Flush Discord notification batches
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.APP_URL }}/api/cron/discord-flush")
+          echo "Response: $response"
+          if [ "$response" != "200" ]; then
+            echo "Flush failed with status $response"
+            exit 1
+          fi

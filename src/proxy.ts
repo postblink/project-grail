@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 const { auth } = NextAuth(authConfig);
 
-const PROTECTED = ["/dashboard", "/grail", "/leagues", "/admin", "/settings", "/achievements"];
+const PROTECTED = ["/dashboard", "/leagues", "/admin", "/settings", "/achievements"];
 const ADMIN_ONLY = ["/admin"];
 
 export default auth((req) => {
@@ -17,7 +17,10 @@ export default auth((req) => {
     return NextResponse.redirect(new URL(callbackUrl, req.url));
   }
 
-  const isProtected = PROTECTED.some((p) => pathname.startsWith(p));
+  // /grail is the authenticated user's own grail; /grail/[username] is public
+  const isProtected =
+    pathname === "/grail" ||
+    PROTECTED.some((p) => pathname.startsWith(p));
   if (isProtected && !session) {
     const loginUrl = new URL("/login", req.url);
     loginUrl.searchParams.set("callbackUrl", req.url);

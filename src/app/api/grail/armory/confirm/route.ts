@@ -107,6 +107,7 @@ export async function POST(req: NextRequest) {
     if (grail.season_id) {
       const user = await db.user.findUnique({ where: { id: session.user.id }, select: { display_name: true } });
       const displayName = user?.display_name ?? "Someone";
+      const profileUrl = `https://pd2grail.com/grail/${encodeURIComponent(displayName)}`;
 
       const leagues = await db.league.findMany({
         where: {
@@ -124,7 +125,7 @@ export async function POST(req: NextRequest) {
         if (milestone !== null) {
           await Promise.allSettled(
             leagues.map((league) =>
-              notifyMilestone({ webhookUrl: league.discord_webhook_url!, displayName, milestone, leagueName: league.name, foundCount, totalCount })
+              notifyMilestone({ webhookUrl: league.discord_webhook_url!, displayName, profileUrl, milestone, leagueName: league.name, foundCount, totalCount })
             ),
           );
         }

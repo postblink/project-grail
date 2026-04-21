@@ -294,11 +294,7 @@ function ItemRow({ item, onToggle, readOnly }: { item: GrailItemRow; onToggle: (
 
       {/* Right side badges + wiki link */}
       <div className="flex flex-shrink-0 items-center gap-1.5">
-        {item.pd2_exclusive && (
-          <span className="rounded bg-amber-900/40 px-1.5 py-0.5 text-xs text-amber-500">
-            PD2
-          </span>
-        )}
+
         {item.wiki_url && (
           <WikiTooltip
             wikiUrl={item.wiki_url}

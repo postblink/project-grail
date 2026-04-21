@@ -42,7 +42,7 @@ export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName
 
     setFetchState("loading");
     try {
-      const res = await fetch(`/api/wiki-item?title=${title}`);
+      const res = await fetch(`/api/wiki-item?title=${title}&category=${encodeURIComponent(category)}`);
       const data = (await res.json()) as { info: WikiItemInfo | null };
       infoCache.set(title, data.info);
       setInfo(data.info);
@@ -89,7 +89,7 @@ export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName
           <div className="rounded-xl border border-zinc-700 bg-zinc-900 shadow-2xl overflow-hidden">
 
             {/* Item image */}
-            {!imgError && (
+            {wikiImageUrl && !imgError && (
               <div className="flex items-center justify-center bg-zinc-950 px-4 py-3 min-h-[72px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

@@ -1,9 +1,14 @@
 import crypto from "crypto";
 import { db } from "@/lib/db";
 
-/** Computes the static.wikitide.net image URL for a PD2 wiki item. */
-export function wikiImageUrl(itemName: string): string {
-  const filename = itemName.replace(/ /g, "_") + ".png";
+/** Computes the static.wikitide.net image URL for a PD2 wiki item.
+ *  Returns "" for runewords (no wiki images exist for them). */
+export function wikiImageUrl(itemName: string, category: string): string {
+  if (category === "runeword") return "";
+  const filename =
+    category === "rune"
+      ? `Rune${itemName}.png`
+      : itemName.replace(/ /g, "_") + ".png";
   const hash = crypto.createHash("md5").update(filename).digest("hex");
   return `https://static.wikitide.net/projectdiablo2wiki/${hash[0]}/${hash.slice(0, 2)}/${filename}`;
 }
@@ -53,7 +58,7 @@ export async function getGrailItems(grailId: string): Promise<GrailItemRow[]> {
     return {
       ...item,
       category: item.category as string,
-      wiki_image_url: wikiImageUrl(item.name),
+      wiki_image_url: wikiImageUrl(item.name, item.category),
       found: entry?.found ?? false,
       found_at: entry?.found_at ?? null,
     };

@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { notifyItemFound, notifyMilestone, checkMilestoneCrossed, notifyAchievementUnlocked, shouldAnnounceAchievement } from "@/lib/discord";
 import { awardAchievements } from "@/lib/achievements";
 import { getAchievementDef } from "@/lib/achievement-defs";
+import { wikiImageUrl } from "@/lib/grail";
 
 const schema = z.object({
   grailId: z.string().min(1),
@@ -36,7 +37,7 @@ export async function PATCH(req: NextRequest) {
   }
 
   // Verify the item exists
-  const item = await db.item.findUnique({ where: { id: itemId }, select: { id: true, name: true, category: true, set_name: true } });
+  const item = await db.item.findUnique({ where: { id: itemId }, select: { id: true, name: true, category: true, set_name: true, wiki_url: true } });
   if (!item) {
     return NextResponse.json({ error: "Item not found" }, { status: 404 });
   }
@@ -104,6 +105,7 @@ export async function PATCH(req: NextRequest) {
       select: { display_name: true },
     });
     const displayName = user?.display_name ?? "Someone";
+    const profileUrl = `https://pd2grail.com/grail/${encodeURIComponent(displayName)}`;
 
     const leagues = await db.league.findMany({
       where: {
@@ -123,16 +125,28 @@ export async function PATCH(req: NextRequest) {
         leagues.flatMap((league) => {
           const url = league.discord_webhook_url!;
           const tasks = [
-            notifyItemFound({ webhookUrl: url, displayName, itemName: item.name, leagueName: league.name, foundCount: foundItems, totalCount: totalItems }),
+            notifyItemFound({
+              webhookUrl: url,
+              displayName,
+              profileUrl,
+              itemName: item.name,
+              itemWikiUrl: item.wiki_url,
+              itemImageUrl: wikiImageUrl(item.name, item.category),
+              category: item.category,
+              leagueName: league.name,
+              foundCount: foundItems,
+              totalCount: totalItems,
+            }),
           ];
           if (milestone !== null) {
-            tasks.push(notifyMilestone({ webhookUrl: url, displayName, milestone, leagueName: league.name, foundCount: foundItems, totalCount: totalItems }));
+            tasks.push(notifyMilestone({ webhookUrl: url, displayName, profileUrl, milestone, leagueName: league.name, foundCount: foundItems, totalCount: totalItems }));
           }
           for (const key of announceableAchievements) {
             const def = getAchievementDef(key);
             tasks.push(notifyAchievementUnlocked({
               webhookUrl: url,
               displayName,
+              profileUrl,
               achievementName: def.name,
               achievementDescription: def.description,
               achievementEmoji: def.emoji,

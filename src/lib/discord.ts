@@ -9,17 +9,28 @@ export function shouldAnnounceAchievement(key: string): boolean {
   return ANNOUNCE_ACHIEVEMENTS.has(key) || key.startsWith("set_complete:");
 }
 
+const CATEGORY_COLORS: Record<string, number> = {
+  unique:   0xC7B377, // D2 gold
+  set:      0x10B981, // emerald
+  runeword: 0xF97316, // orange
+  rune:     0xF59E0B, // amber
+};
+
 const MILESTONE_COLORS: Record<number, number> = {
-  25:  0xC7B377, // D2 gold
-  50:  0xF59E0B, // amber
-  75:  0xEF4444, // red
+  25:  0x22C55E, // green
+  50:  0x3B82F6, // blue
+  75:  0xF97316, // orange
   100: 0xA855F7, // purple — legendary
 };
 
 interface ItemFoundPayload {
   webhookUrl: string;
   displayName: string;
+  profileUrl: string;
   itemName: string;
+  itemWikiUrl: string | null;
+  itemImageUrl: string;
+  category: string;
   leagueName: string;
   foundCount: number;
   totalCount: number;
@@ -28,6 +39,7 @@ interface ItemFoundPayload {
 interface MilestonePayload {
   webhookUrl: string;
   displayName: string;
+  profileUrl: string;
   milestone: number;
   leagueName: string;
   foundCount: number;
@@ -35,25 +47,33 @@ interface MilestonePayload {
 }
 
 export async function notifyItemFound(payload: ItemFoundPayload): Promise<void> {
-  const pct = Math.round((payload.foundCount / payload.totalCount) * 100);
-  await postWebhook(payload.webhookUrl, {
-    embeds: [{
-      color: 0x3F3F3F,
-      description: `**${payload.displayName}** found **${payload.itemName}**`,
-      footer: { text: `${payload.leagueName} · ${payload.foundCount}/${payload.totalCount} (${pct}%)` },
-    }],
-  });
+  const { displayName, profileUrl, itemName, itemWikiUrl, itemImageUrl, category, leagueName, foundCount, totalCount } = payload;
+  const pct = Math.round((foundCount / totalCount) * 100);
+  const itemLink = itemWikiUrl ? `**[${itemName}](${itemWikiUrl})**` : `**${itemName}**`;
+
+  const embed: Record<string, unknown> = {
+    color: CATEGORY_COLORS[category] ?? 0x3F3F3F,
+    description: `**${displayName}** found ${itemLink}`,
+    footer: { text: `${leagueName} · ${foundCount}/${totalCount} (${pct}%)` },
+    author: { name: `View ${displayName}'s grail`, url: profileUrl },
+  };
+  if (itemImageUrl) embed.thumbnail = { url: itemImageUrl };
+
+  await postWebhook(payload.webhookUrl, { embeds: [embed] });
 }
 
 export async function notifyMilestone(payload: MilestonePayload): Promise<void> {
-  const color = MILESTONE_COLORS[payload.milestone] ?? 0xC7B377;
-  const emoji = payload.milestone === 100 ? "🏆" : "⚡";
+  const { displayName, profileUrl, milestone, leagueName, foundCount, totalCount } = payload;
+  const color = MILESTONE_COLORS[milestone] ?? 0xC7B377;
+  const emoji = milestone === 100 ? "🏆" : "⚡";
+
   await postWebhook(payload.webhookUrl, {
     embeds: [{
       color,
-      title: `${emoji} ${payload.milestone}% Grail Complete!`,
-      description: `**${payload.displayName}** has reached **${payload.milestone}%** of the Holy Grail`,
-      footer: { text: `${payload.leagueName} · ${payload.foundCount}/${payload.totalCount} items` },
+      title: `${emoji} ${milestone}% Grail Complete!`,
+      url: profileUrl,
+      description: `**${displayName}** has reached **${milestone}%** of the Holy Grail`,
+      footer: { text: `${leagueName} · ${foundCount}/${totalCount} items` },
     }],
   });
 }
@@ -71,6 +91,7 @@ export function checkMilestoneCrossed(prevFound: number, newFound: number, total
 interface AchievementPayload {
   webhookUrl: string;
   displayName: string;
+  profileUrl: string;
   achievementName: string;
   achievementDescription: string;
   achievementEmoji: string;
@@ -80,8 +101,9 @@ interface AchievementPayload {
 export async function notifyAchievementUnlocked(payload: AchievementPayload): Promise<void> {
   await postWebhook(payload.webhookUrl, {
     embeds: [{
-      color: 0xF59E0B, // amber — consistent with achievement UI
+      color: 0xF59E0B,
       title: `${payload.achievementEmoji} Achievement Unlocked`,
+      url: payload.profileUrl,
       description: `**${payload.displayName}** unlocked **${payload.achievementName}**`,
       fields: [{ name: "\u200b", value: payload.achievementDescription, inline: false }],
       footer: { text: payload.leagueName },

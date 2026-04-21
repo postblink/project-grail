@@ -109,34 +109,73 @@ function parseWikitext(wikitext: string, itemName: string): WikiItemInfo | null 
   return { baseType, runeCombo, defense, damage, requiredLevel, requiredStrength, requiredDexterity, stats };
 }
 
+async function fetchWikitext(page: string): Promise<string | null> {
+  const apiUrl =
+    `https://wiki.projectdiablo2.com/w/api.php` +
+    `?action=parse&prop=wikitext&redirects=1&format=json&origin=*` +
+    `&page=${encodeURIComponent(page)}`;
+  const res = await fetch(apiUrl, {
+    next: { revalidate: 86400 },
+    headers: { "User-Agent": "pd2grail.com item tooltip" },
+  });
+  if (!res.ok) return null;
+  const data = (await res.json()) as { parse?: { wikitext?: { "*": string } } };
+  return data?.parse?.wikitext?.["*"] ?? null;
+}
+
+function parseRuneFromTable(wikitext: string, runeName: string): WikiItemInfo | null {
+  // Rune table row: | # || [[File:RuneX.png]] || <span>'''Name'''</span> || level || weapon || chest/helm || shield || group
+  const escaped = runeName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const rowRe = new RegExp(
+    `\\|\\s*\\d+\\s*\\|\\|[^|]*\\|\\|[^|]*${escaped}[^|]*\\|\\|\\s*(\\d+)\\s*\\|\\|([^|]*)\\|\\|([^|]*)\\|\\|([^|]*)\\|\\|`,
+    "i"
+  );
+  const m = wikitext.match(rowRe);
+  if (!m) return null;
+
+  const [, level, weapon, armorHelm, shield] = m;
+  const clean = (s: string) =>
+    stripMarkup(s.replace(/<br\s*\/?>/gi, ", ")).replace(/,\s*,/g, ",").trim();
+
+  const stats: string[] = [];
+  const w = clean(weapon);
+  const a = clean(armorHelm);
+  const sh = clean(shield);
+  if (w) stats.push(`Weapon: ${w}`);
+  if (a) stats.push(`Armor/Helm: ${a}`);
+  if (sh && sh !== a) stats.push(`Shield: ${sh}`);
+
+  return {
+    baseType: null,
+    runeCombo: null,
+    defense: null,
+    damage: null,
+    requiredLevel: level ? parseInt(level, 10) : null,
+    requiredStrength: null,
+    requiredDexterity: null,
+    stats,
+  };
+}
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const title = searchParams.get("title");
+  const category = searchParams.get("category") ?? "";
   if (!title) return NextResponse.json({ info: null });
 
   try {
     const decoded = decodeURIComponent(title);
-    const apiUrl =
-      `https://wiki.projectdiablo2.com/w/api.php` +
-      `?action=parse&prop=wikitext&redirects=1&format=json&origin=*` +
-      `&page=${encodeURIComponent(decoded)}`;
+    const itemName = decoded.replace(/_/g, " ");
 
-    const res = await fetch(apiUrl, {
-      next: { revalidate: 86400 },
-      headers: { "User-Agent": "pd2grail.com item tooltip" },
-    });
+    if (category === "rune") {
+      const wikitext = await fetchWikitext("Runes");
+      if (!wikitext) return NextResponse.json({ info: null });
+      return NextResponse.json({ info: parseRuneFromTable(wikitext, itemName) });
+    }
 
-    if (!res.ok) return NextResponse.json({ info: null });
-
-    const data = (await res.json()) as {
-      parse?: { wikitext?: { "*": string } };
-    };
-
-    const wikitext = data?.parse?.wikitext?.["*"];
+    const wikitext = await fetchWikitext(decoded);
     if (!wikitext) return NextResponse.json({ info: null });
 
-    // Wiki headings use spaces; URL titles use underscores — normalise before searching
-    const itemName = decoded.replace(/_/g, " ");
     const info = parseWikitext(wikitext, itemName);
     return NextResponse.json({ info });
   } catch {

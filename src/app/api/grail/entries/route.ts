@@ -131,9 +131,14 @@ export async function PATCH(req: NextRequest) {
         await Promise.allSettled(
           leagues.map(async (league) => {
             const url = league.discord_webhook_url!;
-            const existing = await db.discordBatch.findUnique({
+            const found = await db.discordBatch.findUnique({
               where: { league_id_user_id: { league_id: league.id, user_id: session.user.id } },
             });
+            // Treat expired batches as absent — the cron will clean them up
+            const existing = found && found.flush_after > new Date() ? found : null;
+            if (found && !existing) {
+              await db.discordBatch.delete({ where: { id: found.id } }).catch(() => null);
+            }
 
             // Fetch wiki stats for the immediate embed (best-effort)
             const wikiInfo = existing ? null : await fetchWikiItemInfo(item.name, item.category).catch(() => null);

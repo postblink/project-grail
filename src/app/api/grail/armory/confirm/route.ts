@@ -135,9 +135,13 @@ export async function POST(req: NextRequest) {
 
           await Promise.allSettled(
             leagues.map(async (league) => {
-              const existing = await db.discordBatch.findUnique({
+              const found = await db.discordBatch.findUnique({
                 where: { league_id_user_id: { league_id: league.id, user_id: session.user.id } },
               });
+              const existing = found && found.flush_after > new Date() ? found : null;
+              if (found && !existing) {
+                await db.discordBatch.delete({ where: { id: found.id } }).catch(() => null);
+              }
 
               if (existing) {
                 const mergedMilestones = milestone !== null && !existing.milestones.includes(milestone)

@@ -36,6 +36,9 @@ interface ItemFoundPayload {
   leagueName: string;
   foundCount: number;
   totalCount: number;
+  stats?: string[];
+  baseType?: string | null;
+  requiredLevel?: number | null;
 }
 
 interface MilestonePayload {
@@ -49,7 +52,7 @@ interface MilestonePayload {
 }
 
 export async function notifyItemFound(payload: ItemFoundPayload): Promise<void> {
-  const { displayName, profileUrl, itemName, itemWikiUrl, itemImageUrl, category, leagueName, foundCount, totalCount } = payload;
+  const { displayName, profileUrl, itemName, itemWikiUrl, itemImageUrl, category, leagueName, foundCount, totalCount, stats, baseType, requiredLevel } = payload;
   const pct = Math.round((foundCount / totalCount) * 100);
   const itemLink = itemWikiUrl ? `**[${itemName}](${itemWikiUrl})**` : `**${itemName}**`;
 
@@ -59,7 +62,18 @@ export async function notifyItemFound(payload: ItemFoundPayload): Promise<void> 
     footer: { text: `${leagueName} · ${foundCount}/${totalCount} (${pct}%)` },
     author: { name: `View ${displayName}'s grail`, url: profileUrl },
   };
-  if (itemImageUrl) embed.thumbnail = { url: itemImageUrl };
+
+  if (itemImageUrl) embed.image = { url: itemImageUrl };
+
+  // Build a compact stats block
+  const lines: string[] = [];
+  if (baseType) lines.push(`*${baseType}*`);
+  if (requiredLevel) lines.push(`Req. Level: ${requiredLevel}`);
+  if (stats && stats.length > 0) lines.push(...stats.slice(0, 6));
+
+  if (lines.length > 0) {
+    embed.fields = [{ name: "\u200b", value: lines.join("\n"), inline: false }];
+  }
 
   await postWebhook(payload.webhookUrl, { embeds: [embed] });
 }

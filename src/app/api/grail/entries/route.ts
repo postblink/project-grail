@@ -6,6 +6,7 @@ import { checkMilestoneCrossed, shouldAnnounceAchievement, notifyItemFound, noti
 import { awardAchievements } from "@/lib/achievements";
 import { getAchievementDef } from "@/lib/achievement-defs";
 import { wikiImageUrl } from "@/lib/grail";
+import { fetchWikiItemInfo } from "@/lib/wiki";
 
 const schema = z.object({
   grailId: z.string().min(1),
@@ -134,6 +135,9 @@ export async function PATCH(req: NextRequest) {
               where: { league_id_user_id: { league_id: league.id, user_id: session.user.id } },
             });
 
+            // Fetch wiki stats for the immediate embed (best-effort)
+            const wikiInfo = existing ? null : await fetchWikiItemInfo(item.name, item.category).catch(() => null);
+
             if (existing) {
               // A batch window is open — accumulate this item into it
               const mergedMilestones = milestone !== null && !existing.milestones.includes(milestone)
@@ -171,6 +175,9 @@ export async function PATCH(req: NextRequest) {
                   leagueName: league.name,
                   foundCount: foundItems,
                   totalCount: totalItems,
+                  stats: wikiInfo?.stats,
+                  baseType: wikiInfo?.baseType,
+                  requiredLevel: wikiInfo?.requiredLevel,
                 }),
               ];
               if (milestone !== null) {

@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import type { Metadata } from "next";
 import { getPublicGrailData, computeProgress } from "@/lib/grail";
 import { buildFilterForgeUrl } from "@/lib/filterforge";
 import { getUserAchievements } from "@/lib/achievements";
@@ -8,38 +7,6 @@ import { GrailChecklist } from "@/app/(app)/grail/_components/GrailChecklist";
 
 interface Props {
   params: Promise<{ username: string }>;
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { username } = await params;
-  const data = await getPublicGrailData(username);
-
-  const displayName = data?.user.display_name ?? username;
-  const progress = data ? computeProgress(data.items) : null;
-  const season = data?.season?.name ?? "Project Diablo 2";
-
-  const title = `${displayName}'s Grail — Project Grail`;
-  const description = progress && progress.total > 0
-    ? `${progress.found}/${progress.total} items found (${progress.pct}%) in ${season}`
-    : `${displayName} is tracking their Holy Grail in ${season}`;
-
-  const imageUrl = `https://pd2grail.com/grail/${username}/opengraph-image`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: [{ url: imageUrl, width: 1200, height: 630 }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [imageUrl],
-    },
-  };
 }
 
 export default async function PublicGrailPage({ params }: Props) {

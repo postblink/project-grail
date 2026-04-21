@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
 
     // Achievements — award for each imported item, best-effort
     const [totalCount, foundCount] = await Promise.all([
-      db.grailEntry.count({ where: { grail_id: grailId } }),
+      db.item.count({ where: { is_active: true } }),
       db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
     ]);
     void Promise.allSettled(

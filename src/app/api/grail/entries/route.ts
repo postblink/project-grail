@@ -86,7 +86,7 @@ export async function PATCH(req: NextRequest) {
   let newAchievements: string[] = [];
   if (found) {
     [totalItems, foundItems] = await Promise.all([
-      db.grailEntry.count({ where: { grail_id: grailId } }),
+      db.item.count({ where: { is_active: true } }),
       db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
     ]);
     newAchievements = await awardAchievements({

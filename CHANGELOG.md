@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-04-21
+
+### Added
+- **Discord notification batching** — rapid item finds and armory imports are now grouped into a single summary embed per user per league. Events accumulate in a `DiscordBatch` DB record with a 3-minute idle window; a Vercel cron (`/api/cron/discord-flush`, every 2 minutes) flushes ready batches and sends one embed instead of one-per-item. Prevents webhook spam during fast checklist sessions or large armory imports.
+- **Batch summary embed** — shows finder name linked to their grail profile, items found count, `pct_before → pct_current`, any milestones crossed, and any announceable achievements unlocked. Color reflects the highest milestone reached in the batch.
+- **`vercel.json` cron config** — schedules the flush endpoint at `*/2 * * * *`.
+
+### Notes
+- `CRON_SECRET` env var required in Vercel project settings — used to authenticate the cron job. Set it to any random string and Vercel will inject it into cron request headers automatically.
+
 ## 2026-04-20
 
 ### Added

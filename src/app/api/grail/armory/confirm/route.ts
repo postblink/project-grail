@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
-import { notifyMilestone, checkMilestoneCrossed } from "@/lib/discord";
+import { checkMilestoneCrossed, shouldAnnounceAchievement } from "@/lib/discord";
 import { awardAchievements } from "@/lib/achievements";
 
 const schema = z.object({
@@ -86,12 +86,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Achievements — award for each imported item, best-effort
+    // Achievements — award for each imported item, collect results
     const [totalCount, foundCount] = await Promise.all([
-      db.grailEntry.count({ where: { grail_id: grailId } }),
+      db.item.count({ where: { is_active: true } }),
       db.grailEntry.count({ where: { grail_id: grailId, found: true } }),
     ]);
-    void Promise.allSettled(
+    const allNewAchievements: string[] = [];
+    const achievementResults = await Promise.allSettled(
       validItems.map((item, i) =>
         awardAchievements({
           userId: session.user.id,
@@ -102,34 +103,86 @@ export async function POST(req: NextRequest) {
         }),
       ),
     );
+    for (const r of achievementResults) {
+      if (r.status === "fulfilled") allNewAchievements.push(...r.value);
+    }
 
-    // Discord milestone notifications for armory imports (milestone only — not per-item for bulk)
+    // Discord batch upsert for armory imports — best-effort
     if (grail.season_id) {
-      const user = await db.user.findUnique({ where: { id: session.user.id }, select: { display_name: true } });
-      const displayName = user?.display_name ?? "Someone";
-      const profileUrl = `https://pd2grail.com/grail/${encodeURIComponent(displayName)}`;
+      void (async () => {
+        try {
+          const user = await db.user.findUnique({ where: { id: session.user.id }, select: { display_name: true } });
+          const displayName = user?.display_name ?? "Someone";
+          const profileUrl = `https://pd2grail.com/grail/${encodeURIComponent(displayName)}`;
 
-      const leagues = await db.league.findMany({
-        where: {
-          season_id: grail.season_id,
-          discord_webhook_url: { not: null },
-          members: { some: { user_id: session.user.id } },
-        },
-        select: { name: true, discord_webhook_url: true },
-      });
+          const leagues = await db.league.findMany({
+            where: {
+              season_id: grail.season_id!,
+              discord_webhook_url: { not: null },
+              members: { some: { user_id: session.user.id } },
+            },
+            select: { id: true, name: true, discord_webhook_url: true },
+          });
 
-      if (leagues.length > 0) {
-        const prevFound = foundCount - itemIds.length;
-        const milestone = checkMilestoneCrossed(Math.max(0, prevFound), foundCount, totalCount);
+          if (leagues.length === 0) return;
 
-        if (milestone !== null) {
+          const prevFound = foundCount - itemIds.length;
+          const milestone = checkMilestoneCrossed(Math.max(0, prevFound), foundCount, totalCount);
+          const pctBefore = Math.round((Math.max(0, prevFound) / totalCount) * 100);
+          const pctCurrent = Math.round((foundCount / totalCount) * 100);
+          const flushAfter = new Date(Date.now() + 3 * 60 * 1000);
+          const announceableAchievements = [...new Set(allNewAchievements.filter(shouldAnnounceAchievement))];
+
           await Promise.allSettled(
-            leagues.map((league) =>
-              notifyMilestone({ webhookUrl: league.discord_webhook_url!, displayName, profileUrl, milestone, leagueName: league.name, foundCount, totalCount })
-            ),
+            leagues.map(async (league) => {
+              const existing = await db.discordBatch.findUnique({
+                where: { league_id_user_id: { league_id: league.id, user_id: session.user.id } },
+              });
+
+              if (existing) {
+                const mergedMilestones = milestone !== null && !existing.milestones.includes(milestone)
+                  ? [...existing.milestones, milestone]
+                  : existing.milestones;
+                const mergedAchievements = [
+                  ...existing.achievement_keys,
+                  ...announceableAchievements.filter((k) => !existing.achievement_keys.includes(k)),
+                ];
+                await db.discordBatch.update({
+                  where: { id: existing.id },
+                  data: {
+                    items_found: existing.items_found + itemIds.length,
+                    pct_current: pctCurrent,
+                    found_current: foundCount,
+                    total: totalCount,
+                    milestones: mergedMilestones,
+                    achievement_keys: mergedAchievements,
+                    flush_after: flushAfter,
+                  },
+                });
+              } else {
+                await db.discordBatch.create({
+                  data: {
+                    league_id: league.id,
+                    user_id: session.user.id,
+                    display_name: displayName,
+                    profile_url: profileUrl,
+                    items_found: itemIds.length,
+                    pct_before: pctBefore,
+                    pct_current: pctCurrent,
+                    found_current: foundCount,
+                    total: totalCount,
+                    milestones: milestone !== null ? [milestone] : [],
+                    achievement_keys: announceableAchievements,
+                    flush_after: flushAfter,
+                  },
+                });
+              }
+            }),
           );
+        } catch {
+          // best-effort
         }
-      }
+      })();
     }
 
     return NextResponse.json({ added: itemIds.length, importId: armoryImport.id });

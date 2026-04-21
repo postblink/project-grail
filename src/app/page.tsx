@@ -1,7 +1,12 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 import { getCurrentSeason } from "@/lib/grail";
 
 export default async function Home() {
+  const session = await auth();
+  if (session?.user) redirect("/dashboard");
+
   const season = await getCurrentSeason();
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center bg-zinc-950 px-4 text-zinc-100">

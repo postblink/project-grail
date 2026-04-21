@@ -57,7 +57,7 @@ export default async function OgImage({ params }: { params: Promise<{ username: 
 
         {/* Display name */}
         <div style={{ fontSize: "72px", fontWeight: 700, color: "#f4f4f5", lineHeight: 1.1, marginBottom: "32px" }}>
-          {displayName}&apos;s Grail
+          {displayName}'s Grail
         </div>
 
         {/* Progress */}

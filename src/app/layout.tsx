@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Project Grail",
     description: "Track your Holy Grail challenge progress in Project Diablo 2. Find one of every item.",
   },

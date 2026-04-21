@@ -42,7 +42,7 @@ export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName
 
     setFetchState("loading");
     try {
-      const res = await fetch(`/api/wiki-item?title=${title}`);
+      const res = await fetch(`/api/wiki-item?title=${title}&category=${encodeURIComponent(category)}`);
       const data = (await res.json()) as { info: WikiItemInfo | null };
       infoCache.set(title, data.info);
       setInfo(data.info);
@@ -77,9 +77,10 @@ export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName
         className="flex items-center opacity-30 hover:opacity-100 transition-opacity text-zinc-400 hover:text-zinc-200"
         title="View on wiki"
       >
-        <svg width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7" />
-          <path d="M8 1h3v3M11 1 6 6" />
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
         </svg>
       </a>
 
@@ -89,7 +90,7 @@ export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName
           <div className="rounded-xl border border-zinc-700 bg-zinc-900 shadow-2xl overflow-hidden">
 
             {/* Item image */}
-            {!imgError && (
+            {wikiImageUrl && !imgError && (
               <div className="flex items-center justify-center bg-zinc-950 px-4 py-3 min-h-[72px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

@@ -6,7 +6,7 @@ export function ShareGrailButton({ username }: { username: string }) {
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
-    const url = `${window.location.origin}/grail/${encodeURIComponent(username)}`;
+    const url = `${window.location.origin}/grail/${encodeURIComponent(username)}?v=${Date.now()}`;
     await navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

@@ -14,6 +14,15 @@ const CATEGORY_LABELS: Record<string, string> = {
   rune: "Rune",
 };
 
+const TYPE_GROUPS = [
+  { label: "Weapons",          types: ["axes", "bows", "class weapons", "crossbows", "daggers", "javelins", "maces", "polearms", "scepters", "spears", "staves", "swords", "throwing weapons", "wands"] },
+  { label: "Armor",            types: ["belts", "boots", "chests", "gloves", "helms", "shields"] },
+  { label: "Jewelry & Misc",   types: ["amulets", "arrows", "bolts", "charms", "jewels", "rings"] },
+  { label: "Runeword Slots",   types: ["weapon", "chest", "helm", "shield"] },
+] as const;
+
+type ItemType = typeof TYPE_GROUPS[number]["types"][number];
+
 // D2-authentic item category colors
 const CATEGORY_COLORS: Record<string, { name: string; found: string; header: string; badge: string; border: string; bg: string }> = {
   unique:   { name: "text-[#C7B377]",  found: "text-[#e8d49a]",  header: "text-[#C7B377]",  badge: "bg-[#C7B377]/10 text-[#C7B377]",  border: "border-[#C7B377]/30", bg: "bg-[#C7B377]/10" },
@@ -38,6 +47,7 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
   const [filterCat, setFilterCat] = useState<Category | "all">("all");
   const [filterFound, setFilterFound] = useState<"all" | "found" | "missing">("all");
   const [filterPd2, setFilterPd2] = useState(false);
+  const [filterType, setFilterType] = useState<ItemType | "all">("all");
 
   function toggle(itemId: string) {
     if (readOnly || !setItems) return;
@@ -88,6 +98,7 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
     if (filterFound === "found" && !item.found) return false;
     if (filterFound === "missing" && item.found) return false;
     if (filterPd2 && !item.pd2_exclusive) return false;
+    if (filterType !== "all" && item.item_type !== filterType) return false;
     if (search && !item.name.toLowerCase().includes(search.toLowerCase())) return false;
     return true;
   });
@@ -112,6 +123,21 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
           onChange={(e) => setSearch(e.target.value)}
           className="h-8 w-48 rounded-lg border border-zinc-700 bg-zinc-800 px-3 text-sm text-zinc-100 placeholder-zinc-500 outline-none focus:border-zinc-500"
         />
+
+        <select
+          value={filterType}
+          onChange={(e) => setFilterType(e.target.value as ItemType | "all")}
+          className="h-8 rounded-lg border border-zinc-700 bg-zinc-800 px-2 text-xs text-zinc-300 outline-none focus:border-zinc-500 cursor-pointer"
+        >
+          <option value="all">All types</option>
+          {TYPE_GROUPS.map((group) => (
+            <optgroup key={group.label} label={group.label}>
+              {group.types.map((t) => (
+                <option key={t} value={t}>{t.charAt(0).toUpperCase() + t.slice(1)}</option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
 
         <div className="flex rounded-lg border border-zinc-700 overflow-hidden">
           {(["all", ...CATEGORIES] as const).map((cat) => (

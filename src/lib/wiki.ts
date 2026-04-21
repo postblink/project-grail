@@ -23,12 +23,13 @@ function stripMarkup(text: string): string {
     .trim();
 }
 
-export async function fetchWikitext(page: string): Promise<string | null> {
+export async function fetchWikitext(page: string, signal?: AbortSignal): Promise<string | null> {
   const apiUrl =
     `https://wiki.projectdiablo2.com/w/api.php` +
     `?action=parse&prop=wikitext&redirects=1&format=json&origin=*` +
     `&page=${encodeURIComponent(page)}`;
   const res = await fetch(apiUrl, {
+    signal,
     next: { revalidate: 86400 },
     headers: { "User-Agent": "pd2grail.com item tooltip" },
   });
@@ -152,10 +153,10 @@ export async function fetchWikiItemInfo(itemName: string, category: string): Pro
 
     let info: WikiItemInfo | null = null;
     if (category === "rune") {
-      const wikitext = await fetchWikitext("Runes");
+      const wikitext = await fetchWikitext("Runes", controller.signal);
       if (wikitext) info = parseRuneFromTable(wikitext, itemName);
     } else if (category !== "runeword") {
-      const wikitext = await fetchWikitext(itemName);
+      const wikitext = await fetchWikitext(itemName, controller.signal);
       if (wikitext) info = parseWikitext(wikitext, itemName);
     }
 

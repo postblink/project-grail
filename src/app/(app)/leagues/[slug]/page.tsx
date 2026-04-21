@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@/auth";
-import { getLeague, getMemberRole, isCommissioner } from "@/lib/leagues";
+import { getLeague, getMemberRole, isCommissioner, type GrailScope } from "@/lib/leagues";
+import { computeContributionScores, computeIndividualRankings } from "@/lib/contribution";
 import { JoinLeague } from "./_components/JoinLeague";
 import { MemberActions } from "./_components/MemberActions";
 import { CopyInviteLink } from "./_components/CopyInviteLink";
@@ -40,6 +41,16 @@ export default async function LeaguePage({ params }: Props) {
   const isMember = memberRole !== null;
   const canManage = isCommissioner(memberRole);
 
+  const scope = league.grail_scope as unknown as GrailScope;
+  const isCoop = league.league_type === "cooperative";
+  const [coopScores, individualRanks] = await Promise.all([
+    isCoop ? computeContributionScores(league.id, scope, league.members) : Promise.resolve(null),
+    !isCoop ? computeIndividualRankings(league.members, league.season_id, scope) : Promise.resolve(null),
+  ]);
+  const top5 = isCoop
+    ? (coopScores ?? []).slice(0, 5).map((s) => ({ userId: s.userId, displayName: s.displayName, value: `${s.totalScore} pts`, sub: `${s.itemsFound} items` }))
+    : (individualRanks ?? []).slice(0, 5).map((r) => ({ userId: r.userId, displayName: r.displayName, value: `${r.pct}%`, sub: `${r.found}/${r.total}` }));
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -76,6 +87,46 @@ export default async function LeaguePage({ params }: Props) {
           )}
         </div>
       </div>
+
+      {/* Top 5 leaderboard */}
+      {top5.length > 0 && (
+        <section>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Top Contributors
+            </h2>
+            <Link href={`/leagues/${slug}/leaderboard`} className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
+              Full leaderboard →
+            </Link>
+          </div>
+          <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 divide-y divide-zinc-800 overflow-hidden">
+            {top5.map((entry, i) => {
+              const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : null;
+              return (
+                <div key={entry.userId} className="flex items-center gap-3 px-4 py-2.5">
+                  <span className="w-5 text-center text-sm">
+                    {medal ?? <span className="text-xs text-zinc-600">{i + 1}</span>}
+                  </span>
+                  {entry.displayName ? (
+                    <Link
+                      href={`/grail/${encodeURIComponent(entry.displayName)}`}
+                      className="flex-1 text-sm text-zinc-300 hover:text-amber-400 transition-colors truncate"
+                    >
+                      {entry.displayName}
+                    </Link>
+                  ) : (
+                    <span className="flex-1 text-sm text-zinc-500 truncate">Unknown</span>
+                  )}
+                  <div className="text-right flex-shrink-0">
+                    <span className="text-sm font-medium text-zinc-200">{entry.value}</span>
+                    <span className="ml-2 text-xs text-zinc-600">{entry.sub}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* Invite / share link — only shown to commissioner */}
       {canManage && (

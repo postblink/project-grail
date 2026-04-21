@@ -22,8 +22,17 @@ export async function GET(req: NextRequest) {
 
   const results = await Promise.allSettled(
     batches.map(async (batch) => {
+      // items_found=0 means this is a sentinel from a single immediate send — nothing more arrived, skip
+      if (batch.items_found === 0) {
+        await db.discordBatch.delete({ where: { id: batch.id } });
+        return;
+      }
+
       const webhookUrl = batch.league.discord_webhook_url;
-      if (!webhookUrl) return;
+      if (!webhookUrl) {
+        await db.discordBatch.delete({ where: { id: batch.id } });
+        return;
+      }
 
       await sendBatchNotification({
         webhookUrl,

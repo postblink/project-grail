@@ -2,8 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
-import { checkMilestoneCrossed, shouldAnnounceAchievement } from "@/lib/discord";
+import { checkMilestoneCrossed, shouldAnnounceAchievement, notifyItemFound, notifyMilestone, notifyAchievementUnlocked } from "@/lib/discord";
 import { awardAchievements } from "@/lib/achievements";
+import { getAchievementDef } from "@/lib/achievement-defs";
+import { wikiImageUrl } from "@/lib/grail";
 
 const schema = z.object({
   grailId: z.string().min(1),
@@ -96,7 +98,7 @@ export async function PATCH(req: NextRequest) {
     });
   }
 
-  // Discord batch upsert — best-effort, never block the response
+  // Discord notifications — best-effort, never block the response
   if (found && grail.season_id) {
     void (async () => {
       try {
@@ -121,17 +123,19 @@ export async function PATCH(req: NextRequest) {
         const prevFound = foundItems - 1;
         const milestone = checkMilestoneCrossed(prevFound, foundItems, totalItems);
         const announceableAchievements = newAchievements.filter(shouldAnnounceAchievement);
-        const pctBefore = Math.round((Math.max(0, prevFound) / totalItems) * 100);
         const pctCurrent = Math.round((foundItems / totalItems) * 100);
+        const pctBefore = Math.round((Math.max(0, prevFound) / totalItems) * 100);
         const flushAfter = new Date(Date.now() + 3 * 60 * 1000);
 
         await Promise.allSettled(
           leagues.map(async (league) => {
+            const url = league.discord_webhook_url!;
             const existing = await db.discordBatch.findUnique({
               where: { league_id_user_id: { league_id: league.id, user_id: session.user.id } },
             });
 
             if (existing) {
+              // A batch window is open — accumulate this item into it
               const mergedMilestones = milestone !== null && !existing.milestones.includes(milestone)
                 ? [...existing.milestones, milestone]
                 : existing.milestones;
@@ -152,19 +156,46 @@ export async function PATCH(req: NextRequest) {
                 },
               });
             } else {
+              // First item in a new window — send immediately, then open a sentinel batch
+              // to catch any rapid follow-ups. items_found=0 on the sentinel means
+              // the cron will skip it if nothing else arrives.
+              const tasks: Promise<unknown>[] = [
+                notifyItemFound({
+                  webhookUrl: url,
+                  displayName,
+                  profileUrl,
+                  itemName: item.name,
+                  itemWikiUrl: item.wiki_url,
+                  itemImageUrl: wikiImageUrl(item.name, item.category),
+                  category: item.category,
+                  leagueName: league.name,
+                  foundCount: foundItems,
+                  totalCount: totalItems,
+                }),
+              ];
+              if (milestone !== null) {
+                tasks.push(notifyMilestone({ webhookUrl: url, displayName, profileUrl, milestone, leagueName: league.name, foundCount: foundItems, totalCount: totalItems }));
+              }
+              for (const key of announceableAchievements) {
+                const def = getAchievementDef(key);
+                tasks.push(notifyAchievementUnlocked({ webhookUrl: url, displayName, profileUrl, achievementName: def.name, achievementDescription: def.description, achievementEmoji: def.emoji, leagueName: league.name }));
+              }
+              await Promise.allSettled(tasks);
+
+              // Sentinel: pct_before set to current so any follow-up summary shows the delta from here
               await db.discordBatch.create({
                 data: {
                   league_id: league.id,
                   user_id: session.user.id,
                   display_name: displayName,
                   profile_url: profileUrl,
-                  items_found: 1,
-                  pct_before: pctBefore,
+                  items_found: 0,
+                  pct_before: pctCurrent,
                   pct_current: pctCurrent,
                   found_current: foundItems,
                   total: totalItems,
-                  milestones: milestone !== null ? [milestone] : [],
-                  achievement_keys: announceableAchievements,
+                  milestones: [],
+                  achievement_keys: [],
                   flush_after: flushAfter,
                 },
               });

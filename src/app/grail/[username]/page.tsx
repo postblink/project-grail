@@ -124,6 +124,9 @@ export async function generateMetadata({ params }: Props) {
     ? `${progress.pct}% complete · ${progress.found}/${progress.total} items found${season ? ` · ${season.name}` : ""}`
     : `${displayName} is tracking their Holy Grail in Project Diablo 2.`;
 
+  const pageUrl = `https://pd2grail.com/grail/${encodeURIComponent(username)}`;
+  const imageUrl = `${pageUrl}/opengraph-image`;
+
   return {
     title,
     description,
@@ -131,13 +134,15 @@ export async function generateMetadata({ params }: Props) {
       siteName: "Project Grail",
       title,
       description,
-      url: `https://pd2grail.com/grail/${encodeURIComponent(username)}`,
+      url: pageUrl,
       type: "profile",
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
+      images: [imageUrl],
     },
   };
 }

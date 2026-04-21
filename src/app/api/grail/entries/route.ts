@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
@@ -99,9 +99,9 @@ export async function PATCH(req: NextRequest) {
     });
   }
 
-  // Discord notifications — best-effort, never block the response
+  // Discord notifications — run after response via after() so Vercel doesn't kill the task early
   if (found && grail.season_id) {
-    void (async () => {
+    after(async () => {
       try {
         const user = await db.user.findUnique({
           where: { id: session.user.id },
@@ -217,7 +217,7 @@ export async function PATCH(req: NextRequest) {
       } catch {
         // best-effort
       }
-    })();
+    });
   }
 
   return NextResponse.json({ entry, newAchievements });

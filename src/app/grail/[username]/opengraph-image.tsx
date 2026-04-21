@@ -38,71 +38,72 @@ export default async function OgImage({ params }: { params: Promise<{ username: 
             right: 0,
             height: "300px",
             background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196,163,82,0.25) 0%, transparent 70%)",
+            display: "flex",
           }}
         />
 
         {/* Brand */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "48px" }}>
           <span style={{ fontSize: "22px", color: "#71717a", letterSpacing: "0.05em" }}>
-            Project{" "}
-            <span style={{ color: "#f59e0b" }}>Grail</span>
+            {"Project "}
+          </span>
+          <span style={{ fontSize: "22px", color: "#f59e0b", letterSpacing: "0.05em" }}>
+            {"Grail"}
           </span>
           {seasonName && (
-            <>
-              <span style={{ color: "#3f3f46", fontSize: "18px" }}>·</span>
-              <span style={{ fontSize: "18px", color: "#52525b" }}>{seasonName}</span>
-            </>
+            <span style={{ fontSize: "18px", color: "#52525b" }}>
+              {`· ${seasonName}`}
+            </span>
           )}
         </div>
 
         {/* Display name */}
-        <div style={{ fontSize: "72px", fontWeight: 700, color: "#f4f4f5", lineHeight: 1.1, marginBottom: "32px" }}>
-          {displayName}'s Grail
+        <div style={{ display: "flex", fontSize: "72px", fontWeight: 700, color: "#f4f4f5", lineHeight: 1.1, marginBottom: "32px" }}>
+          {`${displayName}'s Grail`}
         </div>
 
         {/* Progress */}
         {progress && progress.total > 0 ? (
           <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
-            {/* Progress bar */}
-            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            {/* Progress bar track */}
+            <div
+              style={{
+                width: "100%",
+                height: "10px",
+                background: "#27272a",
+                borderRadius: "99px",
+                display: "flex",
+              }}
+            >
               <div
                 style={{
-                  flex: 1,
-                  height: "10px",
-                  background: "#27272a",
+                  width: `${progress.pct}%`,
+                  height: "100%",
+                  background: "#f59e0b",
                   borderRadius: "99px",
-                  overflow: "hidden",
+                  display: "flex",
                 }}
-              >
-                <div
-                  style={{
-                    width: `${progress.pct}%`,
-                    height: "100%",
-                    background: "#f59e0b",
-                    borderRadius: "99px",
-                  }}
-                />
-              </div>
+              />
             </div>
             {/* Stats */}
             <div style={{ display: "flex", alignItems: "baseline", gap: "12px" }}>
               <span style={{ fontSize: "56px", fontWeight: 700, color: "#f4f4f5" }}>
-                {progress.pct}%
+                {`${progress.pct}%`}
               </span>
               <span style={{ fontSize: "24px", color: "#71717a" }}>
-                {progress.found} / {progress.total} items found
+                {`${progress.found} / ${progress.total} items found`}
               </span>
             </div>
           </div>
         ) : (
-          <div style={{ fontSize: "28px", color: "#52525b" }}>
-            Just starting their grail journey
+          <div style={{ display: "flex", fontSize: "28px", color: "#52525b" }}>
+            {"Just starting their grail journey"}
           </div>
         )}
 
         {/* Footer URL */}
-        <div style={{ position: "absolute", bottom: "48px", right: "80px", fontSize: "18px", color: "#3f3f46" }}>
-          pd2grail.com
+        <div style={{ display: "flex", position: "absolute", bottom: "48px", right: "80px", fontSize: "18px", color: "#3f3f46" }}>
+          {"pd2grail.com"}
         </div>
       </div>
     ),

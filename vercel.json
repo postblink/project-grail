@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/discord-flush",
+      "schedule": "*/2 * * * *"
+    }
+  ]
+}

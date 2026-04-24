@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "claudezilla": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "/home/postblink/Dev Projects/Project Grail/claudezilla/mcp/server.js"
+      ],
+      "env": {}
+    }
+  }
+}

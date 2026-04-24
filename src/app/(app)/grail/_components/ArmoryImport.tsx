@@ -274,6 +274,9 @@ function PreviewStep({
           Could not fetch shared stash — character imports will still proceed.
         </p>
       )}
+      {preview.stashEmpty && (
+        <p className="text-xs text-zinc-500">Shared stash: no items found.</p>
+      )}
       {preview.stashIncluded && (
         <p className="text-xs text-zinc-500">Shared stash included.</p>
       )}

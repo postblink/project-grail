@@ -38,11 +38,13 @@ interface ArmoryResponse {
 
 interface StashTab {
   items?: ArmoryItem[];
+  currency?: ArmoryItem[];
 }
 
 interface StashResponse {
   items?: ArmoryItem[];
   tabs?: StashTab[];
+  currency?: ArmoryItem[];
 }
 
 // ──────────────────────────────────────────────
@@ -64,6 +66,7 @@ export interface ArmoryPreviewResult {
   failedCharacters: string[];
   stashIncluded: boolean;
   stashFailed: boolean;
+  stashEmpty: boolean;
   needsRelink: boolean;
 }
 
@@ -90,7 +93,7 @@ async function fetchStash(token: string, sub: string): Promise<StashResponse | n
       next: { revalidate: 0 },
     });
     if (res.status === 404) {
-      return {}; // empty stash (new season / no stash data yet)
+      return null; // no stash data yet this season
     }
     if (!res.ok) {
       const body = await res.text().catch(() => "");
@@ -132,8 +135,9 @@ function extractItemNames(data: ArmoryResponse): string[] {
 function extractStashItemNames(data: StashResponse): string[] {
   const names: string[] = [];
   const topLevel = data.items ?? [];
-  const tabItems = (data.tabs ?? []).flatMap((t) => t.items ?? []);
-  for (const item of [...topLevel, ...tabItems]) {
+  const topCurrency = data.currency ?? [];
+  const tabItems = (data.tabs ?? []).flatMap((t) => [...(t.items ?? []), ...(t.currency ?? [])]);
+  for (const item of [...topLevel, ...topCurrency, ...tabItems]) {
     extractNamesFromItem(item, names);
   }
   return names;
@@ -153,6 +157,7 @@ export async function previewArmoryImport(
   const rawNames: string[] = [];
   let stashIncluded = false;
   let stashFailed = false;
+  let stashEmpty = false;
 
   // Fetch characters (may be empty for stash-only imports)
   await Promise.all(
@@ -169,11 +174,17 @@ export async function previewArmoryImport(
   // Fetch shared stash when a PD2 token and sub are available
   if (pd2Token && pd2Sub) {
     const stashData = await fetchStash(pd2Token, pd2Sub);
-    if (stashData) {
-      rawNames.push(...extractStashItemNames(stashData));
-      stashIncluded = true;
+    if (stashData === null) {
+      // null = 404 (no stash data this season yet) or fetch error
+      stashEmpty = true;
     } else {
-      stashFailed = true;
+      const stashNames = extractStashItemNames(stashData);
+      if (stashNames.length > 0) {
+        rawNames.push(...stashNames);
+        stashIncluded = true;
+      } else {
+        stashEmpty = true;
+      }
     }
   }
 
@@ -223,6 +234,7 @@ export async function previewArmoryImport(
     failedCharacters,
     stashIncluded,
     stashFailed,
+    stashEmpty,
     needsRelink: false,
   };
 }

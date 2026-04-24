@@ -89,6 +89,9 @@ async function fetchStash(token: string, sub: string): Promise<StashResponse | n
       headers: { Authorization: `Bearer ${token}` },
       next: { revalidate: 0 },
     });
+    if (res.status === 404) {
+      return {}; // empty stash (new season / no stash data yet)
+    }
     if (!res.ok) {
       const body = await res.text().catch(() => "");
       console.warn("Stash fetch failed:", res.status, body);

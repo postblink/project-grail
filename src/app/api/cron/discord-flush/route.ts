@@ -2,8 +2,24 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { sendBatchNotification } from "@/lib/discord";
 
+interface BatchRow {
+  id: string;
+  user_id: string;
+  display_name: string;
+  profile_url: string;
+  items_found: number;
+  item_names: string[];
+  pct_before: number;
+  pct_current: number;
+  found_current: number;
+  total: number;
+  milestones: number[];
+  achievement_keys: string[];
+  flush_after: Date;
+  league: { name: string; discord_webhook_url: string | null };
+}
+
 export async function GET(req: NextRequest) {
-  // Vercel cron requests include this header; reject anything without it
   const authHeader = req.headers.get("authorization");
   if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -11,47 +27,60 @@ export async function GET(req: NextRequest) {
 
   const now = new Date();
 
-  const batches = await db.discordBatch.findMany({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const batches = (await (db.discordBatch as any).findMany({
     where: { flush_after: { lte: now } },
     include: { league: { select: { name: true, discord_webhook_url: true } } },
-  });
+  })) as BatchRow[];
 
   if (batches.length === 0) {
     return NextResponse.json({ flushed: 0 });
   }
 
-  const results = await Promise.allSettled(
-    batches.map(async (batch) => {
-      // items_found=0 means this is a sentinel from a single immediate send — nothing more arrived, skip
-      if (batch.items_found === 0) {
-        await db.discordBatch.delete({ where: { id: batch.id } });
-        return;
-      }
+  // Group by (user_id, webhook_url) so multiple leagues sharing the same webhook
+  // don't spam the channel with identical messages — one message per webhook.
+  const groups = new Map<string, BatchRow[]>();
+  for (const batch of batches) {
+    const webhook = batch.league.discord_webhook_url;
+    if (!webhook) continue;
+    const key = `${batch.user_id}::${webhook}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key)!.push(batch);
+  }
 
-      const webhookUrl = batch.league.discord_webhook_url;
-      if (!webhookUrl) {
-        await db.discordBatch.delete({ where: { id: batch.id } });
-        return;
-      }
+  const results = await Promise.allSettled(
+    [...groups.values()].map(async (group) => {
+      const webhookUrl = group[0].league.discord_webhook_url!;
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (db.discordBatch as any).deleteMany({ where: { id: { in: group.map((b) => b.id) } } });
+
+      const realBatches = group.filter((b) => b.items_found > 0);
+      if (realBatches.length === 0) return; // all sentinels — nothing to send
+
+      const primary = realBatches.reduce((a, b) => a.items_found >= b.items_found ? a : b);
+      const leagueNames = [...new Set(group.map((b) => b.league.name))];
+      const itemNames = [...new Set(realBatches.flatMap((b) => b.item_names))];
+      const milestones = [...new Set(realBatches.flatMap((b) => b.milestones))];
+      const achievementKeys = [...new Set(realBatches.flatMap((b) => b.achievement_keys))];
 
       await sendBatchNotification({
         webhookUrl,
-        displayName: batch.display_name,
-        profileUrl: batch.profile_url,
-        leagueName: batch.league.name,
-        itemsFound: batch.items_found,
-        pctBefore: batch.pct_before,
-        pctCurrent: batch.pct_current,
-        foundCurrent: batch.found_current,
-        total: batch.total,
-        milestones: batch.milestones,
-        achievementKeys: batch.achievement_keys,
+        displayName: primary.display_name,
+        profileUrl: primary.profile_url,
+        leagueNames,
+        itemsFound: primary.items_found,
+        itemNames,
+        pctBefore: primary.pct_before,
+        pctCurrent: primary.pct_current,
+        foundCurrent: primary.found_current,
+        total: primary.total,
+        milestones,
+        achievementKeys,
       });
-
-      await db.discordBatch.delete({ where: { id: batch.id } });
     }),
   );
 
   const failed = results.filter((r) => r.status === "rejected").length;
-  return NextResponse.json({ flushed: batches.length - failed, failed });
+  return NextResponse.json({ flushed: groups.size - failed, failed });
 }

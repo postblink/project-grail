@@ -33,7 +33,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (user?.id) {
         token.id = user.id;
 
-        // Seed discord_id and display_name on first Discord login
+        // Seed provider-specific fields on first sign-in
         if (account?.provider === "discord") {
           const existing = await db.user.findUnique({
             where: { id: user.id },

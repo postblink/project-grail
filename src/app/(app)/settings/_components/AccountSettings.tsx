@@ -4,14 +4,26 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+const LINK_ERROR_MESSAGES: Record<string, string> = {
+  invalid_state: "Authorization failed — please try again.",
+  token_exchange: "Could not complete Discord authorization. Please try again.",
+  fetch_user: "Could not retrieve your Discord profile. Please try again.",
+  already_linked: "That Discord account is already linked to a different user.",
+  server: "Something went wrong on our end. Please try again.",
+};
+
 export function AccountSettings({
   currentDisplayName,
   email,
   providers,
+  linkSuccess,
+  linkError,
 }: {
   currentDisplayName: string | null;
   email: string | null;
   providers: string[];
+  linkSuccess?: boolean;
+  linkError?: string;
 }) {
   const { update } = useSession();
   const router = useRouter();
@@ -50,13 +62,26 @@ export function AccountSettings({
   const PROVIDER_LABELS: Record<string, string> = {
     discord: "Discord",
     resend: "Magic link (email)",
+    pd2: "Project Diablo 2",
   };
+
+  const discordLinked = providers.includes("discord");
 
   return (
     <div className="space-y-8">
     {/* Linked accounts */}
     <section className="space-y-3">
       <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Account</h2>
+
+      {linkSuccess && (
+        <p className="text-xs text-emerald-400">Discord account linked successfully.</p>
+      )}
+      {linkError && (
+        <p className="text-xs text-red-400">
+          {LINK_ERROR_MESSAGES[linkError] ?? "Something went wrong. Please try again."}
+        </p>
+      )}
+
       <div className="rounded-lg border border-zinc-800 bg-zinc-900 divide-y divide-zinc-800">
         {email && (
           <div className="flex items-center justify-between px-4 py-3">
@@ -76,6 +101,34 @@ export function AccountSettings({
             ))}
           </div>
         </div>
+        {!discordLinked && (
+          <div className="flex items-center justify-between px-4 py-3">
+            <div>
+              <p className="text-sm text-zinc-300">Link Discord</p>
+              <p className="text-xs text-zinc-600 mt-0.5">Sign in faster and sync your username.</p>
+            </div>
+            <a
+              href="/api/auth/link/discord"
+              className="rounded-lg bg-indigo-700 px-3 py-1.5 text-xs font-semibold text-indigo-100 hover:bg-indigo-600 transition-colors"
+            >
+              Connect
+            </a>
+          </div>
+        )}
+        {!providers.includes("pd2") && (
+          <div className="flex items-center justify-between px-4 py-3">
+            <div>
+              <p className="text-sm text-zinc-300">Link Project Diablo 2</p>
+              <p className="text-xs text-zinc-600 mt-0.5">Enables shared stash import and character sync.</p>
+            </div>
+            <a
+              href="/api/auth/link/pd2"
+              className="rounded-lg bg-amber-700 px-3 py-1.5 text-xs font-semibold text-amber-100 hover:bg-amber-600 transition-colors"
+            >
+              Connect
+            </a>
+          </div>
+        )}
       </div>
     </section>
 

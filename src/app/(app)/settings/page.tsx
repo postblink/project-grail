@@ -5,17 +5,24 @@ import { AccountSettings } from "./_components/AccountSettings";
 
 export const metadata = { title: "Account Settings — Project Grail" };
 
-export default async function SettingsPage() {
+export default async function SettingsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ link_success?: string; link_error?: string }>;
+}) {
   const session = await auth();
   if (!session?.user.id) redirect("/login");
 
-  const user = await db.user.findUnique({
-    where: { id: session.user.id },
-    select: {
-      email: true,
-      accounts: { select: { provider: true } },
-    },
-  });
+  const [user, params] = await Promise.all([
+    db.user.findUnique({
+      where: { id: session.user.id },
+      select: {
+        email: true,
+        accounts: { select: { provider: true } },
+      },
+    }),
+    searchParams,
+  ]);
 
   const providers = user?.accounts.map((a) => a.provider) ?? [];
 
@@ -32,6 +39,8 @@ export default async function SettingsPage() {
         currentDisplayName={session.user.display_name}
         email={user?.email ?? null}
         providers={providers}
+        linkSuccess={params.link_success === "1"}
+        linkError={params.link_error}
       />
     </div>
   );

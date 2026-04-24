@@ -17,6 +17,13 @@ export async function GET() {
     });
   }
 
+  // First, fetch full /oauth/me to see all available fields
+  const meRes = await fetch("https://api.projectdiablo2.com/oauth/me", {
+    headers: { Authorization: `Bearer ${pd2Result.token}` },
+    cache: "no-store",
+  });
+  const meBody = await meRes.json().catch(() => null);
+
   const sub = pd2Result.sub;
   const url = `https://api.projectdiablo2.com/game/stash/${encodeURIComponent(sub)}`;
 
@@ -30,6 +37,7 @@ export async function GET() {
   return NextResponse.json({
     hasToken: true,
     sub,
+    oauthMe: meBody,
     url,
     status: res.status,
     responseBody: body,

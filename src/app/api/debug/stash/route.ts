@@ -11,23 +11,24 @@ export async function GET() {
   const pd2 = await getPD2Token(session.user.id);
   if (!pd2.token) return NextResponse.json({ error: "No PD2 token", needsRelink: pd2.needsRelink });
 
-  const [meRes, stashRes] = await Promise.all([
-    fetch("https://api.projectdiablo2.com/oauth/me", {
-      headers: { Authorization: `Bearer ${pd2.token}` },
-      cache: "no-store",
-    }),
-    fetch(`https://api.projectdiablo2.com/game/stash/${encodeURIComponent(pd2.sub)}`, {
-      headers: { Authorization: `Bearer ${pd2.token}` },
-      cache: "no-store",
-    }),
-  ]);
+  const meRes = await fetch("https://api.projectdiablo2.com/oauth/me", {
+    headers: { Authorization: `Bearer ${pd2.token}` },
+    cache: "no-store",
+  });
+  const me = await meRes.json() as { sub?: string; name?: string };
 
-  const me = await meRes.json();
-  const stash = await stashRes.text();
+  const byName = await fetch(`https://api.projectdiablo2.com/game/stash/${encodeURIComponent(me.name ?? "")}`, {
+    headers: { Authorization: `Bearer ${pd2.token}` },
+    cache: "no-store",
+  });
+  const bySub = await fetch(`https://api.projectdiablo2.com/game/stash/${encodeURIComponent(me.sub ?? "")}`, {
+    headers: { Authorization: `Bearer ${pd2.token}` },
+    cache: "no-store",
+  });
 
   return NextResponse.json({
-    sub: pd2.sub,
-    me: { status: meRes.status, body: me },
-    stash: { status: stashRes.status, body: JSON.parse(stash) },
+    me,
+    byName: { status: byName.status, body: await byName.json() },
+    bySub: { status: bySub.status, body: await bySub.json() },
   });
 }

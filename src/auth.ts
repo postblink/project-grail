@@ -29,6 +29,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return token;
       }
 
+      // Validate that the user still exists on every token refresh.
+      // If the account was deleted (e.g. post-reset), kill the JWT so the
+      // browser cookie is cleared and the user is sent back to login.
+      if (!user && token.id) {
+        const exists = await db.user.findUnique({
+          where: { id: token.id as string },
+          select: { id: true },
+        });
+        if (!exists) return null;
+      }
+
       // `user` is only present on initial sign-in
       if (user?.id) {
         token.id = user.id;

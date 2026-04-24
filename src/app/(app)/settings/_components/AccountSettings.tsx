@@ -31,6 +31,19 @@ export function AccountSettings({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
+  const [unlinking, setUnlinking] = useState<string | null>(null);
+
+  async function handleUnlink(provider: string) {
+    setUnlinking(provider);
+    const res = await fetch(`/api/user/accounts/${provider}`, { method: "DELETE" });
+    if (res.ok) {
+      router.refresh();
+    } else {
+      const data = await res.json().catch(() => ({}));
+      setError((data as { error?: string }).error ?? "Could not unlink provider");
+    }
+    setUnlinking(null);
+  }
 
   const unchanged = name.trim() === (currentDisplayName ?? "");
 
@@ -66,6 +79,9 @@ export function AccountSettings({
   };
 
   const discordLinked = providers.includes("discord");
+  const pd2Linked = providers.includes("pd2");
+  // Discord can only be unlinked if there's another sign-in method (magic link or other OAuth)
+  const canUnlinkDiscord = discordLinked && providers.some((p) => p !== "discord" && p !== "pd2");
 
   return (
     <div className="space-y-8">
@@ -74,13 +90,14 @@ export function AccountSettings({
       <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Account</h2>
 
       {linkSuccess && (
-        <p className="text-xs text-emerald-400">Discord account linked successfully.</p>
+        <p className="text-xs text-emerald-400">Account linked successfully.</p>
       )}
       {linkError && (
         <p className="text-xs text-red-400">
           {LINK_ERROR_MESSAGES[linkError] ?? "Something went wrong. Please try again."}
         </p>
       )}
+      {error && <p className="text-xs text-red-400">{error}</p>}
 
       <div className="rounded-lg border border-zinc-800 bg-zinc-900 divide-y divide-zinc-800">
         {email && (
@@ -89,46 +106,60 @@ export function AccountSettings({
             <span className="text-sm text-zinc-300">{email}</span>
           </div>
         )}
+
+        {/* Discord row */}
         <div className="flex items-center justify-between px-4 py-3">
-          <span className="text-xs text-zinc-500">Linked providers</span>
-          <div className="flex gap-2">
-            {providers.length === 0 ? (
-              <span className="text-sm text-zinc-600">None</span>
-            ) : providers.map((p) => (
-              <span key={p} className="rounded bg-zinc-800 px-2 py-0.5 text-xs text-zinc-300">
-                {PROVIDER_LABELS[p] ?? p}
-              </span>
-            ))}
+          <div>
+            <p className="text-sm text-zinc-300">Discord</p>
+            <p className="text-xs text-zinc-600 mt-0.5">
+              {discordLinked ? "Linked" : "Sign in faster and sync your username."}
+            </p>
           </div>
-        </div>
-        {!discordLinked && (
-          <div className="flex items-center justify-between px-4 py-3">
-            <div>
-              <p className="text-sm text-zinc-300">Link Discord</p>
-              <p className="text-xs text-zinc-600 mt-0.5">Sign in faster and sync your username.</p>
-            </div>
+          {discordLinked ? (
+            canUnlinkDiscord && (
+              <button
+                onClick={() => handleUnlink("discord")}
+                disabled={unlinking === "discord"}
+                className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-500 hover:text-red-400 hover:border-red-800 disabled:opacity-50 transition-colors"
+              >
+                {unlinking === "discord" ? "Unlinking…" : "Unlink"}
+              </button>
+            )
+          ) : (
             <a
               href="/api/auth/link/discord"
               className="rounded-lg bg-indigo-700 px-3 py-1.5 text-xs font-semibold text-indigo-100 hover:bg-indigo-600 transition-colors"
             >
               Connect
             </a>
+          )}
+        </div>
+
+        {/* PD2 row */}
+        <div className="flex items-center justify-between px-4 py-3">
+          <div>
+            <p className="text-sm text-zinc-300">Project Diablo 2</p>
+            <p className="text-xs text-zinc-600 mt-0.5">
+              {pd2Linked ? "Linked — shared stash import enabled." : "Enables shared stash import and character sync."}
+            </p>
           </div>
-        )}
-        {!providers.includes("pd2") && (
-          <div className="flex items-center justify-between px-4 py-3">
-            <div>
-              <p className="text-sm text-zinc-300">Link Project Diablo 2</p>
-              <p className="text-xs text-zinc-600 mt-0.5">Enables shared stash import and character sync.</p>
-            </div>
+          {pd2Linked ? (
+            <button
+              onClick={() => handleUnlink("pd2")}
+              disabled={unlinking === "pd2"}
+              className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-500 hover:text-red-400 hover:border-red-800 disabled:opacity-50 transition-colors"
+            >
+              {unlinking === "pd2" ? "Unlinking…" : "Unlink"}
+            </button>
+          ) : (
             <a
               href="/api/auth/link/pd2"
               className="rounded-lg bg-amber-700 px-3 py-1.5 text-xs font-semibold text-amber-100 hover:bg-amber-600 transition-colors"
             >
               Connect
             </a>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </section>
 

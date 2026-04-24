@@ -25,21 +25,22 @@ export async function GET() {
   const meBody = await meRes.json().catch(() => null);
 
   const sub = pd2Result.sub;
-  const url = `https://api.projectdiablo2.com/game/stash/${encodeURIComponent(sub)}`;
+  const name = (meBody as { name?: string })?.name ?? null;
 
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${pd2Result.token}` },
-    cache: "no-store",
-  });
+  // Test both sub and name to find the correct identifier
+  const urlBySub = `https://api.projectdiablo2.com/game/stash/${encodeURIComponent(sub)}`;
+  const urlByName = name ? `https://api.projectdiablo2.com/game/stash/${encodeURIComponent(name)}` : null;
 
-  const body = await res.text();
+  const [resBySub, resByName] = await Promise.all([
+    fetch(urlBySub, { headers: { Authorization: `Bearer ${pd2Result.token}` }, cache: "no-store" }),
+    urlByName ? fetch(urlByName, { headers: { Authorization: `Bearer ${pd2Result.token}` }, cache: "no-store" }) : Promise.resolve(null),
+  ]);
 
   return NextResponse.json({
     hasToken: true,
     sub,
-    oauthMe: meBody,
-    url,
-    status: res.status,
-    responseBody: body,
+    name,
+    bySub: { url: urlBySub, status: resBySub.status, body: await resBySub.text() },
+    byName: urlByName && resByName ? { url: urlByName, status: resByName.status, body: await resByName.text() } : null,
   });
 }

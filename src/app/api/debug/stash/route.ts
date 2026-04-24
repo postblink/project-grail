@@ -16,19 +16,29 @@ export async function GET() {
     cache: "no-store",
   });
   const me = await meRes.json() as { sub?: string; name?: string };
+  const name = me.name ?? "";
+  const sub = me.sub ?? "";
 
-  const byName = await fetch(`https://api.projectdiablo2.com/game/stash/${encodeURIComponent(me.name ?? "")}`, {
-    headers: { Authorization: `Bearer ${pd2.token}` },
-    cache: "no-store",
-  });
-  const bySub = await fetch(`https://api.projectdiablo2.com/game/stash/${encodeURIComponent(me.sub ?? "")}`, {
-    headers: { Authorization: `Bearer ${pd2.token}` },
-    cache: "no-store",
-  });
+  const paths = [
+    `game/materials/${name}`,
+    `game/materials/${sub}`,
+    `game/account/${name}/materials`,
+    `game/account/${sub}/materials`,
+    `game/stash/${name}/materials`,
+    `game/character-stash/${name}`,
+    `game/shared/${name}`,
+    `game/storage/${name}`,
+  ];
 
-  return NextResponse.json({
-    me,
-    byName: { status: byName.status, body: await byName.json() },
-    bySub: { status: bySub.status, body: await bySub.json() },
-  });
+  const results: Record<string, { status: number; body: unknown }> = {};
+  await Promise.all(paths.map(async (path) => {
+    const res = await fetch(`https://api.projectdiablo2.com/${path}`, {
+      headers: { Authorization: `Bearer ${pd2.token!}` },
+      cache: "no-store",
+    });
+    const body = await res.text();
+    results[path] = { status: res.status, body: JSON.parse(body) };
+  }));
+
+  return NextResponse.json({ me, results });
 }

@@ -39,6 +39,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Provide at least one character name", code: "VALIDATION_ERROR" }, { status: 400 });
   }
 
-  const result = await previewArmoryImport(grailId, characterNames, pd2Result.token);
+  const result = await previewArmoryImport(grailId, characterNames, pd2Result.token, pd2Result.sub);
   return NextResponse.json(result);
 }

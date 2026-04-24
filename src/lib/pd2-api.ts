@@ -38,27 +38,27 @@ async function refreshToken(accountId: string, refreshToken: string): Promise<st
 }
 
 export type PD2TokenResult =
-  | { token: string; needsRelink: false }
-  | { token: null; needsRelink: boolean };
+  | { token: string; sub: string; needsRelink: false }
+  | { token: null; sub: null; needsRelink: boolean };
 
 export async function getPD2Token(userId: string): Promise<PD2TokenResult> {
   const account = await db.account.findFirst({
     where: { userId, provider: "pd2" },
-    select: { id: true, access_token: true, refresh_token: true, expires_at: true },
+    select: { id: true, access_token: true, refresh_token: true, expires_at: true, providerAccountId: true },
   });
 
-  if (!account?.access_token) return { token: null, needsRelink: false };
+  if (!account?.access_token) return { token: null, sub: null, needsRelink: false };
 
   const isExpired =
     account.expires_at !== null &&
     account.expires_at < Math.floor(Date.now() / 1000);
 
-  if (!isExpired) return { token: account.access_token, needsRelink: false };
+  if (!isExpired) return { token: account.access_token, sub: account.providerAccountId, needsRelink: false };
 
   if (account.refresh_token) {
     const refreshed = await refreshToken(account.id, account.refresh_token);
-    if (refreshed) return { token: refreshed, needsRelink: false };
+    if (refreshed) return { token: refreshed, sub: account.providerAccountId, needsRelink: false };
   }
 
-  return { token: null, needsRelink: true };
+  return { token: null, sub: null, needsRelink: true };
 }

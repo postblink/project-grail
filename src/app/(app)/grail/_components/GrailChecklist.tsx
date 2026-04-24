@@ -171,16 +171,21 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
           ))}
         </div>
 
-        <button
-          onClick={() => setFilterPd2((v: boolean) => !v)}
-          className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
-            filterPd2
-              ? "border-amber-700 bg-amber-900/30 text-amber-300"
-              : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-zinc-200"
-          }`}
-        >
-          PD2 exclusive
-        </button>
+        <div className="group relative">
+          <button
+            onClick={() => setFilterPd2((v: boolean) => !v)}
+            className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
+              filterPd2
+                ? "border-amber-700 bg-amber-900/30 text-amber-300"
+                : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-zinc-200"
+            }`}
+          >
+            PD2 exclusive
+          </button>
+          <div className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-xs text-zinc-400 opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow-lg">
+            Items that only exist in Project Diablo 2 — not present in vanilla Diablo II: Lord of Destruction.
+          </div>
+        </div>
 
         <span className="ml-auto text-sm text-zinc-500">
           {filtered.length} shown · {found}/{total} found

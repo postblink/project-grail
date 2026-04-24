@@ -44,8 +44,12 @@ export default async function GrailPage() {
             {session.user.display_name ? (
               <ShareGrailButton username={session.user.display_name} />
             ) : (
-              <Link href="/settings" className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
-                Set a name to share →
+              <Link
+                href="/settings"
+                className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors"
+                title="Set a display name in Settings to get a shareable public grail link"
+              >
+                Set a display name to share your grail →
               </Link>
             )}
           </div>

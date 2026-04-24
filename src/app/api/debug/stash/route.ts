@@ -11,12 +11,23 @@ export async function GET() {
   const pd2 = await getPD2Token(session.user.id);
   if (!pd2.token) return NextResponse.json({ error: "No PD2 token", needsRelink: pd2.needsRelink });
 
-  const stashUrl = `https://api.projectdiablo2.com/game/stash/${encodeURIComponent(pd2.sub)}`;
-  const res = await fetch(stashUrl, {
-    headers: { Authorization: `Bearer ${pd2.token}` },
-    cache: "no-store",
-  });
-  const raw = await res.text();
+  const [meRes, stashRes] = await Promise.all([
+    fetch("https://api.projectdiablo2.com/oauth/me", {
+      headers: { Authorization: `Bearer ${pd2.token}` },
+      cache: "no-store",
+    }),
+    fetch(`https://api.projectdiablo2.com/game/stash/${encodeURIComponent(pd2.sub)}`, {
+      headers: { Authorization: `Bearer ${pd2.token}` },
+      cache: "no-store",
+    }),
+  ]);
 
-  return NextResponse.json({ status: res.status, sub: pd2.sub, raw: JSON.parse(raw) });
+  const me = await meRes.json();
+  const stash = await stashRes.text();
+
+  return NextResponse.json({
+    sub: pd2.sub,
+    me: { status: meRes.status, body: me },
+    stash: { status: stashRes.status, body: JSON.parse(stash) },
+  });
 }

@@ -35,6 +35,7 @@ export async function GET() {
     response_type: "code",
     scope: "openid profile character:read stash:read account:read",
     state,
+    prompt: "consent",
   });
 
   return NextResponse.redirect(`https://api.projectdiablo2.com/oauth/auth?${params}`);

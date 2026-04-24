@@ -90,7 +90,8 @@ async function fetchStash(token: string, sub: string): Promise<StashResponse | n
       next: { revalidate: 0 },
     });
     if (!res.ok) {
-      console.warn("Stash fetch failed:", res.status);
+      const body = await res.text().catch(() => "");
+      console.warn("Stash fetch failed:", res.status, body);
       return null;
     }
     return (await res.json()) as StashResponse;

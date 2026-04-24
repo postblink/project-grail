@@ -156,6 +156,7 @@ export async function PATCH(req: NextRequest) {
                 where: { id: existing.id },
                 data: {
                   items_found: existing.items_found + 1,
+                  item_names: [...existing.item_names, item.name],
                   pct_current: pctCurrent,
                   found_current: foundItems,
                   total: totalItems,

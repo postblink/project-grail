@@ -131,32 +131,40 @@ export interface BatchPayload {
   webhookUrl: string;
   displayName: string;
   profileUrl: string;
-  leagueName: string;
+  leagueNames: string[];
   itemsFound: number;
+  itemNames: string[];
   pctBefore: number;
   pctCurrent: number;
   foundCurrent: number;
   total: number;
-  milestones: number[];      // milestone pct values crossed, e.g. [25, 50]
-  achievementKeys: string[]; // announceable achievement keys
+  milestones: number[];
+  achievementKeys: string[];
 }
 
-export async function sendBatchNotification(payload: BatchPayload): Promise<void> {
-  const { displayName, profileUrl, leagueName, itemsFound, pctBefore, pctCurrent, foundCurrent, total, milestones, achievementKeys } = payload;
+const ITEM_LIST_LIMIT = 8;
 
-  // Pick the highest milestone color if any milestones crossed, else gold
+export async function sendBatchNotification(payload: BatchPayload): Promise<void> {
+  const { displayName, profileUrl, leagueNames, itemsFound, itemNames, pctBefore, pctCurrent, foundCurrent, total, milestones, achievementKeys } = payload;
+
   const highestMilestone = milestones.length > 0 ? Math.max(...milestones) : null;
   const color = highestMilestone !== null ? (MILESTONE_COLORS[highestMilestone] ?? 0xC7B377) : 0xC7B377;
 
-  // Build description: items found + pct change
   const pctChange = pctBefore !== pctCurrent ? ` (${pctBefore}% → ${pctCurrent}%)` : ` (${pctCurrent}%)`;
   const itemsLine = `**${displayName}** found **${itemsFound}** item${itemsFound !== 1 ? "s" : ""}${pctChange}`;
 
-  // Collect notable events (milestones + achievements) for a highlights line
+  // Item name list
+  let itemListStr = "";
+  if (itemNames.length > 0) {
+    const shown = itemNames.slice(0, ITEM_LIST_LIMIT);
+    const rest = itemNames.length - shown.length;
+    itemListStr = shown.join(", ") + (rest > 0 ? ` +${rest} more` : "");
+  }
+
+  // Milestone / achievement highlights
   const highlights: string[] = [];
   for (const m of milestones) {
-    const emoji = m === 100 ? "🏆" : "⚡";
-    highlights.push(`${emoji} ${m}% milestone reached`);
+    highlights.push(`${m === 100 ? "🏆" : "⚡"} ${m}% milestone reached`);
   }
   for (const key of achievementKeys) {
     const def = getAchievementDef(key);
@@ -164,6 +172,7 @@ export async function sendBatchNotification(payload: BatchPayload): Promise<void
   }
 
   let description = itemsLine;
+  if (itemListStr) description += `\n${itemListStr}`;
   if (highlights.length === 1) {
     description += `\n${highlights[0]}`;
   } else if (highlights.length === 2) {
@@ -172,13 +181,19 @@ export async function sendBatchNotification(payload: BatchPayload): Promise<void
     description += `\n${highlights[0]} · ${highlights[1]} · +${highlights.length - 2} more`;
   }
 
+  const leagueLabel = leagueNames.length === 1
+    ? leagueNames[0]
+    : leagueNames.length <= 3
+    ? leagueNames.join(", ")
+    : `${leagueNames.slice(0, 2).join(", ")} +${leagueNames.length - 2} more`;
+
   await postWebhook(payload.webhookUrl, {
     embeds: [{
       color,
       description,
       url: profileUrl,
       author: { name: `View ${displayName}'s grail`, url: profileUrl },
-      footer: { text: `${leagueName} · ${foundCurrent}/${total} items` },
+      footer: { text: `${leagueLabel} · ${foundCurrent}/${total} items` },
     }],
   });
 }

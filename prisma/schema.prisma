@@ -120,6 +120,7 @@ model User {
   armory_imports   ArmoryImport[]
   league_finds     LeagueGrailEntry[]
   achievements     UserAchievement[]
+  discord_batches  DiscordBatch[]
 
   @@map("users")
 }
@@ -227,8 +228,34 @@ model League {
   season               Season             @relation(fields: [season_id], references: [id])
   members              LeagueMember[]
   league_grail_entries LeagueGrailEntry[]
+  discord_batches      DiscordBatch[]
 
   @@map("leagues")
+}
+
+model DiscordBatch {
+  id               String   @id @default(cuid())
+  league_id        String
+  user_id          String
+  display_name     String
+  profile_url      String
+  items_found      Int      @default(0)
+  item_names       String[] @default([])
+  pct_before       Int
+  pct_current      Int
+  found_current    Int
+  total            Int
+  milestones       Int[]    @default([])
+  achievement_keys String[] @default([])
+  flush_after      DateTime
+  created_at       DateTime @default(now())
+
+  league League @relation(fields: [league_id], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([league_id, user_id])
+  @@index([flush_after])
+  @@map("discord_batches")
 }
 
 model LeagueMember {

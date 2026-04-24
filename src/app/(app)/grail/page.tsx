@@ -4,6 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = { title: "My Grail — Project Grail" };
 import { auth } from "@/auth";
+import { db } from "@/lib/db";
 import { getCurrentSeason, getOrCreateGrail, getGrailItems } from "@/lib/grail";
 import { GrailView } from "./_components/GrailView";
 import { ShareGrailButton } from "./_components/ShareGrailButton";
@@ -25,9 +26,13 @@ export default async function GrailPage() {
     );
   }
 
-  const grail = await getOrCreateGrail(session.user.id, season.id);
+  const [grail, pd2Account] = await Promise.all([
+    getOrCreateGrail(session.user.id, season.id),
+    db.account.findFirst({ where: { userId: session.user.id, provider: "pd2" }, select: { id: true } }),
+  ]);
   const items = await getGrailItems(grail.id);
   const filterForgeUrl = buildFilterForgeUrl(items);
+  const pd2Linked = pd2Account !== null;
 
   return (
     <div className="space-y-6">
@@ -55,7 +60,7 @@ export default async function GrailPage() {
           Open in FilterForge →
         </a>
       </div>
-      <GrailView grailId={grail.id} initialItems={items} />
+      <GrailView grailId={grail.id} initialItems={items} pd2Linked={pd2Linked} />
     </div>
   );
 }

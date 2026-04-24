@@ -33,7 +33,7 @@ export async function GET() {
     client_id: process.env.PD2_CLIENT_ID!,
     redirect_uri: `${base}/api/auth/callback/pd2`,
     response_type: "code",
-    scope: "openid profile character stash",
+    scope: "openid profile character:read stash:read account:read",
     state,
   });
 

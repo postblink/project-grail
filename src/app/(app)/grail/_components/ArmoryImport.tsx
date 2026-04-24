@@ -7,10 +7,11 @@ type Step = "idle" | "previewing" | "preview" | "confirming" | "done";
 
 interface Props {
   grailId: string;
+  pd2Linked: boolean;
   onImportComplete: (foundItemIds: string[]) => void;
 }
 
-export function ArmoryImport({ grailId, onImportComplete }: Props) {
+export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>("idle");
   const [charInput, setCharInput] = useState("");
@@ -27,7 +28,7 @@ export function ArmoryImport({ grailId, onImportComplete }: Props) {
 
   async function handlePreview() {
     const names = parseCharNames();
-    if (!names.length) return;
+    if (!names.length && !pd2Linked) return;
 
     setStep("previewing");
     setError(null);
@@ -38,10 +39,16 @@ export function ArmoryImport({ grailId, onImportComplete }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ grailId, characterNames: names }),
       });
-      if (!res.ok) {
-        throw new Error("Preview request failed");
-      }
+      if (!res.ok) throw new Error("Preview request failed");
+
       const data = (await res.json()) as ArmoryPreviewResult;
+
+      if (data.needsRelink) {
+        setError("Your PD2 account connection has expired. Re-link it in Settings to include your shared stash.");
+        setStep("idle");
+        return;
+      }
+
       setPreview(data);
       setStep("preview");
     } catch {
@@ -113,7 +120,7 @@ export function ArmoryImport({ grailId, onImportComplete }: Props) {
         <div className="space-y-3">
           <p className="text-sm text-amber-300">
             {addedCount === 0
-              ? "All items from these characters were already marked found."
+              ? "All items were already marked found."
               : `${addedCount} item${addedCount !== 1 ? "s" : ""} marked found.`}
           </p>
           <button
@@ -143,7 +150,7 @@ export function ArmoryImport({ grailId, onImportComplete }: Props) {
         <div className="space-y-3">
           <div>
             <label className="mb-1.5 block text-xs text-zinc-500">
-              Character names (one per line or comma-separated)
+              Character names {pd2Linked ? "(optional — stash is included automatically)" : "(one per line or comma-separated)"}
             </label>
             <textarea
               value={charInput}
@@ -152,17 +159,27 @@ export function ArmoryImport({ grailId, onImportComplete }: Props) {
               rows={3}
               className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-zinc-500 resize-none"
             />
-            <p className="mt-1.5 text-xs text-zinc-500">
-              Import reflects your characters&apos; current inventory. Items in your shared stash or
-              previously traded away will need to be checked off manually.
-            </p>
+            {pd2Linked ? (
+              <p className="mt-1.5 text-xs text-zinc-500">
+                Your shared stash will be included automatically. Add character names to also import their inventories.
+              </p>
+            ) : (
+              <p className="mt-1.5 text-xs text-zinc-500">
+                Import reflects your characters&apos; current inventory. Items in your shared stash or
+                previously traded away will need to be checked off manually.{" "}
+                <a href="/settings" className="text-zinc-400 underline hover:text-zinc-200">
+                  Link your PD2 account
+                </a>{" "}
+                to include your shared stash.
+              </p>
+            )}
           </div>
 
           {error && <p className="text-xs text-red-400">{error}</p>}
 
           <button
             onClick={handlePreview}
-            disabled={step === "previewing" || !charInput.trim()}
+            disabled={step === "previewing" || (!charInput.trim() && !pd2Linked)}
             className="rounded-lg bg-amber-700 px-4 py-2 text-sm font-medium text-amber-100 transition-colors hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {step === "previewing" ? "Fetching…" : "Preview Import"}
@@ -192,6 +209,14 @@ function PreviewStep({
         <p className="text-xs text-amber-500">
           Could not fetch data for: {preview.failedCharacters.join(", ")}
         </p>
+      )}
+      {preview.stashFailed && (
+        <p className="text-xs text-amber-500">
+          Could not fetch shared stash — character imports will still proceed.
+        </p>
+      )}
+      {preview.stashIncluded && (
+        <p className="text-xs text-zinc-500">Shared stash included.</p>
       )}
 
       {preview.newItems.length === 0 ? (

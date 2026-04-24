@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-04-23
+
+### Added
+- **Discord account linking** — users with a magic-link account can now connect their Discord account via the settings page. Uses a custom OAuth flow at `/api/auth/link/discord` with CSRF state validation. The callback writes a new `Account` row, updates `discord_id`, and seeds `display_name` from Discord if not already set. Handles error cases: invalid state, token exchange failure, account already linked to a different user.
+- **Project Diablo 2 account linking** — users can link their PD2 account from the settings page via `/api/auth/link/pd2`. The callback at `/api/auth/callback/pd2` (the URL registered with PD2's OAuth server) stores the access token for future stash and character imports. PD2 is not a sign-in provider — it must be linked to an existing Discord or magic-link account.
+- **Settings page provider linking UI** — the linked providers section now shows a 'Connect' button for any provider not yet linked (Discord, PD2). Returns inline success/error feedback via URL search params after the OAuth flow completes.
+
 ## 2026-04-21
 
 ### Added

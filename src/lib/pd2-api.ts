@@ -54,6 +54,29 @@ export type PD2TokenResult =
   | { token: string; sub: string; needsRelink: false }
   | { token: null; sub: null; needsRelink: boolean };
 
+// MongoDB ObjectIDs are 24 hex chars — if providerAccountId looks like one,
+// it's a pre-fix record that stored sub instead of username.
+function looksLikeObjectId(s: string) {
+  return /^[0-9a-f]{24}$/.test(s);
+}
+
+async function resolveUsername(token: string, accountId: string, storedId: string): Promise<string> {
+  if (!looksLikeObjectId(storedId)) return storedId;
+  try {
+    const res = await fetch("https://api.projectdiablo2.com/oauth/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!res.ok) return storedId;
+    const data = (await res.json()) as { name?: string };
+    if (!data.name || data.name === storedId) return storedId;
+    // Heal the stored value so future calls don't need to re-fetch
+    await db.account.update({ where: { id: accountId }, data: { providerAccountId: data.name } });
+    return data.name;
+  } catch {
+    return storedId;
+  }
+}
+
 export async function getPD2Token(userId: string): Promise<PD2TokenResult> {
   const account = await db.account.findFirst({
     where: { userId, provider: "pd2" },
@@ -66,11 +89,17 @@ export async function getPD2Token(userId: string): Promise<PD2TokenResult> {
     account.expires_at !== null &&
     account.expires_at < Math.floor(Date.now() / 1000);
 
-  if (!isExpired) return { token: account.access_token, sub: account.providerAccountId, needsRelink: false };
+  if (!isExpired) {
+    const username = await resolveUsername(account.access_token, account.id, account.providerAccountId);
+    return { token: account.access_token, sub: username, needsRelink: false };
+  }
 
   if (account.refresh_token) {
     const refreshed = await refreshToken(account.id, account.refresh_token);
-    if (refreshed) return { token: refreshed, sub: account.providerAccountId, needsRelink: false };
+    if (refreshed) {
+      const username = await resolveUsername(refreshed, account.id, account.providerAccountId);
+      return { token: refreshed, sub: username, needsRelink: false };
+    }
   }
 
   return { token: null, sub: null, needsRelink: true };

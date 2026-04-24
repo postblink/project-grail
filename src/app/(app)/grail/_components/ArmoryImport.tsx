@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { ArmoryPreviewItem, ArmoryPreviewResult } from "@/lib/armory";
 
 type Step = "idle" | "previewing" | "preview" | "confirming" | "done";
@@ -15,11 +15,32 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>("idle");
   const [charInput, setCharInput] = useState("");
+  const [characters, setCharacters] = useState<string[] | null>(null);
+  const [selectedChars, setSelectedChars] = useState<Set<string>>(new Set());
+  const [charsFailed, setCharsFailed] = useState(false);
   const [preview, setPreview] = useState<ArmoryPreviewResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [addedCount, setAddedCount] = useState(0);
 
-  function parseCharNames(): string[] {
+  useEffect(() => {
+    if (!open || !pd2Linked || characters !== null) return;
+    fetch("/api/user/pd2/characters")
+      .then((r) => r.json())
+      .then((data: { characters?: string[] }) => {
+        if (data.characters) {
+          setCharacters(data.characters);
+          setSelectedChars(new Set(data.characters));
+        } else {
+          setCharsFailed(true);
+        }
+      })
+      .catch(() => setCharsFailed(true));
+  }, [open, pd2Linked, characters]);
+
+  function getCharNames(): string[] {
+    if (pd2Linked && characters !== null) {
+      return [...selectedChars];
+    }
     return charInput
       .split(/[\n,]+/)
       .map((s) => s.trim())
@@ -27,7 +48,7 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
   }
 
   async function handlePreview() {
-    const names = parseCharNames();
+    const names = getCharNames();
     if (!names.length && !pd2Linked) return;
 
     setStep("previewing");
@@ -70,7 +91,7 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
         body: JSON.stringify({
           grailId,
           itemIds: preview.newItems.map((i) => i.id),
-          characters: parseCharNames(),
+          characters: getCharNames(),
         }),
       });
       if (!res.ok) throw new Error("Confirm failed");
@@ -93,6 +114,15 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
     setAddedCount(0);
   }
 
+  function toggleChar(name: string) {
+    setSelectedChars((prev) => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  }
+
   if (!open) {
     return (
       <button
@@ -103,6 +133,8 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
       </button>
     );
   }
+
+  const canPreview = step !== "previewing" && (getCharNames().length > 0 || pd2Linked);
 
   return (
     <div className="rounded-xl border border-zinc-700 bg-zinc-900/50 p-5 space-y-4">
@@ -148,38 +180,65 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
         />
       ) : (
         <div className="space-y-3">
-          <div>
-            <label className="mb-1.5 block text-xs text-zinc-500">
-              Character names {pd2Linked ? "(optional — stash is included automatically)" : "(one per line or comma-separated)"}
-            </label>
-            <textarea
-              value={charInput}
-              onChange={(e) => setCharInput(e.target.value)}
-              placeholder={"MyAmazon\nMyNecromancer, MyMule"}
-              rows={3}
-              className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-zinc-500 resize-none"
-            />
-            {pd2Linked ? (
-              <p className="mt-1.5 text-xs text-zinc-500">
-                Your shared stash will be included automatically. Add character names to also import their inventories.
-              </p>
-            ) : (
-              <p className="mt-1.5 text-xs text-zinc-500">
-                Import reflects your characters&apos; current inventory. Items in your shared stash or
-                previously traded away will need to be checked off manually.{" "}
-                <a href="/settings" className="text-zinc-400 underline hover:text-zinc-200">
-                  Link your PD2 account
-                </a>{" "}
-                to include your shared stash.
-              </p>
-            )}
-          </div>
+          {pd2Linked && characters !== null ? (
+            <div>
+              <label className="mb-2 block text-xs text-zinc-500">
+                Select characters to import — shared stash included automatically
+              </label>
+              {characters.length === 0 ? (
+                <p className="text-xs text-zinc-600">No characters found on this account.</p>
+              ) : (
+                <div className="space-y-1">
+                  {characters.map((name) => (
+                    <label key={name} className="flex items-center gap-2 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={selectedChars.has(name)}
+                        onChange={() => toggleChar(name)}
+                        className="rounded border-zinc-600 bg-zinc-800 text-amber-600 focus:ring-amber-600"
+                      />
+                      <span className="text-sm text-zinc-300 group-hover:text-zinc-100">{name}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : pd2Linked && characters === null && !charsFailed ? (
+            <p className="text-xs text-zinc-500">Loading characters…</p>
+          ) : (
+            <div>
+              <label className="mb-1.5 block text-xs text-zinc-500">
+                {charsFailed
+                  ? "Could not load character list — enter names manually"
+                  : pd2Linked
+                  ? "Character names (optional — stash is included automatically)"
+                  : "Character names (one per line or comma-separated)"}
+              </label>
+              <textarea
+                value={charInput}
+                onChange={(e) => setCharInput(e.target.value)}
+                placeholder={"MyAmazon\nMyNecromancer, MyMule"}
+                rows={3}
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-zinc-500 resize-none"
+              />
+              {!pd2Linked && (
+                <p className="mt-1.5 text-xs text-zinc-500">
+                  Import reflects your characters&apos; current inventory. Items in your shared stash or
+                  previously traded away will need to be checked off manually.{" "}
+                  <a href="/settings" className="text-zinc-400 underline hover:text-zinc-200">
+                    Link your PD2 account
+                  </a>{" "}
+                  to include your shared stash.
+                </p>
+              )}
+            </div>
+          )}
 
           {error && <p className="text-xs text-red-400">{error}</p>}
 
           <button
             onClick={handlePreview}
-            disabled={step === "previewing" || (!charInput.trim() && !pd2Linked)}
+            disabled={!canPreview}
             className="rounded-lg bg-amber-700 px-4 py-2 text-sm font-medium text-amber-100 transition-colors hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {step === "previewing" ? "Fetching…" : "Preview Import"}

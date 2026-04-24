@@ -37,6 +37,19 @@ async function refreshToken(accountId: string, refreshToken: string): Promise<st
   }
 }
 
+export async function getPD2Characters(username: string): Promise<string[] | null> {
+  try {
+    const res = await fetch(`https://api.projectdiablo2.com/game/account/${encodeURIComponent(username)}`, {
+      next: { revalidate: 0 },
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { characters?: string[] };
+    return data.characters ?? [];
+  } catch {
+    return null;
+  }
+}
+
 export type PD2TokenResult =
   | { token: string; sub: string; needsRelink: false }
   | { token: null; sub: null; needsRelink: boolean };

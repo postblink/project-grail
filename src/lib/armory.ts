@@ -97,7 +97,9 @@ async function fetchStash(token: string, sub: string): Promise<StashResponse | n
       console.warn("Stash fetch failed:", res.status, body);
       return null;
     }
-    return (await res.json()) as StashResponse;
+    const data = (await res.json()) as StashResponse;
+    console.log("[stash] raw response keys:", Object.keys(data), "tabs:", data.tabs?.length ?? 0, JSON.stringify(data).substring(0, 800));
+    return data;
   } catch (err) {
     console.warn("Stash fetch error:", err);
     return null;

@@ -9,6 +9,7 @@ import { AchievementToast } from "./AchievementToast";
 interface Props {
   grailId: string;
   initialItems: GrailItemRow[];
+  pd2Linked: boolean;
 }
 
 function computeProgress(items: GrailItemRow[]) {
@@ -17,7 +18,7 @@ function computeProgress(items: GrailItemRow[]) {
   return { total, found, pct: total > 0 ? Math.round((found / total) * 100) : 0 };
 }
 
-export function GrailView({ grailId, initialItems }: Props) {
+export function GrailView({ grailId, initialItems, pd2Linked }: Props) {
   const [items, setItems] = useState(initialItems);
   const [pendingAchievements, setPendingAchievements] = useState<string[]>([]);
   const progress = computeProgress(items);
@@ -38,7 +39,7 @@ export function GrailView({ grailId, initialItems }: Props) {
           <span className="text-2xl font-bold text-zinc-100">{progress.pct}%</span>
           {" "}— {progress.found} / {progress.total} items
         </p>
-        <ArmoryImport grailId={grailId} onImportComplete={handleImportComplete} />
+        <ArmoryImport grailId={grailId} onImportComplete={handleImportComplete} pd2Linked={pd2Linked} />
       </div>
       <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
         <div

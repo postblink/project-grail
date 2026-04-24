@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 
 const ARMORY_API = "https://api.projectdiablo2.com/game/character";
+const STASH_API = "https://api.projectdiablo2.com/game/stash";
 
 // ──────────────────────────────────────────────
 // API types (subset we actually use)
@@ -35,6 +36,15 @@ interface ArmoryResponse {
   };
 }
 
+interface StashTab {
+  items?: ArmoryItem[];
+}
+
+interface StashResponse {
+  items?: ArmoryItem[];
+  tabs?: StashTab[];
+}
+
 // ──────────────────────────────────────────────
 // Public types
 // ──────────────────────────────────────────────
@@ -48,10 +58,13 @@ export interface ArmoryPreviewItem {
 }
 
 export interface ArmoryPreviewResult {
-  newItems: ArmoryPreviewItem[];       // not yet found in grail → will be marked found
-  alreadyFound: ArmoryPreviewItem[];   // already found → no change
-  unmatchedNames: string[];            // parsed but not in DB
-  failedCharacters: string[];          // armory fetch failed for these
+  newItems: ArmoryPreviewItem[];
+  alreadyFound: ArmoryPreviewItem[];
+  unmatchedNames: string[];
+  failedCharacters: string[];
+  stashIncluded: boolean;
+  stashFailed: boolean;
+  needsRelink: boolean;
 }
 
 // ──────────────────────────────────────────────
@@ -70,13 +83,30 @@ async function fetchCharacter(name: string): Promise<ArmoryResponse | null> {
   }
 }
 
+async function fetchStash(token: string): Promise<StashResponse | null> {
+  try {
+    const res = await fetch(STASH_API, {
+      headers: { Authorization: `Bearer ${token}` },
+      next: { revalidate: 0 },
+    });
+    if (!res.ok) {
+      console.warn("Stash fetch failed:", res.status);
+      return null;
+    }
+    return (await res.json()) as StashResponse;
+  } catch (err) {
+    console.warn("Stash fetch error:", err);
+    return null;
+  }
+}
+
 function extractNamesFromItem(item: ArmoryItem, out: string[]): void {
   if (item.is_runeword && item.runeword?.name) {
     out.push(item.runeword.name);
   } else if (item.quality?.name === "Unique" || item.quality?.name === "Set") {
     out.push(item.name);
   } else if (item.base?.type_code === "rune") {
-    out.push(item.name); // e.g. "El Rune"
+    out.push(item.name);
   }
 
   for (const s of item.socketed ?? []) {
@@ -93,6 +123,16 @@ function extractItemNames(data: ArmoryResponse): string[] {
   return names;
 }
 
+function extractStashItemNames(data: StashResponse): string[] {
+  const names: string[] = [];
+  const topLevel = data.items ?? [];
+  const tabItems = (data.tabs ?? []).flatMap((t) => t.items ?? []);
+  for (const item of [...topLevel, ...tabItems]) {
+    extractNamesFromItem(item, names);
+  }
+  return names;
+}
+
 // ──────────────────────────────────────────────
 // Preview (no DB writes)
 // ──────────────────────────────────────────────
@@ -100,10 +140,14 @@ function extractItemNames(data: ArmoryResponse): string[] {
 export async function previewArmoryImport(
   grailId: string,
   characterNames: string[],
+  pd2Token?: string | null,
 ): Promise<ArmoryPreviewResult> {
   const failedCharacters: string[] = [];
   const rawNames: string[] = [];
+  let stashIncluded = false;
+  let stashFailed = false;
 
+  // Fetch characters (may be empty for stash-only imports)
   await Promise.all(
     characterNames.map(async (charName) => {
       const data = await fetchCharacter(charName.trim());
@@ -115,10 +159,19 @@ export async function previewArmoryImport(
     }),
   );
 
-  // Deduplicate extracted names
+  // Fetch shared stash when a PD2 token is available
+  if (pd2Token) {
+    const stashData = await fetchStash(pd2Token);
+    if (stashData) {
+      rawNames.push(...extractStashItemNames(stashData));
+      stashIncluded = true;
+    } else {
+      stashFailed = true;
+    }
+  }
+
   const uniqueNames = [...new Set(rawNames.map((n) => n.toLowerCase()))];
 
-  // Fetch all active items matching any of the extracted names
   const dbItems = await db.item.findMany({
     where: {
       name: { in: uniqueNames, mode: "insensitive" },
@@ -128,11 +181,8 @@ export async function previewArmoryImport(
   });
 
   const dbItemMap = new Map(dbItems.map((i) => [i.name.toLowerCase(), i]));
-
-  // Find which names had no DB match
   const unmatchedNames = uniqueNames.filter((n) => !dbItemMap.has(n));
 
-  // Load existing found entries for this grail
   const existingEntries = await db.grailEntry.findMany({
     where: { grail_id: grailId, item_id: { in: dbItems.map((i) => i.id) } },
     select: { item_id: true, found: true },
@@ -159,5 +209,13 @@ export async function previewArmoryImport(
     }
   }
 
-  return { newItems, alreadyFound, unmatchedNames, failedCharacters };
+  return {
+    newItems,
+    alreadyFound,
+    unmatchedNames,
+    failedCharacters,
+    stashIncluded,
+    stashFailed,
+    needsRelink: false,
+  };
 }

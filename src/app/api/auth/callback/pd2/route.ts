@@ -9,7 +9,7 @@ type PD2Token = {
   token_type?: string;
   scope?: string;
 };
-type PD2User = { sub: string; name?: string | null };
+type PD2User = { sub: string; name: string };
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -80,7 +80,7 @@ export async function GET(req: NextRequest) {
           userId,
           type: "oauth",
           provider: "pd2",
-          providerAccountId: pd2User.sub,
+          providerAccountId: pd2User.name,
           access_token: tokenData.access_token,
           refresh_token: tokenData.refresh_token ?? null,
           expires_at: tokenData.expires_in

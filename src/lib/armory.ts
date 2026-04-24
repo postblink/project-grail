@@ -83,9 +83,9 @@ async function fetchCharacter(name: string): Promise<ArmoryResponse | null> {
   }
 }
 
-async function fetchStash(token: string): Promise<StashResponse | null> {
+async function fetchStash(token: string, sub: string): Promise<StashResponse | null> {
   try {
-    const res = await fetch(STASH_API, {
+    const res = await fetch(`${STASH_API}/${encodeURIComponent(sub)}`, {
       headers: { Authorization: `Bearer ${token}` },
       next: { revalidate: 0 },
     });
@@ -141,6 +141,7 @@ export async function previewArmoryImport(
   grailId: string,
   characterNames: string[],
   pd2Token?: string | null,
+  pd2Sub?: string | null,
 ): Promise<ArmoryPreviewResult> {
   const failedCharacters: string[] = [];
   const rawNames: string[] = [];
@@ -159,9 +160,9 @@ export async function previewArmoryImport(
     }),
   );
 
-  // Fetch shared stash when a PD2 token is available
-  if (pd2Token) {
-    const stashData = await fetchStash(pd2Token);
+  // Fetch shared stash when a PD2 token and sub are available
+  if (pd2Token && pd2Sub) {
+    const stashData = await fetchStash(pd2Token, pd2Sub);
     if (stashData) {
       rawNames.push(...extractStashItemNames(stashData));
       stashIncluded = true;

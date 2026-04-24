@@ -4,7 +4,7 @@
  */
 import "dotenv/config";
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../src/generated/prisma";
+import { PrismaClient } from "../src/generated/prisma/client";
 import pg from "pg";
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
@@ -22,12 +22,10 @@ async function main() {
     prisma.grail.deleteMany(),
     prisma.userAchievement.deleteMany(),
     prisma.session.deleteMany(),
-    prisma.account.deleteMany(),
     prisma.verificationToken.deleteMany(),
-    prisma.user.deleteMany(),
   ]);
 
-  console.log("Done. Items and seasons preserved.");
+  console.log("Done. Users, accounts, items, and seasons preserved.");
 }
 
 main()

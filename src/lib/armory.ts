@@ -115,7 +115,8 @@ function extractNamesFromItem(item: ArmoryItem, out: string[]): void {
   } else if (item.quality?.name === "Unique" || item.quality?.name === "Set") {
     out.push(item.name);
   } else if (item.base?.type_code === "rune") {
-    out.push(item.name);
+    // API returns "Ral Rune", DB stores "Ral" — strip the suffix
+    out.push(item.name.replace(/ Rune$/i, "").trim());
   }
 
   for (const s of item.socketed ?? []) {

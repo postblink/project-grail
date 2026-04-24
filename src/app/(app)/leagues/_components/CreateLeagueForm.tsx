@@ -43,7 +43,6 @@ const SCOPE_LABELS: Record<keyof GrailScope, string> = {
 export function CreateLeagueForm() {
   const router = useRouter();
   const [name, setName] = useState("");
-  const [expandedType, setExpandedType] = useState<string | null>(null);
   const [leagueType, setLeagueType] = useState<"hybrid" | "competitive" | "cooperative">("hybrid");
   const [ladderMode, setLadderMode] = useState<"softcore_ladder" | "hardcore_ladder" | "softcore_nonladder" | "hardcore_nonladder">("softcore_ladder");
   const [isPrivate, setIsPrivate] = useState(false);
@@ -126,19 +125,9 @@ export function CreateLeagueForm() {
                   <span className="block text-sm font-medium text-zinc-200">{t.label}</span>
                   <span className="text-xs text-zinc-500">{t.desc}</span>
                 </span>
-                <button
-                  type="button"
-                  onClick={() => setExpandedType(expandedType === t.value ? null : t.value)}
-                  className="mt-0.5 text-zinc-600 hover:text-zinc-400 transition-colors"
-                  aria-label="More info"
-                >
-                  <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                  </svg>
-                </button>
               </label>
-              {expandedType === t.value && (
-                <p className="px-3 pb-3 text-xs text-zinc-400 border-t border-zinc-700/50 pt-2 mt-0">{t.detail}</p>
+              {leagueType === t.value && (
+                <p className="px-3 pb-3 text-xs text-zinc-400 border-t border-zinc-700/50 pt-2">{t.detail}</p>
               )}
             </div>
           ))}

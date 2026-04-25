@@ -7,7 +7,7 @@ import { getPD2Token } from "@/lib/pd2-api";
 
 const schema = z.object({
   grailId: z.string().min(1),
-  characterNames: z.array(z.string().min(1)).max(10).default([]),
+  characterNames: z.array(z.string().min(1)).max(30).default([]),
 });
 
 export async function POST(req: NextRequest) {

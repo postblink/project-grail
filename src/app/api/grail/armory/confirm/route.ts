@@ -8,7 +8,7 @@ import { awardAchievements } from "@/lib/achievements";
 const schema = z.object({
   grailId: z.string().min(1),
   itemIds: z.array(z.string().min(1)).min(1).max(2000),
-  characters: z.array(z.string().min(1)).max(10).default([]),
+  characters: z.array(z.string().min(1)).max(30).default([]),
 });
 
 export async function POST(req: NextRequest) {

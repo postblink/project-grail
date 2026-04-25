@@ -2,16 +2,19 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { getPD2Token } from "@/lib/pd2-api";
 
-async function tryStash(token: string, id: string) {
-  const url = `https://api.projectdiablo2.com/game/stash/${encodeURIComponent(id)}`;
+async function probe(token: string, url: string) {
   const res = await fetch(url, {
     headers: { Authorization: `Bearer ${token}` },
     next: { revalidate: 0 },
   });
-  const body = await res.text().catch(() => "(failed to read body)");
+  const body = await res.text().catch(() => "(failed)");
   let parsed: unknown = null;
   try { parsed = JSON.parse(body); } catch { /* not json */ }
-  return { url, status: res.status, ok: res.ok, body: parsed ?? body };
+  // Truncate large bodies
+  const preview = typeof parsed === "object" && parsed !== null
+    ? JSON.stringify(parsed).slice(0, 600)
+    : String(body).slice(0, 600);
+  return { status: res.status, preview };
 }
 
 export async function GET() {
@@ -25,24 +28,25 @@ export async function GET() {
     return NextResponse.json({ error: "No PD2 token", needsRelink: pd2Result.needsRelink });
   }
 
-  // Get the raw OAuth identity — may return both sub (account ID) and name
-  const meRes = await fetch("https://api.projectdiablo2.com/oauth/me", {
-    headers: { Authorization: `Bearer ${pd2Result.token}` },
-  });
-  const meBody = await meRes.json().catch(() => null) as Record<string, unknown> | null;
+  const token = pd2Result.token;
+  const username = pd2Result.sub;
+  const oauthSub = await fetch("https://api.projectdiablo2.com/oauth/me", {
+    headers: { Authorization: `Bearer ${token}` },
+  }).then(r => r.json()).then((d: Record<string, string>) => d.sub ?? null).catch(() => null);
 
-  const results: Record<string, unknown> = {
-    storedSub: pd2Result.sub,
-    oauthMe: { status: meRes.status, body: meBody },
-  };
+  const urls = [
+    `https://api.projectdiablo2.com/game/stash/${username}`,
+    `https://api.projectdiablo2.com/game/stash/${oauthSub}`,
+    `https://api.projectdiablo2.com/game/stash`,
+    `https://api.projectdiablo2.com/game/account/${username}/stash`,
+    `https://api.projectdiablo2.com/game/account/${oauthSub}/stash`,
+    `https://api.projectdiablo2.com/game/shared-stash/${username}`,
+    `https://api.projectdiablo2.com/game/shared-stash/${oauthSub}`,
+  ];
 
-  // Try stash with stored sub (username)
-  results.byUsername = await tryStash(pd2Result.token, pd2Result.sub);
-
-  // If /oauth/me returned a different sub, try that too
-  const oauthSub = meBody?.sub as string | undefined;
-  if (oauthSub && oauthSub !== pd2Result.sub) {
-    results.byOAuthSub = await tryStash(pd2Result.token, oauthSub);
+  const results: Record<string, unknown> = { username, oauthSub };
+  for (const url of urls) {
+    results[url] = await probe(token, url);
   }
 
   return NextResponse.json(results);

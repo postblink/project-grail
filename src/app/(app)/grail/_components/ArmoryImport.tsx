@@ -22,6 +22,8 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [addedCount, setAddedCount] = useState(0);
 
+  const savedCharsKey = `armory-selected-chars-${grailId}`;
+
   useEffect(() => {
     if (!open || !pd2Linked || characters !== null) return;
     fetch("/api/user/pd2/characters")
@@ -29,13 +31,23 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
       .then((data: { characters?: string[] }) => {
         if (data.characters) {
           setCharacters(data.characters);
-          setSelectedChars(new Set(data.characters));
+          try {
+            const saved = localStorage.getItem(savedCharsKey);
+            const savedSet = saved ? new Set<string>(JSON.parse(saved)) : null;
+            // Only restore saved selection if it overlaps with current characters
+            const restored = savedSet
+              ? new Set(data.characters.filter((c) => savedSet.has(c)))
+              : null;
+            setSelectedChars(restored?.size ? restored : new Set(data.characters));
+          } catch {
+            setSelectedChars(new Set(data.characters));
+          }
         } else {
           setCharsFailed(true);
         }
       })
       .catch(() => setCharsFailed(true));
-  }, [open, pd2Linked, characters]);
+  }, [open, pd2Linked, characters, savedCharsKey]);
 
   function getCharNames(): string[] {
     if (pd2Linked && characters !== null) {
@@ -119,6 +131,7 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
       const next = new Set(prev);
       if (next.has(name)) next.delete(name);
       else next.add(name);
+      try { localStorage.setItem(savedCharsKey, JSON.stringify([...next])); } catch { /* ignore */ }
       return next;
     });
   }
@@ -233,6 +246,10 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
               )}
             </div>
           )}
+
+          <p className="text-xs text-zinc-600">
+            Armory data updates when you log out of a character. Log out in-game first to ensure your latest inventory and stash are reflected.
+          </p>
 
           {error && <p className="text-xs text-red-400">{error}</p>}
 

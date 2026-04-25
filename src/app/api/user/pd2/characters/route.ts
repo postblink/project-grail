@@ -13,7 +13,7 @@ export async function GET() {
     return NextResponse.json({ characters: [], needsRelink: pd2Result.needsRelink });
   }
 
-  const characters = await getPD2Characters(pd2Result.sub);
+  const characters = await getPD2Characters(pd2Result.username);
   if (characters === null) {
     return NextResponse.json({ error: "Could not fetch character list" }, { status: 502 });
   }

@@ -51,8 +51,8 @@ export async function getPD2Characters(username: string): Promise<string[] | nul
 }
 
 export type PD2TokenResult =
-  | { token: string; sub: string; needsRelink: false }
-  | { token: null; sub: null; needsRelink: boolean };
+  | { token: string; username: string; sub: string; needsRelink: false }
+  | { token: null; username: null; sub: null; needsRelink: boolean };
 
 // MongoDB ObjectIDs are 24 hex chars — if providerAccountId looks like one,
 // it's a pre-fix record that stored sub instead of username.
@@ -69,7 +69,6 @@ async function resolveUsername(token: string, accountId: string, storedId: strin
     if (!res.ok) return storedId;
     const data = (await res.json()) as { name?: string };
     if (!data.name || data.name === storedId) return storedId;
-    // Heal the stored value so future calls don't need to re-fetch
     await db.account.update({ where: { id: accountId }, data: { providerAccountId: data.name } });
     return data.name;
   } catch {
@@ -77,13 +76,32 @@ async function resolveUsername(token: string, accountId: string, storedId: strin
   }
 }
 
+// Resolves the OAuth sub (MongoDB ObjectID) needed for the stash endpoint.
+// New accounts have it stored in id_token; older accounts fall back to /oauth/me
+// and cache the result.
+async function resolveOAuthSub(token: string, accountId: string, storedSub: string | null): Promise<string | null> {
+  if (storedSub) return storedSub;
+  try {
+    const res = await fetch("https://api.projectdiablo2.com/oauth/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { sub?: string };
+    if (!data.sub) return null;
+    await db.account.update({ where: { id: accountId }, data: { id_token: data.sub } });
+    return data.sub;
+  } catch {
+    return null;
+  }
+}
+
 export async function getPD2Token(userId: string): Promise<PD2TokenResult> {
   const account = await db.account.findFirst({
     where: { userId, provider: "pd2" },
-    select: { id: true, access_token: true, refresh_token: true, expires_at: true, providerAccountId: true },
+    select: { id: true, access_token: true, refresh_token: true, expires_at: true, providerAccountId: true, id_token: true },
   });
 
-  if (!account?.access_token) return { token: null, sub: null, needsRelink: false };
+  if (!account?.access_token) return { token: null, username: null, sub: null, needsRelink: false };
 
   const isExpired =
     account.expires_at !== null &&
@@ -91,16 +109,18 @@ export async function getPD2Token(userId: string): Promise<PD2TokenResult> {
 
   if (!isExpired) {
     const username = await resolveUsername(account.access_token, account.id, account.providerAccountId);
-    return { token: account.access_token, sub: username, needsRelink: false };
+    const sub = await resolveOAuthSub(account.access_token, account.id, account.id_token ?? null);
+    return { token: account.access_token, username, sub: sub ?? username, needsRelink: false };
   }
 
   if (account.refresh_token) {
     const refreshed = await refreshToken(account.id, account.refresh_token);
     if (refreshed) {
       const username = await resolveUsername(refreshed, account.id, account.providerAccountId);
-      return { token: refreshed, sub: username, needsRelink: false };
+      const sub = await resolveOAuthSub(refreshed, account.id, account.id_token ?? null);
+      return { token: refreshed, username, sub: sub ?? username, needsRelink: false };
     }
   }
 
-  return { token: null, sub: null, needsRelink: true };
+  return { token: null, username: null, sub: null, needsRelink: true };
 }

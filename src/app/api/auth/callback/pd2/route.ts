@@ -88,6 +88,7 @@ export async function GET(req: NextRequest) {
             : null,
           token_type: tokenData.token_type ?? null,
           scope: tokenData.scope ?? null,
+          id_token: pd2User.sub,
         },
       }),
       db.user.update({

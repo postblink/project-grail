@@ -158,6 +158,7 @@ model Item {
   grail_entries        GrailEntry[]
   league_grail_entries LeagueGrailEntry[]
 
+  @@index([is_active, category])
   @@map("items")
 }
 
@@ -189,6 +190,7 @@ model GrailEntry {
   item  Item  @relation(fields: [item_id], references: [id])
 
   @@unique([grail_id, item_id])
+  @@index([grail_id, found])
   @@map("grail_entries")
 }
 

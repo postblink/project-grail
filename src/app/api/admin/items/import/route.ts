@@ -37,18 +37,25 @@ export async function POST(req: NextRequest) {
     : [];
   const seasonMap = new Map(seasons.map((s) => [s.slug, s.id]));
 
+  // Fetch all existing items in one query, then split into create/update batches
+  const itemNames = items.map((i) => i.name);
+  const existingItems = await db.item.findMany({
+    where: { name: { in: itemNames } },
+    select: { id: true, name: true },
+  });
+  const existingMap = new Map(existingItems.map((e) => [e.name, e.id]));
+
   let created = 0;
   let updated = 0;
 
   await Promise.all(
     items.map(async (item) => {
       const seasonId = item.season_introduced ? (seasonMap.get(item.season_introduced) ?? null) : null;
+      const existingId = existingMap.get(item.name);
 
-      const existing = await db.item.findUnique({ where: { name: item.name }, select: { id: true } });
-
-      if (existing) {
+      if (existingId) {
         await db.item.update({
-          where: { id: existing.id },
+          where: { id: existingId },
           data: {
             category: item.category,
             item_type: item.item_type ?? null,

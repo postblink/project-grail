@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { sendBatchNotification } from "@/lib/discord";
+import { wikiImageUrl } from "@/lib/grail";
 
 interface BatchRow {
   id: string;
@@ -64,6 +65,16 @@ export async function GET(req: NextRequest) {
       const milestones = [...new Set(realBatches.flatMap((b) => b.milestones))];
       const achievementKeys = [...new Set(realBatches.flatMap((b) => b.achievement_keys))];
 
+      // Resolve thumbnail from first item name
+      let thumbnailUrl: string | undefined;
+      if (itemNames[0]) {
+        const firstItem = await db.item.findFirst({
+          where: { name: { equals: itemNames[0], mode: "insensitive" } },
+          select: { category: true },
+        });
+        if (firstItem) thumbnailUrl = wikiImageUrl(itemNames[0], firstItem.category) || undefined;
+      }
+
       await sendBatchNotification({
         webhookUrl,
         displayName: primary.display_name,
@@ -77,6 +88,7 @@ export async function GET(req: NextRequest) {
         total: primary.total,
         milestones,
         achievementKeys,
+        thumbnailUrl,
       });
     }),
   );

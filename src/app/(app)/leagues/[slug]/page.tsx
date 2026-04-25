@@ -39,7 +39,7 @@ export default async function LeaguePage({ params }: Props) {
   const userId = session?.user.id;
   const memberRole = userId ? await getMemberRole(league.id, userId) : null;
   const isMember = memberRole !== null;
-  const canManage = isCommissioner(memberRole);
+  const canManage = isCommissioner(memberRole) || !!session?.user.is_admin;
 
   const scope = league.grail_scope as unknown as GrailScope;
   const isCoop = league.league_type === "cooperative";

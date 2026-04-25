@@ -274,8 +274,13 @@ function PreviewStep({
           Could not fetch shared stash — character imports will still proceed.
         </p>
       )}
+      {preview.stashNotFound && (
+        <p className="text-xs text-zinc-500">
+          Shared stash not available yet — open your shared stash in-game once to initialize it, then try again.
+        </p>
+      )}
       {preview.stashEmpty && (
-        <p className="text-xs text-zinc-500">Shared stash: no items found.</p>
+        <p className="text-xs text-zinc-500">Shared stash: no trackable items found.</p>
       )}
       {preview.stashIncluded && (
         <p className="text-xs text-zinc-500">Shared stash included.</p>

@@ -67,6 +67,7 @@ export interface ArmoryPreviewResult {
   stashIncluded: boolean;
   stashFailed: boolean;
   stashEmpty: boolean;
+  stashNotFound: boolean;
   needsRelink: boolean;
 }
 
@@ -86,26 +87,28 @@ async function fetchCharacter(name: string): Promise<ArmoryResponse | null> {
   }
 }
 
-async function fetchStash(token: string, sub: string): Promise<StashResponse | null> {
+type StashFetchResult =
+  | { ok: true; data: StashResponse }
+  | { ok: false; notFound: boolean };
+
+async function fetchStash(token: string, sub: string): Promise<StashFetchResult> {
   try {
     const res = await fetch(`${STASH_API}/${encodeURIComponent(sub)}`, {
       headers: { Authorization: `Bearer ${token}` },
       next: { revalidate: 0 },
     });
     if (res.status === 404) {
-      return null; // no stash data yet this season
+      return { ok: false, notFound: true };
     }
     if (!res.ok) {
-      const body = await res.text().catch(() => "");
-      console.warn("Stash fetch failed:", res.status, body);
-      return null;
+      console.warn("Stash fetch failed:", res.status);
+      return { ok: false, notFound: false };
     }
     const data = (await res.json()) as StashResponse;
-    console.log("[stash] raw response keys:", Object.keys(data), "tabs:", data.tabs?.length ?? 0, JSON.stringify(data).substring(0, 800));
-    return data;
+    return { ok: true, data };
   } catch (err) {
     console.warn("Stash fetch error:", err);
-    return null;
+    return { ok: false, notFound: false };
   }
 }
 
@@ -159,6 +162,7 @@ export async function previewArmoryImport(
   let stashIncluded = false;
   let stashFailed = false;
   let stashEmpty = false;
+  let stashNotFound = false;
 
   // Fetch characters (may be empty for stash-only imports)
   await Promise.all(
@@ -174,12 +178,15 @@ export async function previewArmoryImport(
 
   // Fetch shared stash when a PD2 token and sub are available
   if (pd2Token && pd2Sub) {
-    const stashData = await fetchStash(pd2Token, pd2Sub);
-    if (stashData === null) {
-      // null = 404 (no stash data this season yet) or fetch error
-      stashEmpty = true;
+    const stashResult = await fetchStash(pd2Token, pd2Sub);
+    if (!stashResult.ok) {
+      if (stashResult.notFound) {
+        stashNotFound = true;
+      } else {
+        stashFailed = true;
+      }
     } else {
-      const stashNames = extractStashItemNames(stashData);
+      const stashNames = extractStashItemNames(stashResult.data);
       if (stashNames.length > 0) {
         rawNames.push(...stashNames);
         stashIncluded = true;
@@ -236,6 +243,7 @@ export async function previewArmoryImport(
     stashIncluded,
     stashFailed,
     stashEmpty,
+    stashNotFound,
     needsRelink: false,
   };
 }

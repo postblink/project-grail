@@ -16,8 +16,11 @@ export default async function LeagueSettingsPage({ params }: Props) {
 
   if (!session?.user.id) redirect(`/login?callbackUrl=/leagues/${slug}/settings`);
 
-  const role = await getMemberRole(league.id, session.user.id);
-  if (!isCommissioner(role)) redirect(`/leagues/${slug}`);
+  const isAdmin = !!session.user.is_admin;
+  if (!isAdmin) {
+    const role = await getMemberRole(league.id, session.user.id);
+    if (!isCommissioner(role)) redirect(`/leagues/${slug}`);
+  }
 
   return (
     <div className="space-y-6">

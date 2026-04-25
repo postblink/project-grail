@@ -124,6 +124,13 @@ export async function POST(req: NextRequest) {
             select: { id: true, name: true, discord_webhook_url: true },
           });
 
+          // Resolve item names for the batch (same IDs we just confirmed)
+          const importedItems = await db.item.findMany({
+            where: { id: { in: itemIds } },
+            select: { name: true },
+          });
+          const importedItemNames = importedItems.map((i) => i.name);
+
           if (leagues.length === 0) return;
 
           const prevFound = foundCount - itemIds.length;
@@ -155,6 +162,7 @@ export async function POST(req: NextRequest) {
                   where: { id: existing.id },
                   data: {
                     items_found: existing.items_found + itemIds.length,
+                    item_names: [...existing.item_names, ...importedItemNames],
                     pct_current: pctCurrent,
                     found_current: foundCount,
                     total: totalCount,
@@ -171,6 +179,7 @@ export async function POST(req: NextRequest) {
                     display_name: displayName,
                     profile_url: profileUrl,
                     items_found: itemIds.length,
+                    item_names: importedItemNames,
                     pct_before: pctBefore,
                     pct_current: pctCurrent,
                     found_current: foundCount,

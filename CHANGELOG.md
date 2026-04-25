@@ -1,5 +1,36 @@
 # Changelog
 
+## 2026-04-25
+
+### Added
+- **PD2 account linking** — users can now link their Project Diablo 2 account from the Settings page. Linking enables shared stash import and auto-populates the character list on the armory import screen.
+- **Shared stash import** — armory imports now include items from the PD2 shared stash (currency tab). Runes and stash items are merged with character inventory before the diff step.
+- **Account unlinking** — Discord and PD2 accounts can be unlinked individually from Settings.
+- **Character list auto-population** — the armory import modal now pre-fills the character list from the linked PD2 account, so users no longer have to type character names manually.
+- **Route protection middleware** — NextAuth middleware now guards all authenticated routes at the edge, replacing page-level redirect-only protection.
+- **Admin league management** — admin users can access and edit any league's settings without being a commissioner; the Settings gear button is now visible to admins on all league pages.
+- **League type auto-expand** — selecting a league type on the Create League form immediately expands its description inline; the separate info toggle button is removed.
+
+### Improved
+- **Discord batch embeds** — notifications now include a bullet list of item names found and a thumbnail of the first item. Messages are de-duplicated across leagues that share the same webhook URL.
+- **UX polish** — settings gear icon in the nav, league type and ladder mode detail text in the create form, Discord webhook help tooltip, PD2-exclusive item tooltip, grail empty state copy, and progress milestone callouts on the dashboard.
+- **Armory character selection** — selected characters are now saved per-grail in localStorage and restored on next open.
+
+### Fixed
+- **Armory import failing for large character rosters** — Zod validation was capping the character array at 10 entries; raised to 30.
+- **Discord batch missing item names** — the armory confirm route was not populating `item_names` in the batch record, causing embeds to show a count with no list.
+- **Shared stash 404 on new accounts** — the PD2 stash API returns 404 until a user opens their shared stash in-game at least once. The import UI now detects this case and shows an actionable message instead of a generic error.
+- **Rune name mismatch** — the PD2 API returns rune names with a ` Rune` suffix (e.g. `El Rune`); the DB stores them without it. The parser now strips the suffix before matching.
+- **Legacy PD2 account records** — users who linked their PD2 account before the sub→username fix stored the OAuth sub ID instead of the username. Tokens are now auto-healed on next use.
+- **JWT invalidation on deleted users** — JWTs were not invalidated when a user record was removed; the token callback now checks DB existence and rejects stale sessions.
+- **Admin item import N+1** — the JSON import endpoint was issuing one `findUnique` per item to check existence; replaced with a single bulk `findMany` lookup.
+- **Unauthenticated debug endpoint** — `debug/db` had no auth check and leaked session data; removed.
+- **S13 item database** — resynced with PD2 wiki; added Embersworn, Skyfall, Sage's Defiance, Nethercrux, Giant Maimer, and Ephemeral.
+
+### Performance
+- Added composite index on `grail_entries(grail_id, found)` — speeds up grail progress queries.
+- Added composite index on `items(is_active, category)` — speeds up filtered item list queries.
+
 ## 2026-04-23
 
 ### Added

@@ -31,9 +31,12 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
   const league = await db.league.findUnique({ where: { slug }, select: { id: true, is_private: true } });
   if (!league) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  const role = await getMemberRole(league.id, session.user.id);
-  if (!isCommissioner(role)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  const isAdmin = !!session.user.is_admin;
+  if (!isAdmin) {
+    const role = await getMemberRole(league.id, session.user.id);
+    if (!isCommissioner(role)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
   }
 
   const body = await req.json().catch(() => null);

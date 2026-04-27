@@ -230,12 +230,12 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
                           )}
                         </div>
                         {(char.class ?? char.level ?? char.updated_at) && (
-                          <div className="text-[11px] text-zinc-600 flex items-center gap-1 flex-wrap">
+                          <div className="text-[11px] text-zinc-400 flex items-center gap-1 flex-wrap">
                             {char.class && <span>{char.class}</span>}
                             {char.level && <span>Lv {char.level}</span>}
                             {char.updated_at && (
                               <>
-                                <span className="text-zinc-700">·</span>
+                                <span className="text-zinc-500">·</span>
                                 <span>saved {timeAgo(char.updated_at)}</span>
                               </>
                             )}

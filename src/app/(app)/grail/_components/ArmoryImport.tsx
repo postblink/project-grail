@@ -26,6 +26,7 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
   const [charInput, setCharInput] = useState("");
   const [characters, setCharacters] = useState<PD2CharacterInfo[] | null>(null);
   const [selectedChars, setSelectedChars] = useState<Set<string>>(new Set());
+  const [charFilter, setCharFilter] = useState<"all" | "ladder" | "standard">("ladder");
   const [charsFailed, setCharsFailed] = useState(false);
   const [preview, setPreview] = useState<ArmoryPreviewResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -204,14 +205,29 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
         <div className="space-y-3">
           {pd2Linked && characters !== null ? (
             <div>
-              <label className="mb-2 block text-xs text-zinc-500">
-                Select characters to import — shared stash included automatically
-              </label>
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <label className="text-xs text-zinc-500">
+                  Select characters to import — shared stash included automatically
+                </label>
+                <select
+                  value={charFilter}
+                  onChange={(e) => setCharFilter(e.target.value as "all" | "ladder" | "standard")}
+                  className="rounded border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs text-zinc-300 focus:outline-none focus:border-zinc-500"
+                >
+                  <option value="all">Show All</option>
+                  <option value="ladder">Ladder</option>
+                  <option value="standard">Standard</option>
+                </select>
+              </div>
               {characters.length === 0 ? (
                 <p className="text-xs text-zinc-600">No characters found on this account.</p>
               ) : (
                 <div className="space-y-1.5">
-                  {characters.map((char) => (
+                  {characters.filter((c) =>
+                    charFilter === "ladder" ? c.is_ladder :
+                    charFilter === "standard" ? !c.is_ladder :
+                    true
+                  ).map((char) => (
                     <label key={char.name} className="flex items-start gap-2.5 cursor-pointer group">
                       <input
                         type="checkbox"

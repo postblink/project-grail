@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import type { ArmoryPreviewItem, ArmoryPreviewResult } from "@/lib/armory";
+import type { PD2CharacterInfo } from "@/app/api/user/pd2/characters/route";
 
 type Step = "idle" | "previewing" | "preview" | "confirming" | "done";
 
@@ -11,11 +12,19 @@ interface Props {
   onImportComplete: (foundItemIds: string[]) => void;
 }
 
+function timeAgo(ts: number): string {
+  const diff = Math.floor(Date.now() / 1000) - ts;
+  if (diff < 60) return "just now";
+  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  return `${Math.floor(diff / 86400)}d ago`;
+}
+
 export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<Step>("idle");
   const [charInput, setCharInput] = useState("");
-  const [characters, setCharacters] = useState<string[] | null>(null);
+  const [characters, setCharacters] = useState<PD2CharacterInfo[] | null>(null);
   const [selectedChars, setSelectedChars] = useState<Set<string>>(new Set());
   const [charsFailed, setCharsFailed] = useState(false);
   const [preview, setPreview] = useState<ArmoryPreviewResult | null>(null);
@@ -28,19 +37,19 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
     if (!open || !pd2Linked || characters !== null) return;
     fetch("/api/user/pd2/characters")
       .then((r) => r.json())
-      .then((data: { characters?: string[] }) => {
+      .then((data: { characters?: PD2CharacterInfo[] }) => {
         if (data.characters) {
           setCharacters(data.characters);
+          const names = data.characters.map((c) => c.name);
           try {
             const saved = localStorage.getItem(savedCharsKey);
             const savedSet = saved ? new Set<string>(JSON.parse(saved)) : null;
-            // Only restore saved selection if it overlaps with current characters
             const restored = savedSet
-              ? new Set(data.characters.filter((c) => savedSet.has(c)))
+              ? new Set(names.filter((n) => savedSet.has(n)))
               : null;
-            setSelectedChars(restored?.size ? restored : new Set(data.characters));
+            setSelectedChars(restored?.size ? restored : new Set(names));
           } catch {
-            setSelectedChars(new Set(data.characters));
+            setSelectedChars(new Set(names));
           }
         } else {
           setCharsFailed(true);
@@ -201,16 +210,38 @@ export function ArmoryImport({ grailId, pd2Linked, onImportComplete }: Props) {
               {characters.length === 0 ? (
                 <p className="text-xs text-zinc-600">No characters found on this account.</p>
               ) : (
-                <div className="space-y-1">
-                  {characters.map((name) => (
-                    <label key={name} className="flex items-center gap-2 cursor-pointer group">
+                <div className="space-y-1.5">
+                  {characters.map((char) => (
+                    <label key={char.name} className="flex items-start gap-2.5 cursor-pointer group">
                       <input
                         type="checkbox"
-                        checked={selectedChars.has(name)}
-                        onChange={() => toggleChar(name)}
-                        className="rounded border-zinc-600 bg-zinc-800 text-amber-600 focus:ring-amber-600"
+                        checked={selectedChars.has(char.name)}
+                        onChange={() => toggleChar(char.name)}
+                        className="mt-0.5 rounded border-zinc-600 bg-zinc-800 text-amber-600 focus:ring-amber-600"
                       />
-                      <span className="text-sm text-zinc-300 group-hover:text-zinc-100">{name}</span>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-sm text-zinc-300 group-hover:text-zinc-100">{char.name}</span>
+                          {char.is_hardcore && (
+                            <span className="text-[10px] font-semibold px-1 py-px rounded bg-red-950 text-red-400 border border-red-800">HC</span>
+                          )}
+                          {char.is_ladder && (
+                            <span className="text-[10px] font-semibold px-1 py-px rounded bg-amber-950 text-amber-400 border border-amber-800">Ladder</span>
+                          )}
+                        </div>
+                        {(char.class ?? char.level ?? char.updated_at) && (
+                          <div className="text-[11px] text-zinc-600 flex items-center gap-1 flex-wrap">
+                            {char.class && <span>{char.class}</span>}
+                            {char.level && <span>Lv {char.level}</span>}
+                            {char.updated_at && (
+                              <>
+                                <span className="text-zinc-700">·</span>
+                                <span>saved {timeAgo(char.updated_at)}</span>
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </label>
                   ))}
                 </div>

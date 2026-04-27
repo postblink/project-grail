@@ -61,21 +61,25 @@ export function GrailView({ grailId, initialItems, pd2Linked }: Props) {
         </p>
         <div className="flex items-center gap-2">
           {resetState === "confirm" ? (
-            <>
-              <span className="text-xs text-zinc-400">Reset all progress?</span>
-              <button
-                onClick={() => setResetState("idle")}
-                className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleReset}
-                className="rounded-lg bg-red-900 px-3 py-1.5 text-xs font-medium text-red-200 hover:bg-red-800"
-              >
-                Reset
-              </button>
-            </>
+            <div className="flex flex-col items-end gap-2">
+              <p className="text-xs text-zinc-400 text-right max-w-xs">
+                This will uncheck all found items. You&apos;ll need to re-import your characters to restore progress — items not currently in your stash or inventory cannot be recovered.
+              </p>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setResetState("idle")}
+                  className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleReset}
+                  className="rounded-lg bg-red-900 px-3 py-1.5 text-xs font-medium text-red-200 hover:bg-red-800"
+                >
+                  Reset all progress
+                </button>
+              </div>
+            </div>
           ) : (
             <button
               onClick={() => setResetState("confirm")}

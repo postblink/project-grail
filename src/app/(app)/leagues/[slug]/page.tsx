@@ -82,6 +82,14 @@ export default async function LeaguePage({ params }: Props) {
           {userId && !isMember && (
             <JoinLeague slug={slug} isPrivate={league.is_private} />
           )}
+          {!userId && (
+            <Link
+              href={`/login?callbackUrl=${encodeURIComponent(`/leagues/${slug}`)}`}
+              className="rounded-lg bg-amber-700 px-3 py-1.5 text-sm font-semibold text-amber-100 hover:bg-amber-600 transition-colors"
+            >
+              Sign in to join
+            </Link>
+          )}
           {isMember && !canManage && (
             <span className="text-xs text-emerald-700">✓ Joined</span>
           )}

@@ -37,13 +37,15 @@ export async function POST(req: NextRequest) {
     : [];
   const seasonMap = new Map(seasons.map((s) => [s.slug, s.id]));
 
-  // Fetch all existing items in one query, then split into create/update batches
+  // Snapshot existing names so we can report created vs updated counts. The
+  // actual writes use upsert, so two overlapping admin imports won't race on
+  // the (name) unique constraint the way a find-then-create-or-update would.
   const itemNames = items.map((i) => i.name);
   const existingItems = await db.item.findMany({
     where: { name: { in: itemNames } },
-    select: { id: true, name: true },
+    select: { name: true },
   });
-  const existingMap = new Map(existingItems.map((e) => [e.name, e.id]));
+  const existingNames = new Set(existingItems.map((e) => e.name));
 
   let created = 0;
   let updated = 0;
@@ -51,37 +53,22 @@ export async function POST(req: NextRequest) {
   await Promise.all(
     items.map(async (item) => {
       const seasonId = item.season_introduced ? (seasonMap.get(item.season_introduced) ?? null) : null;
-      const existingId = existingMap.get(item.name);
-
-      if (existingId) {
-        await db.item.update({
-          where: { id: existingId },
-          data: {
-            category: item.category,
-            item_type: item.item_type ?? null,
-            set_name: item.set_name ?? null,
-            pd2_exclusive: item.pd2_exclusive,
-            is_active: item.is_active,
-            wiki_url: item.wiki_url ?? null,
-            season_introduced_id: seasonId,
-          },
-        });
-        updated++;
-      } else {
-        await db.item.create({
-          data: {
-            name: item.name,
-            category: item.category,
-            item_type: item.item_type ?? null,
-            set_name: item.set_name ?? null,
-            pd2_exclusive: item.pd2_exclusive,
-            is_active: item.is_active,
-            wiki_url: item.wiki_url ?? null,
-            season_introduced_id: seasonId,
-          },
-        });
-        created++;
-      }
+      const data = {
+        category: item.category,
+        item_type: item.item_type ?? null,
+        set_name: item.set_name ?? null,
+        pd2_exclusive: item.pd2_exclusive,
+        is_active: item.is_active,
+        wiki_url: item.wiki_url ?? null,
+        season_introduced_id: seasonId,
+      };
+      await db.item.upsert({
+        where: { name: item.name },
+        update: data,
+        create: { name: item.name, ...data },
+      });
+      if (existingNames.has(item.name)) updated++;
+      else created++;
     }),
   );
 

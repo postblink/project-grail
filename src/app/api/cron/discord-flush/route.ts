@@ -28,11 +28,10 @@ export async function GET(req: NextRequest) {
 
   const now = new Date();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const batches = (await (db.discordBatch as any).findMany({
+  const batches = (await db.discordBatch.findMany({
     where: { flush_after: { lte: now } },
     include: { league: { select: { name: true, discord_webhook_url: true } } },
-  })) as BatchRow[];
+  })) as unknown as BatchRow[];
 
   if (batches.length === 0) {
     return NextResponse.json({ flushed: 0 });
@@ -53,8 +52,7 @@ export async function GET(req: NextRequest) {
     [...groups.values()].map(async (group) => {
       const webhookUrl = group[0].league.discord_webhook_url!;
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (db.discordBatch as any).deleteMany({ where: { id: { in: group.map((b) => b.id) } } });
+      await db.discordBatch.deleteMany({ where: { id: { in: group.map((b) => b.id) } } });
 
       const realBatches = group.filter((b) => b.items_found > 0);
       if (realBatches.length === 0) return; // all sentinels — nothing to send

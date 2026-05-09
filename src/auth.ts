@@ -10,7 +10,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     ...authConfig.providers,
     Resend({
       apiKey: process.env.RESEND_API_KEY,
-      from: process.env.EMAIL_FROM ?? "noreply@example.com",
+      // EMAIL_FROM is required at runtime. Don't throw here at module load —
+      // that would break `next build` page-data collection in environments
+      // without the var. Instead, use a clearly-invalid sentinel that Resend
+      // will reject at first send attempt, surfacing the misconfiguration
+      // loudly in logs instead of silently sending from a fake "example.com".
+      from: process.env.EMAIL_FROM ?? "EMAIL_FROM_NOT_SET@invalid.local",
     }),
   ],
   // Prisma adapter manages users + accounts; JWT strategy keeps sessions out of DB
@@ -32,6 +37,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // Validate that the user still exists on every token refresh.
       // If the account was deleted (e.g. post-reset), kill the JWT so the
       // browser cookie is cleared and the user is sent back to login.
+      //
+      // This is a single indexed PK lookup per auth() call — sub-ms on
+      // Postgres. Worth re-evaluating with throttling (e.g. last-validated-at
+      // on the token, re-check every 5 min) if request volume ever makes
+      // this hot.
       if (!user && token.id) {
         const exists = await db.user.findUnique({
           where: { id: token.id as string },

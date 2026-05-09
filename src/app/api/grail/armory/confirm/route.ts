@@ -42,16 +42,25 @@ export async function POST(req: NextRequest) {
   const now = new Date();
 
   try {
-    const [, armoryImport] = await db.$transaction([
-      // Upsert a GrailEntry for every confirmed item
-      ...itemIds.map((itemId) =>
-        db.grailEntry.upsert({
-          where: { grail_id_item_id: { grail_id: grailId, item_id: itemId } },
-          update: { found: true, found_at: now, import_source: "armory" },
-          create: { grail_id: grailId, item_id: itemId, found: true, found_at: now, import_source: "armory" },
-        })
-      ),
-      // Record the import run
+    // Use createMany(skipDuplicates) + updateMany rather than per-item upsert
+    // so two concurrent imports for the same grail can't race on the
+    // (grail_id, item_id) unique constraint — the DB resolves duplicates
+    // atomically and the set-based update is idempotent.
+    const [, , armoryImport] = await db.$transaction([
+      db.grailEntry.createMany({
+        data: itemIds.map((itemId) => ({
+          grail_id: grailId,
+          item_id: itemId,
+          found: true,
+          found_at: now,
+          import_source: "armory" as const,
+        })),
+        skipDuplicates: true,
+      }),
+      db.grailEntry.updateMany({
+        where: { grail_id: grailId, item_id: { in: itemIds } },
+        data: { found: true, found_at: now, import_source: "armory" },
+      }),
       db.armoryImport.create({
         data: {
           grail_id: grailId,

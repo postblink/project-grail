@@ -47,11 +47,17 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
 
   const { name, is_private, end_date, discord_webhook_url, grail_scope, regenerate_invite } = parsed.data;
 
-  // If switching to private and has no invite_code yet (or regenerating), create one
-  const newInviteCode =
-    regenerate_invite || (is_private && !league.is_private)
-      ? generateInviteCode()
-      : undefined;
+  // Invite code lifecycle:
+  // - private→private with regenerate: new code
+  // - public→private: new code
+  // - private→public: clear the code (it's no longer needed and lingering codes
+  //   are confusing — both invite-link and slug-link would otherwise still work)
+  let inviteCodeUpdate: { invite_code: string | null } | undefined;
+  if (regenerate_invite || (is_private === true && !league.is_private)) {
+    inviteCodeUpdate = { invite_code: generateInviteCode() };
+  } else if (is_private === false && league.is_private) {
+    inviteCodeUpdate = { invite_code: null };
+  }
 
   const updated = await db.league.update({
     where: { id: league.id },
@@ -61,7 +67,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ sl
       ...(end_date !== undefined && { end_date: end_date ? new Date(end_date) : null }),
       ...(discord_webhook_url !== undefined && { discord_webhook_url }),
       ...(grail_scope !== undefined && { grail_scope }),
-      ...(newInviteCode !== undefined && { invite_code: newInviteCode }),
+      ...(inviteCodeUpdate ?? {}),
     },
     select: { id: true, slug: true, name: true, invite_code: true },
   });

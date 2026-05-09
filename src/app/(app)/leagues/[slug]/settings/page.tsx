@@ -44,6 +44,9 @@ export default async function LeagueSettingsPage({ params }: Props) {
         initialInviteCode={league.invite_code}
         initialWebhookUrl={league.discord_webhook_url}
         initialScope={league.grail_scope as unknown as GrailScope}
+        commissionerId={league.commissioner_id}
+        members={league.members.map((m) => ({ user_id: m.user_id, display_name: m.user.display_name }))}
+        currentUserId={session.user.id}
       />
     </div>
   );

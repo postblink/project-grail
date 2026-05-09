@@ -42,6 +42,11 @@ export function generateInviteCode(): string {
   return crypto.randomUUID().replace(/-/g, "").slice(0, 10);
 }
 
+// Restrict webhook URLs to actual Discord domains so a commissioner can't
+// redirect member item-find notifications to an arbitrary endpoint.
+export const DISCORD_WEBHOOK_RE =
+  /^https:\/\/(?:[a-z0-9-]+\.)?(?:discord|discordapp)\.com\/api\/webhooks\/\d+\/[A-Za-z0-9_-]+$/;
+
 // ──────────────────────────────────────────────
 // Queries
 // ──────────────────────────────────────────────

@@ -94,11 +94,14 @@ function CoopLeaderboard({
               <td className="px-4 py-3 text-zinc-600">{i + 1}</td>
               <td className="px-4 py-3 font-medium">
                 {s.displayName ? (
-                  <Link href={`/grail/${encodeURIComponent(s.displayName)}`} className="text-zinc-200 hover:text-amber-400 transition-colors">
+                  <Link href={`/grail/${encodeURIComponent(s.displayName)}`} className={`transition-colors hover:text-amber-400 ${s.isFormerMember ? "text-zinc-500" : "text-zinc-200"}`}>
                     {s.displayName}
                   </Link>
                 ) : (
                   <span className="text-zinc-500">Unknown</span>
+                )}
+                {s.isFormerMember && (
+                  <span className="ml-1.5 rounded bg-zinc-800 px-1 text-xs text-zinc-500" title="No longer a member; finds remain in the team grail">left</span>
                 )}
                 <BonusIndicators bonuses={s.bonuses} />
               </td>

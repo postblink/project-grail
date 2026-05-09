@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
-import { slugify, generateInviteCode, DEFAULT_GRAIL_SCOPE } from "@/lib/leagues";
+import { slugify, generateInviteCode, DEFAULT_GRAIL_SCOPE, DISCORD_WEBHOOK_RE } from "@/lib/leagues";
 
 const schema = z.object({
   name: z.string().min(2).max(60),
@@ -11,7 +11,7 @@ const schema = z.object({
   is_private: z.boolean().default(false),
   start_date: z.string().datetime().optional(),
   end_date: z.string().datetime().optional().nullable(),
-  discord_webhook_url: z.string().url().optional().nullable(),
+  discord_webhook_url: z.string().regex(DISCORD_WEBHOOK_RE, "Must be a Discord webhook URL").optional().nullable(),
   grail_scope: z
     .object({
       unique: z.boolean(),

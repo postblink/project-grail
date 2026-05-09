@@ -43,6 +43,7 @@ export interface ContributionScore {
   totalScore: number;
   contributionPct: number;    // items found by this member / total found in league
   bonuses: BonusBreakdown;
+  isFormerMember: boolean;    // true when the finder has since left the league
 }
 
 // ──────────────────────────────────────────────
@@ -91,7 +92,36 @@ export async function computeContributionScores(
       totalScore: 0,
       contributionPct: 0,
       bonuses: { firstSetItem: false, setsCompleted: 0 },
+      isFormerMember: false,
     });
+  }
+
+  // Backfill any finders who have since left the league. Their finds are
+  // historical fact and still count toward the team total — silently dropping
+  // them would make per-member contribution sums smaller than the team grail
+  // size. We resolve their display_name lazily so the UI can mark them.
+  const memberIds = new Set(members.map((m) => m.user_id));
+  const formerFinderIds = [
+    ...new Set(entries.map((e) => e.found_by_user_id).filter((id) => !memberIds.has(id))),
+  ];
+  if (formerFinderIds.length > 0) {
+    const formerUsers = await db.user.findMany({
+      where: { id: { in: formerFinderIds } },
+      select: { id: true, display_name: true },
+    });
+    for (const u of formerUsers) {
+      scores.set(u.id, {
+        userId: u.id,
+        displayName: u.display_name,
+        itemsFound: 0,
+        baseScore: 0,
+        bonusPoints: 0,
+        totalScore: 0,
+        contributionPct: 0,
+        bonuses: { firstSetItem: false, setsCompleted: 0 },
+        isFormerMember: true,
+      });
+    }
   }
 
   // Base score: one point per item found

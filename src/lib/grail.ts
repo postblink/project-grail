@@ -65,12 +65,18 @@ export async function getGrailItems(grailId: string): Promise<GrailItemRow[]> {
   });
 }
 
-export async function getPublicGrailData(username: string) {
+/** Sentinel returned when the requested user has opted their profile private. */
+export const PRIVATE_PROFILE = { kind: "private" as const };
+
+export async function getPublicGrailData(username: string, viewerUserId?: string) {
   const user = await db.user.findFirst({
     where: { display_name: { equals: username, mode: "insensitive" }, deleted_at: null },
-    select: { id: true, display_name: true },
+    select: { id: true, display_name: true, is_public: true },
   });
   if (!user) return null;
+
+  // Honor the privacy toggle, but always let the user view their own profile.
+  if (!user.is_public && user.id !== viewerUserId) return PRIVATE_PROFILE;
 
   const season = await getCurrentSeason();
   if (!season) return { user, season: null, items: [] as GrailItemRow[], progress: null };

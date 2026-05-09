@@ -14,6 +14,14 @@ const schema = z.object({
  * Toggle an item found/unfound in a cooperative league's shared grail.
  * Uses LeagueGrailEntry as source of truth (not individual GrailEntry records).
  * Only valid for leagues with league_type = "cooperative".
+ *
+ * Note: this endpoint intentionally does NOT touch members' personal
+ * GrailEntry rows. Coop members' personal grails are deliberately decoupled
+ * from the team grail — the team page is the shared league checklist; the
+ * personal grail at /grail tracks each member's individual finds. A member's
+ * personal grail entries DO propagate up to LeagueGrailEntry (see
+ * /api/grail/entries and /api/grail/armory/confirm), but team-grail toggles
+ * stay in LeagueGrailEntry only.
  */
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const session = await auth();

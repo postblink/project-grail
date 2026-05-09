@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getPublicGrailData, computeProgress } from "@/lib/grail";
+import { getPublicGrailData, computeProgress, PRIVATE_PROFILE } from "@/lib/grail";
 
 export const runtime = "nodejs";
 export const contentType = "image/png";
@@ -8,10 +8,12 @@ export const size = { width: 1200, height: 630 };
 export default async function OgImage({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params;
   const data = await getPublicGrailData(username);
+  const isPrivate = data !== null && "kind" in data && data.kind === "private";
+  const grail = data !== null && !("kind" in data) ? data : null;
 
-  const displayName = data?.user.display_name ?? username;
-  const progress = data ? computeProgress(data.items) : null;
-  const seasonName = data?.season?.name ?? null;
+  const displayName = grail?.user.display_name ?? username;
+  const progress = grail ? computeProgress(grail.items) : null;
+  const seasonName = grail?.season?.name ?? null;
 
   return new ImageResponse(
     (
@@ -59,11 +61,15 @@ export default async function OgImage({ params }: { params: Promise<{ username: 
 
         {/* Display name */}
         <div style={{ display: "flex", fontSize: "72px", fontWeight: 700, color: "#f4f4f5", lineHeight: 1.1, marginBottom: "32px" }}>
-          {`${displayName}'s Grail`}
+          {isPrivate ? `${displayName}'s Grail is private` : `${displayName}'s Grail`}
         </div>
 
         {/* Progress */}
-        {progress && progress.total > 0 ? (
+        {isPrivate ? (
+          <div style={{ display: "flex", fontSize: "28px", color: "#52525b" }}>
+            {"This player has hidden their public profile."}
+          </div>
+        ) : progress && progress.total > 0 ? (
           <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "100%" }}>
             {/* Progress bar track */}
             <div

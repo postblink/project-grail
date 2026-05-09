@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPublicGrailData, computeProgress } from "@/lib/grail";
+import { auth } from "@/auth";
+import { getPublicGrailData, computeProgress, PRIVATE_PROFILE } from "@/lib/grail";
 import { buildFilterForgeUrl } from "@/lib/filterforge";
 import { getUserAchievements } from "@/lib/achievements";
 import { GrailChecklist } from "@/app/(app)/grail/_components/GrailChecklist";
@@ -11,11 +12,13 @@ interface Props {
 
 export default async function PublicGrailPage({ params }: Props) {
   const { username } = await params;
-  const data = await getPublicGrailData(username);
+  const session = await auth();
+  const data = await getPublicGrailData(username, session?.user.id);
 
   if (!data) notFound();
+  if ("kind" in data && data.kind === "private") return <PrivateProfile username={username} />;
 
-  const { user, season, items } = data;
+  const { user, season, items } = data as Exclude<typeof data, { kind: "private" }>;
   const filterForgeUrl = buildFilterForgeUrl(items);
   const [progress, achievements] = await Promise.all([
     Promise.resolve(computeProgress(items)),
@@ -110,13 +113,39 @@ export default async function PublicGrailPage({ params }: Props) {
   );
 }
 
+function PrivateProfile({ username }: { username: string }) {
+  return (
+    <div className="relative min-h-screen bg-zinc-950">
+      <div
+        className="pointer-events-none fixed inset-0 z-0"
+        style={{ background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(196,163,82,0.18) 0%, transparent 70%)" }}
+      />
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-xl flex-col items-center justify-center px-4 text-center">
+        <h1 className="text-2xl font-bold text-zinc-100">{username}&apos;s grail is private</h1>
+        <p className="mt-2 text-sm text-zinc-500">
+          This player has chosen to hide their public profile.
+        </p>
+        <Link href="/" className="mt-6 rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-zinc-700">
+          ← Back to Project Grail
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export async function generateMetadata({ params }: Props) {
   const { username } = await params;
   const data = await getPublicGrailData(username);
 
   if (!data) return { title: "Grail not found — Project Grail" };
+  if ("kind" in data && data.kind === "private") {
+    return {
+      title: `${username}'s grail is private — Project Grail`,
+      robots: { index: false, follow: false },
+    };
+  }
 
-  const { user, season, items } = data;
+  const { user, season, items } = data as Exclude<typeof data, { kind: "private" }>;
   const progress = computeProgress(items);
   const displayName = user.display_name ?? username;
   const title = `${displayName}'s Grail — Project Grail`;

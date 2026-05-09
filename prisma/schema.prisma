@@ -109,6 +109,7 @@ model User {
   display_name  String?
   discord_id    String?   @unique @map("discord_id")
   is_admin      Boolean   @default(false)
+  is_public     Boolean   @default(true)
   created_at    DateTime  @default(now())
   deleted_at    DateTime?
 

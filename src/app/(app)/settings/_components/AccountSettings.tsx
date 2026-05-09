@@ -16,12 +16,14 @@ export function AccountSettings({
   currentDisplayName,
   email,
   providers,
+  isPublic,
   linkSuccess,
   linkError,
 }: {
   currentDisplayName: string | null;
   email: string | null;
   providers: string[];
+  isPublic: boolean;
   linkSuccess?: boolean;
   linkError?: string;
 }) {
@@ -32,6 +34,8 @@ export function AccountSettings({
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const [unlinking, setUnlinking] = useState<string | null>(null);
+  const [privacy, setPrivacy] = useState(isPublic);
+  const [privacyBusy, setPrivacyBusy] = useState(false);
 
   async function handleUnlink(provider: string) {
     setUnlinking(provider);
@@ -43,6 +47,24 @@ export function AccountSettings({
       setError((data as { error?: string }).error ?? "Could not unlink provider");
     }
     setUnlinking(null);
+  }
+
+  async function handlePrivacyToggle(next: boolean) {
+    setPrivacy(next); // optimistic
+    setPrivacyBusy(true);
+    const res = await fetch("/api/user/profile", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ is_public: next }),
+    });
+    if (!res.ok) {
+      setPrivacy(!next); // revert
+      const data = await res.json().catch(() => ({}));
+      setError((data as { error?: string }).error ?? "Could not update privacy");
+    } else {
+      router.refresh();
+    }
+    setPrivacyBusy(false);
   }
 
   const unchanged = name.trim() === (currentDisplayName ?? "");
@@ -194,6 +216,31 @@ export function AccountSettings({
           {loading ? "Saving…" : "Save"}
         </button>
       </form>
+    </section>
+
+    <section className="space-y-3">
+      <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-500">Privacy</h2>
+      <div className="rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 flex items-start justify-between gap-4">
+        <div className="flex-1">
+          <p className="text-sm text-zinc-300">Public profile</p>
+          <p className="mt-0.5 text-xs text-zinc-500">
+            When on, anyone can view your grail at <code className="text-zinc-400">/grail/{currentDisplayName ?? "yourname"}</code>.
+            Turn off to hide your profile from non-signed-in visitors. League leaderboards will still show your name.
+          </p>
+        </div>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={privacy}
+          onClick={() => handlePrivacyToggle(!privacy)}
+          disabled={privacyBusy}
+          className={`relative h-6 w-11 flex-shrink-0 rounded-full transition-colors disabled:opacity-50 ${privacy ? "bg-amber-600" : "bg-zinc-700"}`}
+        >
+          <span
+            className={`absolute top-0.5 h-5 w-5 rounded-full bg-zinc-100 transition-transform ${privacy ? "translate-x-5" : "translate-x-0.5"}`}
+          />
+        </button>
+      </div>
     </section>
     </div>
   );

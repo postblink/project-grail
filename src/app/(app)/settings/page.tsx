@@ -18,6 +18,7 @@ export default async function SettingsPage({
       where: { id: session.user.id },
       select: {
         email: true,
+        is_public: true,
         accounts: { select: { provider: true } },
       },
     }),
@@ -39,6 +40,7 @@ export default async function SettingsPage({
         currentDisplayName={session.user.display_name}
         email={user?.email ?? null}
         providers={providers}
+        isPublic={user?.is_public ?? true}
         linkSuccess={params.link_success === "1"}
         linkError={params.link_error}
       />

@@ -63,12 +63,12 @@ export async function POST(req: NextRequest) {
       }),
     ]);
 
-    // For hybrid leagues: upsert LeagueGrailEntry for each found item (first-finder semantics).
+    // For hybrid and cooperative leagues: upsert LeagueGrailEntry for each found item (first-finder semantics).
     if (grail.season_id) {
       const hybridMemberships = await db.leagueMember.findMany({
         where: {
           user_id: session.user.id,
-          league: { season_id: grail.season_id, league_type: "hybrid" },
+          league: { season_id: grail.season_id, league_type: { in: ["hybrid", "cooperative"] } },
         },
         select: { league_id: true },
       });

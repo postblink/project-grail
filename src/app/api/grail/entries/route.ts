@@ -59,13 +59,13 @@ export async function PATCH(req: NextRequest) {
     },
   });
 
-  // For hybrid leagues: record first finder in LeagueGrailEntry (best-effort).
+  // For hybrid and cooperative leagues: record first finder in LeagueGrailEntry (best-effort).
   // Only on found=true; unchecking never removes the first-finder record.
   if (found && grail.season_id) {
     const hybridMemberships = await db.leagueMember.findMany({
       where: {
         user_id: session.user.id,
-        league: { season_id: grail.season_id, league_type: "hybrid" },
+        league: { season_id: grail.season_id, league_type: { in: ["hybrid", "cooperative"] } },
       },
       select: { league_id: true },
     });

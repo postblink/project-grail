@@ -149,4 +149,24 @@ For larger features, open an issue first to discuss the approach.
 
 ## License
 
-See [LICENSE](LICENSE).
+Project Grail is free software, licensed under the **GNU Affero General Public License v3.0**. See [LICENSE](LICENSE) for the full text.
+
+```
+Copyright (C) 2026 Lucas Boyles
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3 of the License.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+details.
+```
+
+**What AGPL means for you:**
+- ✅ Use it, fork it, modify it, redistribute it — all fine
+- ✅ Run a private modified version internally — fine
+- ⚠️ **Run a modified version as a public service** — you must publish your source under the same license
+
+This is intentional: the goal is to keep modifications to a community grail tracker available to that community.

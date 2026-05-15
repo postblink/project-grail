@@ -3,6 +3,7 @@ import Resend from "next-auth/providers/resend";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db";
 import { authConfig } from "@/auth.config";
+import { magicLinkHtml, magicLinkText } from "@/lib/email-templates";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -16,6 +17,29 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // will reject at first send attempt, surfacing the misconfiguration
       // loudly in logs instead of silently sending from a fake "example.com".
       from: process.env.EMAIL_FROM ?? "EMAIL_FROM_NOT_SET@invalid.local",
+      // Override the NextAuth default plain-text email with a branded HTML
+      // template + text fallback. See src/lib/email-templates.ts.
+      async sendVerificationRequest({ identifier: to, url, provider }) {
+        const { host } = new URL(url);
+        const res = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${provider.apiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: provider.from,
+            to,
+            subject: `Sign in to Project Grail`,
+            html: magicLinkHtml({ url, host }),
+            text: magicLinkText({ url, host }),
+          }),
+        });
+        if (!res.ok) {
+          const body = await res.text().catch(() => "<unreadable>");
+          throw new Error(`Resend send failed (${res.status}): ${body}`);
+        }
+      },
     }),
   ],
   // Prisma adapter manages users + accounts; JWT strategy keeps sessions out of DB

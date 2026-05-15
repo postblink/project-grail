@@ -322,10 +322,8 @@ EMAIL_FROM               — sender address for magic link emails
 
 ---
 
-## Current Status
+## Source of truth
 
-Project scaffolded. Working on Prisma schema and item seed pipeline (Session 1).
-
-The design document (`DESIGN.md`) is the source of truth for intended behavior.
-When something is ambiguous, refer to `DESIGN.md` and ask if still unclear rather
-than making assumptions.
+The design document (`DESIGN.md`) describes intended behavior end to end.
+When the code and the design disagree, the design wins until the design is
+updated to match. When something is ambiguous, refer to `DESIGN.md` first.

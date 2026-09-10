@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
   slug: string;
@@ -10,14 +10,10 @@ interface Props {
 
 export function JoinLeague({ slug, isPrivate }: Props) {
   const router = useRouter();
-  const [inviteCode, setInviteCode] = useState("");
+  const searchParams = useSearchParams();
+  const [inviteCode, setInviteCode] = useState(searchParams.get("code") ?? "");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const code = new URLSearchParams(window.location.search).get("code");
-    if (code) setInviteCode(code);
-  }, []);
 
   async function handleJoin() {
     setLoading(true);

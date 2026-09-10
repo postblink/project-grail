@@ -50,7 +50,7 @@ export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName
     } catch {
       setFetchState("error");
     }
-  }, [wikiUrl, itemName]);
+  }, [wikiUrl, itemName, category]);
 
   function handleMouseEnter() {
     timerRef.current = setTimeout(() => {
@@ -107,6 +107,9 @@ export function WikiTooltip({ wikiUrl, wikiImageUrl, itemName, itemType, setName
             <div className="px-3 pt-2 pb-1.5 border-t border-zinc-800">
               <p className={`text-sm font-bold leading-tight ${nameColor}`}>{itemName}</p>
               {setName && <p className="text-xs text-zinc-400 mt-0.5">{setName}</p>}
+              {itemType && fetchState !== "done" && (
+                <p className="mt-0.5 text-xs capitalize text-zinc-500">{itemType}</p>
+              )}
 
               {fetchState === "done" && info && (
                 <div className="mt-1 space-y-0.5">

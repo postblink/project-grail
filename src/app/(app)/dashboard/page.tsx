@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { auth } from "@/auth";
-
-export const metadata: Metadata = { title: "Dashboard — Project Grail" };
 import { getCurrentSeason, getOrCreateGrail, getGrailItems, computeProgress } from "@/lib/grail";
 import { getUserAchievements } from "@/lib/achievements";
 import { getUserLeagues } from "@/lib/leagues";
 import { db } from "@/lib/db";
 import { SetDisplayName } from "./_components/SetDisplayName";
 import { AchievementBadge } from "./_components/AchievementBadge";
+
+export const metadata: Metadata = { title: "Dashboard — Project Grail" };
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -34,159 +34,172 @@ export default async function DashboardPage() {
     progress = computeProgress(items);
     recentAchievements = allAchievements.slice(0, 4);
     isSeasonTransition = priorGrailCount > 0 && progress.found === 0;
-    // Only show leagues for the current season on the dashboard
-    myLeagues = leagueMemberships.filter((m) => m.league.season.slug === season.slug);
+    myLeagues = leagueMemberships.filter((membership) => membership.league.season.slug === season.slug);
   }
 
   const isNewUser = !!season && !!progress && progress.found === 0 && !isSeasonTransition;
   const needsDisplayName = !session?.user.display_name;
+  const displayName = session?.user.display_name;
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-zinc-100">
-          {needsDisplayName
-            ? "Welcome!"
-            : isNewUser
-              ? `Welcome, ${session?.user.display_name}`
-              : `Welcome back, ${session?.user.display_name}`}
-        </h1>
-        {season ? (
-          <p className="mt-1 text-sm text-zinc-500">Active season: {season.name}</p>
-        ) : (
-          <p className="mt-1 text-sm text-amber-500">No active season — check back soon.</p>
-        )}
-      </div>
+    <div className="space-y-6">
+      <header className="reliquary-page-head">
+        <div>
+          <p className="reliquary-kicker">Seasonal register · Dashboard</p>
+          <h1 className="reliquary-page-title mt-3">
+            {needsDisplayName
+              ? "Welcome, hunter"
+              : isNewUser
+                ? `The ledger of ${displayName}`
+                : `Welcome back, ${displayName}`}
+          </h1>
+          <p className="mt-3 text-sm text-zinc-500">
+            {season ? `Active archive: ${season.name}` : "No active season — check back soon."}
+          </p>
+        </div>
+        <Link href="/grail" className="reliquary-action">
+          Open my grail
+        </Link>
+      </header>
 
       {needsDisplayName && <SetDisplayName />}
 
       {isSeasonTransition && season && (
-        <div className="rounded-xl border border-amber-700/50 bg-amber-900/10 px-5 py-4 flex items-start justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold text-amber-400">A new season has begun — {season.name}</p>
-            <p className="mt-0.5 text-sm text-zinc-400">
-              Your previous grail has been archived. Import from the armory or start checking off items to kick off your new season.
-            </p>
+        <section className="reliquary-panel border-l-2 border-l-amber-600 p-5">
+          <p className="reliquary-kicker text-amber-400">New archive opened</p>
+          <div className="mt-3 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <h2 className="text-xl text-zinc-100">{season.name}</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-zinc-400">
+                Your previous grail has been archived. Import from the armory or begin checking
+                off this season&apos;s finds.
+              </p>
+            </div>
+            <Link href="/grail" className="reliquary-ghost shrink-0">
+              Begin the record
+            </Link>
           </div>
-          <Link
-            href="/grail"
-            className="shrink-0 rounded-lg bg-amber-700 px-3 py-1.5 text-xs font-semibold text-amber-100 hover:bg-amber-600 transition-colors"
-          >
-            Open grail →
-          </Link>
-        </div>
+        </section>
       )}
 
       {isNewUser ? (
-        <div className="rounded-xl border border-zinc-700 bg-zinc-900 p-6 space-y-4 max-w-xl">
-          <div>
-            <h2 className="text-lg font-semibold text-amber-400">The Holy Grail Challenge</h2>
-            <p className="mt-2 text-sm text-zinc-300 leading-relaxed">
+        <section className="reliquary-panel max-w-3xl">
+          <div className="reliquary-panel-head">
+            <h2 className="reliquary-panel-title">The Holy Grail challenge</h2>
+            <span className="reliquary-kicker">Entry · 001</span>
+          </div>
+          <div className="p-6">
+            <p className="max-w-2xl text-sm leading-7 text-zinc-300">
               Find one of every unique, set, and runeword item in Project Diablo 2. Track your
               progress here as you hunt across characters and seasons.
             </p>
-          </div>
-          <div className="space-y-2">
-            <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">Get started</p>
-            <div className="flex flex-col gap-2 sm:flex-row">
-              <Link
-                href="/grail"
-                className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-medium text-white text-center transition hover:bg-amber-500"
-              >
-                Open my grail →
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link href="/grail" className="reliquary-action">
+                Open my grail
               </Link>
-              <Link
-                href="/leagues"
-                className="rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-100 text-center transition hover:bg-zinc-700"
-              >
+              <Link href="/leagues" className="reliquary-ghost">
                 Browse leagues
               </Link>
             </div>
           </div>
-        </div>
+        </section>
       ) : (
         <>
           {progress && (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <StatCard label="Overall progress" value={`${progress.pct}%`} sub={`${progress.found} / ${progress.total} items`} />
-              {Object.entries(progress.byCategory).map(([cat, { pct, found, total }]) => (
-                <StatCard key={cat} label={cat} value={`${pct}%`} sub={`${found} / ${total}`} />
-              ))}
-            </div>
+            <section className="reliquary-progress-ledger" aria-label="Grail progress">
+              <div className="reliquary-progress-total">
+                <p className="text-[9px] font-extrabold uppercase tracking-[0.2em] text-[#665d4c]">
+                  Overall completion
+                </p>
+                <div className="mt-8 flex items-end gap-3">
+                  <strong>{progress.pct}</strong>
+                  <span className="reliquary-serif pb-1 text-3xl">%</span>
+                </div>
+                <p className="mt-8 border-t border-[#988d76] pt-4 reliquary-serif text-lg">
+                  {progress.found} <span className="text-[#746a57]">of</span> {progress.total} items
+                </p>
+              </div>
+
+              <div className="reliquary-progress-categories">
+                {Object.entries(progress.byCategory).map(([category, values]) => (
+                  <div className="reliquary-progress-row" key={category}>
+                    <div>
+                      <p className="text-xs font-semibold capitalize text-zinc-300">{category}</p>
+                      <p className="mt-1 text-[10px] text-zinc-600">
+                        {values.found} / {values.total}
+                      </p>
+                    </div>
+                    <div className="reliquary-meter" aria-hidden>
+                      <span style={{ width: `${values.pct}%` }} />
+                    </div>
+                    <span className="reliquary-serif text-xl text-zinc-200">{values.pct}%</span>
+                  </div>
+                ))}
+              </div>
+            </section>
           )}
 
-          {myLeagues.length > 0 && (
-            <section>
-              <div className="mb-3 flex items-center justify-between">
-                <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">My Leagues</h2>
-                <Link href="/leagues" className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
-                  View all →
+          <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
+            <section className="reliquary-panel">
+              <div className="reliquary-panel-head">
+                <h2 className="reliquary-panel-title">League registers</h2>
+                <Link href="/leagues" className="reliquary-kicker hover:text-zinc-200">
+                  View all
                 </Link>
               </div>
-              <div className="space-y-2">
-                {myLeagues.map(({ league, role }) => (
-                  <Link
-                    key={league.id}
-                    href={`/leagues/${league.slug}`}
-                    className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 hover:border-zinc-700 transition-colors"
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-zinc-200">{league.name}</span>
-                      {role === "commissioner" && (
-                        <span className="rounded bg-amber-900/40 px-1.5 py-0.5 text-xs text-amber-500">Commissioner</span>
-                      )}
-                      {role === "co_commissioner" && (
-                        <span className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs text-zinc-400">Co-Commissioner</span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-3 text-xs text-zinc-500">
-                      <span>{league._count.members} {league._count.members === 1 ? "member" : "members"}</span>
-                      <span className="text-zinc-600">→</span>
-                    </div>
+              {myLeagues.length > 0 ? (
+                <div>
+                  {myLeagues.map(({ league, role }, index) => (
+                    <Link
+                      key={league.id}
+                      href={`/leagues/${league.slug}`}
+                      className="reliquary-table-row"
+                    >
+                      <div>
+                        <span className="text-sm font-semibold text-zinc-200">{league.name}</span>
+                        <span className="ml-2 reliquary-serif text-xs italic text-zinc-600">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      <span className="text-[10px] uppercase tracking-[0.12em] text-amber-400">
+                        {role === "commissioner" ? "Commissioner" : "Member"}
+                      </span>
+                      <span className="text-xs text-zinc-500">
+                        {league._count.members} {league._count.members === 1 ? "hunter" : "hunters"} →
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-6">
+                  <p className="text-sm text-zinc-500">No league entries in this archive.</p>
+                  <Link href="/leagues" className="mt-4 inline-flex reliquary-ghost">
+                    Find a league
                   </Link>
-                ))}
-              </div>
+                </div>
+              )}
             </section>
-          )}
 
-          {recentAchievements.length > 0 && (
-            <section>
-              <div className="mb-3 flex items-center justify-between">
-                <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                  Recent Achievements
-                </h2>
-                <Link href="/achievements" className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
-                  View all →
+            <section className="reliquary-panel">
+              <div className="reliquary-panel-head">
+                <h2 className="reliquary-panel-title">Recent distinctions</h2>
+                <Link href="/achievements" className="reliquary-kicker hover:text-zinc-200">
+                  View all
                 </Link>
               </div>
-              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-                {recentAchievements.map((a) => (
-                  <AchievementBadge key={a.key} achievement={a} />
-                ))}
-              </div>
+              {recentAchievements.length > 0 ? (
+                <div className="grid gap-px bg-zinc-800 sm:grid-cols-2 xl:grid-cols-1">
+                  {recentAchievements.map((achievement) => (
+                    <AchievementBadge key={achievement.key} achievement={achievement} />
+                  ))}
+                </div>
+              ) : (
+                <p className="p-6 text-sm text-zinc-500">The first distinction is still waiting.</p>
+              )}
             </section>
-          )}
-
-          <div className="flex gap-3">
-            <Link
-              href="/grail"
-              className="rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-100 transition hover:bg-zinc-700"
-            >
-              Open grail checklist →
-            </Link>
           </div>
         </>
       )}
-    </div>
-  );
-}
-
-function StatCard({ label, value, sub }: { label: string; value: string; sub: string }) {
-  return (
-    <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-4">
-      <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</p>
-      <p className="mt-1 text-3xl font-bold text-zinc-100">{value}</p>
-      <p className="mt-0.5 text-sm text-zinc-400">{sub}</p>
     </div>
   );
 }

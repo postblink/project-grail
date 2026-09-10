@@ -13,19 +13,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pd2grail.com"),
   title: "Project Grail",
-  description: "Track your Holy Grail challenge progress in Project Diablo 2. Find one of every item.",
+  description: "A living record of the hunt. Track every unique, set item, runeword, and rune in Project Diablo 2.",
   openGraph: {
     siteName: "Project Grail",
     title: "Project Grail",
-    description: "Track your Holy Grail challenge progress in Project Diablo 2. Find one of every item.",
+    description: "Every relic. Every rune. One ledger.",
     url: "https://pd2grail.com",
     type: "website",
+    images: [{ url: "/og.png", width: 1731, height: 909, alt: "Project Grail — Every relic. Every rune. One ledger." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Project Grail",
-    description: "Track your Holy Grail challenge progress in Project Diablo 2. Find one of every item.",
+    description: "Every relic. Every rune. One ledger.",
+    images: ["/og.png"],
   },
 };
 

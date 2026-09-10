@@ -113,9 +113,9 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
   const total = items.length;
 
   return (
-    <div className="space-y-5">
+    <div className="reliquary-checklist space-y-5">
       {/* Filters */}
-      <div className="sticky top-0 z-10 -mx-1 bg-zinc-950/95 backdrop-blur-sm px-1 py-2 flex flex-wrap items-center gap-2">
+      <div className="reliquary-filterbar sticky z-10 -mx-1 px-1 py-3 flex flex-wrap items-center gap-2">
         <input
           type="search"
           placeholder="Search items…"
@@ -281,7 +281,7 @@ function ItemRow({ item, onToggle, readOnly }: { item: GrailItemRow; onToggle: (
 
   return (
     <div
-      className={`group relative flex items-center gap-3 rounded-lg border px-3 py-2 transition-colors ${
+      className={`reliquary-item-row group relative flex items-center gap-3 border px-3 py-2 transition-colors ${
         item.found
           ? `${colors?.border ?? "border-amber-800/50"} ${colors?.bg ?? "bg-amber-900/20"}`
           : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"

@@ -26,39 +26,48 @@ export default async function AchievementsPage() {
   const unlockedCount = allDefs.filter((d) => earnedKeySet.has(d.key)).length;
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-end justify-between">
+    <div className="space-y-7">
+      <header className="reliquary-page-head">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Achievements</h1>
-          <p className="mt-0.5 text-sm text-zinc-500">
+          <p className="reliquary-kicker">Archive of distinction</p>
+          <h1 className="reliquary-page-title mt-3">Achievements</h1>
+          <p className="mt-3 text-sm text-zinc-500">
             {unlockedCount} / {total} unlocked
           </p>
         </div>
-        <Link href="/dashboard" className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
+        <Link href="/dashboard" className="reliquary-ghost">
           ← Dashboard
         </Link>
-      </div>
+      </header>
 
       {/* Progress bar */}
       {total > 0 && (
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
+        <div className="reliquary-panel flex items-center gap-5 border-l-2 border-l-amber-500 px-5 py-4">
+          <span className="reliquary-serif text-4xl text-zinc-100">
+            {Math.round((unlockedCount / total) * 100)}%
+          </span>
+          <div className="h-0.5 flex-1 overflow-hidden bg-zinc-800">
           <div
-            className="h-full rounded-full bg-amber-500 transition-all duration-500"
+              className="h-full bg-amber-500 transition-all duration-500"
             style={{ width: `${Math.round((unlockedCount / total) * 100)}%` }}
           />
+          </div>
+          <span className="hidden text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-600 sm:block">
+            Ledger complete
+          </span>
         </div>
       )}
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-px border border-zinc-800 bg-zinc-800 sm:grid-cols-2 lg:grid-cols-3">
         {allDefs.map((def) => {
           const isEarned = earnedKeySet.has(def.key);
           return (
             <div
               key={def.key}
-              className={`flex items-center gap-3 rounded-xl border px-4 py-3 transition-colors ${
+              className={`flex min-h-20 items-center gap-3 px-4 py-3 transition-colors ${
                 isEarned
-                  ? "border-zinc-700 bg-zinc-900"
-                  : "border-zinc-800/60 bg-zinc-900/30"
+                  ? "bg-zinc-900"
+                  : "bg-zinc-950/80"
               }`}
             >
               <span
@@ -68,7 +77,7 @@ export default async function AchievementsPage() {
               </span>
               <div className="min-w-0">
                 <p
-                  className={`text-sm font-medium truncate ${
+                  className={`reliquary-serif text-sm truncate ${
                     isEarned ? "text-zinc-100" : "text-zinc-600"
                   }`}
                 >
@@ -83,7 +92,9 @@ export default async function AchievementsPage() {
                 </p>
               </div>
               {isEarned && (
-                <span className="ml-auto shrink-0 text-xs font-medium text-amber-500">✓</span>
+                <span className="ml-auto shrink-0 text-[10px] font-bold uppercase tracking-[0.14em] text-amber-400">
+                  Earned
+                </span>
               )}
             </div>
           );

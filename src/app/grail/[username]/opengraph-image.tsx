@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getPublicGrailData, computeProgress, PRIVATE_PROFILE } from "@/lib/grail";
+import { getPublicGrailData, computeProgress } from "@/lib/grail";
 
 export const runtime = "nodejs";
 export const contentType = "image/png";

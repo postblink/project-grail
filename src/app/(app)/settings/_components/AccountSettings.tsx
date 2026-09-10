@@ -94,12 +94,6 @@ export function AccountSettings({
     router.refresh();
   }
 
-  const PROVIDER_LABELS: Record<string, string> = {
-    discord: "Discord",
-    resend: "Magic link (email)",
-    pd2: "Project Diablo 2",
-  };
-
   const discordLinked = providers.includes("discord");
   const pd2Linked = providers.includes("pd2");
   // Discord can only be unlinked if there's another sign-in method (magic link or other OAuth)
@@ -148,6 +142,9 @@ export function AccountSettings({
               </button>
             )
           ) : (
+            // OAuth linking must use a full document navigation so the route
+            // handler can establish state before redirecting off-site.
+            // eslint-disable-next-line @next/next/no-html-link-for-pages
             <a
               href="/api/auth/link/discord"
               className="rounded-lg bg-indigo-700 px-3 py-1.5 text-xs font-semibold text-indigo-100 hover:bg-indigo-600 transition-colors"
@@ -174,6 +171,9 @@ export function AccountSettings({
               {unlinking === "pd2" ? "Unlinking…" : "Unlink"}
             </button>
           ) : (
+            // OAuth linking must use a full document navigation so the route
+            // handler can establish state before redirecting off-site.
+            // eslint-disable-next-line @next/next/no-html-link-for-pages
             <a
               href="/api/auth/link/pd2"
               className="rounded-lg bg-amber-700 px-3 py-1.5 text-xs font-semibold text-amber-100 hover:bg-amber-600 transition-colors"

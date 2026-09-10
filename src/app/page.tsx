@@ -7,62 +7,88 @@ export default async function Home() {
   const session = await auth();
   if (session?.user) redirect("/dashboard");
 
-  const season = await getCurrentSeason();
+  // The landing page should remain useful even if the optional season label
+  // cannot be loaded during a database outage or local setup.
+  const season = await getCurrentSeason().catch(() => null);
+
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center bg-zinc-950 px-4 text-zinc-100">
-      {/* Glow */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(196,163,82,0.18) 0%, transparent 70%)",
-        }}
-      />
+    <main className="pg-landing">
+      <header className="pg-landing-masthead">
+        <Link href="/" className="flex items-baseline gap-3">
+          <span className="reliquary-serif text-2xl text-zinc-100">Project Grail</span>
+          <span className="hidden text-[9px] font-bold uppercase tracking-[0.2em] text-amber-500 sm:inline">
+            PD2 archive
+          </span>
+        </Link>
+        <Link href="/login" className="reliquary-ghost">
+          Open the ledger
+        </Link>
+      </header>
 
-      <div className="relative z-10 flex flex-col items-center text-center max-w-xl">
-        {/* Title */}
-        <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-          <span className="text-zinc-100">Project </span>
-          <span className="text-amber-400">Grail</span>
-        </h1>
-        <p className="mt-4 text-lg text-zinc-400">Hunt every item. Claim the Grail.</p>
+      <div className="pg-landing-grid">
+        <section className="pg-landing-copy">
+          <p className="reliquary-kicker">A living record of the hunt</p>
+          <h1>Every relic. Every rune. One ledger.</h1>
+          <p className="mt-7 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg">
+            A purpose-built Holy Grail tracker for Project Diablo 2—made for solo hunters,
+            shared leagues, and the long road to the final missing item.
+          </p>
 
-        {/* Feature list */}
-        <ul className="mt-8 space-y-2 text-sm text-zinc-500 text-left">
-          <li className="flex items-start gap-2">
-            <span className="mt-0.5 text-amber-600">✦</span>
-            Track one of every unique, set, and runeword item in Project Diablo 2
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="mt-0.5 text-amber-600">✦</span>
-            Import your progress directly from the PD2 armory — no manual entry required
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="mt-0.5 text-amber-600">✦</span>
-            Compete or collaborate with friends in leagues with live leaderboards
-          </li>
-        </ul>
+          <ol className="pg-landing-register max-w-2xl">
+            <li>
+              <span>I</span>
+              Record every unique, set item, runeword, and rune across the current season.
+            </li>
+            <li>
+              <span>II</span>
+              Reconcile your finds directly from the PD2 armory before committing changes.
+            </li>
+            <li>
+              <span>III</span>
+              Hunt together in cooperative, hybrid, or competitive leagues.
+            </li>
+          </ol>
+        </section>
 
-        {/* CTAs */}
-        <div className="mt-10 flex flex-col items-center gap-3">
+        <aside className="pg-landing-card" aria-label="Begin your grail">
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#665d4c]">
+            Registry · 001
+          </p>
+          <p className="mt-10 reliquary-serif text-5xl leading-none tracking-[-0.05em]">
+            The hunt,
+            <br />
+            accounted for.
+          </p>
+          <div className="my-8 border-y border-[#988d76] py-5">
+            <dl className="grid grid-cols-2 gap-5">
+              <div>
+                <dt className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#746a57]">
+                  Active archive
+                </dt>
+                <dd className="mt-2 reliquary-serif text-lg">
+                  {season?.name ?? "Current season"}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#746a57]">
+                  Access
+                </dt>
+                <dd className="mt-2 reliquary-serif text-lg">Discord or email</dd>
+              </div>
+            </dl>
+          </div>
           <Link
             href="/login"
-            className="rounded-xl bg-amber-600 px-8 py-3 text-sm font-semibold text-white transition hover:bg-amber-500"
+            className="flex min-h-12 w-full items-center justify-between border border-[#171612] bg-[#171612] px-4 text-[11px] font-extrabold uppercase tracking-[0.13em] text-[#eee3ca] transition-colors hover:bg-[#8b2f2b]"
           >
-            Get started
+            Begin your grail
+            <span aria-hidden>→</span>
           </Link>
-          <p className="text-xs text-zinc-600">
-            Sign in with Discord or email · No password required
+          <p className="mt-4 text-xs leading-5 text-[#665d4c]">
+            No password required. Your seasonal records remain attached to your account.
           </p>
-        </div>
+        </aside>
       </div>
-
-      {/* Footer */}
-      {season && (
-        <p className="absolute bottom-6 text-xs text-zinc-700">
-          {season.name} · pd2grail.com
-        </p>
-      )}
     </main>
   );
 }

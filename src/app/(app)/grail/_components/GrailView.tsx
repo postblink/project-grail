@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import type { GrailItemRow } from "@/lib/grail";
 import { GrailChecklist } from "./GrailChecklist";
 import { ArmoryImport } from "./ArmoryImport";
@@ -23,6 +23,7 @@ export function GrailView({ grailId, initialItems, pd2Linked }: Props) {
   const [pendingAchievements, setPendingAchievements] = useState<string[]>([]);
   const [resetState, setResetState] = useState<"idle" | "confirm" | "resetting">("idle");
   const progress = computeProgress(items);
+  const dismissAchievements = useCallback(() => setPendingAchievements([]), []);
 
   async function handleReset() {
     setResetState("resetting");
@@ -54,9 +55,9 @@ export function GrailView({ grailId, initialItems, pd2Linked }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3">
+      <div className="reliquary-panel flex flex-col justify-between gap-4 border-l-2 border-l-amber-500 px-4 py-4 sm:flex-row sm:items-center">
         <p className="text-sm text-zinc-400">
-          <span className="text-2xl font-bold text-zinc-100">{progress.pct}%</span>
+          <span className="reliquary-serif text-4xl text-zinc-100">{progress.pct}%</span>
           {" "}— {progress.found} / {progress.total} items
         </p>
         <div className="flex items-center gap-2">
@@ -94,10 +95,10 @@ export function GrailView({ grailId, initialItems, pd2Linked }: Props) {
       </div>
 
       {/* Progress bar with milestone markers */}
-      <div className="relative">
-        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+      <div className="relative py-2">
+        <div className="h-0.5 w-full overflow-hidden bg-zinc-800">
           <div
-            className="h-full rounded-full bg-amber-500 transition-all duration-500"
+            className="h-full bg-amber-500 transition-all duration-500"
             style={{ width: `${progress.pct}%` }}
           />
         </div>
@@ -115,8 +116,8 @@ export function GrailView({ grailId, initialItems, pd2Linked }: Props) {
 
       {/* First-time empty state nudge */}
       {progress.found === 0 && (
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-5 text-center space-y-2">
-          <p className="text-sm font-medium text-zinc-300">Your grail is empty — time to hunt.</p>
+        <div className="reliquary-panel border-l-2 border-l-amber-700 px-4 py-5 text-center space-y-2">
+          <p className="reliquary-serif text-lg text-zinc-300">Your grail is empty — time to hunt.</p>
           <p className="text-xs text-zinc-500">
             Check off items as you find them, or use <span className="text-amber-400">Armory Import</span> to bulk-import from your PD2 characters.
           </p>
@@ -131,7 +132,7 @@ export function GrailView({ grailId, initialItems, pd2Linked }: Props) {
       />
       <AchievementToast
         keys={pendingAchievements}
-        onDismissAll={() => setPendingAchievements([])}
+        onDismissAll={dismissAchievements}
       />
     </div>
   );

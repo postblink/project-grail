@@ -36,11 +36,12 @@ export default async function GrailPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-start justify-between">
+      <header className="reliquary-page-head">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">My Grail</h1>
-          <p className="mt-0.5 text-sm text-zinc-500">{season.name}</p>
-          <div className="mt-2">
+          <p className="reliquary-kicker">Personal register</p>
+          <h1 className="reliquary-page-title mt-3">My Grail</h1>
+          <p className="mt-3 text-sm text-zinc-500">{season.name}</p>
+          <div className="mt-3">
             {session.user.display_name ? (
               <ShareGrailButton username={session.user.display_name} />
             ) : (
@@ -58,12 +59,12 @@ export default async function GrailPage() {
           href={filterForgeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+          className="reliquary-ghost shrink-0"
           title="Open your found items in FilterForge"
         >
           Open in FilterForge →
         </a>
-      </div>
+      </header>
       <GrailView grailId={grail.id} initialItems={items} pd2Linked={pd2Linked} />
     </div>
   );

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { auth } from "@/auth";
-import { getPublicGrailData, computeProgress, PRIVATE_PROFILE } from "@/lib/grail";
+import { getPublicGrailData, computeProgress } from "@/lib/grail";
 import { buildFilterForgeUrl } from "@/lib/filterforge";
 import { getUserAchievements } from "@/lib/achievements";
 import { GrailChecklist } from "@/app/(app)/grail/_components/GrailChecklist";
@@ -27,35 +27,34 @@ export default async function PublicGrailPage({ params }: Props) {
   const displayName = user.display_name ?? username;
 
   return (
-    <div className="relative min-h-screen bg-zinc-950">
-      <div
-        className="pointer-events-none fixed inset-0 z-0"
-        style={{ background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(196,163,82,0.18) 0%, transparent 70%)" }}
-      />
-      {/* Minimal top bar */}
-      <header className="relative z-10 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-          <Link href="/" className="text-sm font-bold text-zinc-100 tracking-tight">
-            Project <span className="text-amber-400">Grail</span>
+    <div className="min-h-screen bg-zinc-950">
+      <header className="border-b border-zinc-800 bg-[#11110f]">
+        <div className="mx-auto flex min-h-16 max-w-6xl items-center justify-between px-4">
+          <Link href="/" className="flex items-baseline gap-3">
+            <span className="reliquary-serif text-xl text-zinc-100">Project Grail</span>
+            <span className="hidden text-[9px] font-bold uppercase tracking-[0.18em] text-amber-500 sm:inline">
+              Public archive
+            </span>
           </Link>
-          <Link href="/login" className="rounded-lg bg-amber-700 px-3 py-1.5 text-xs font-semibold text-amber-100 hover:bg-amber-600 transition-colors">
+          <Link href="/login" className="reliquary-action">
             Track your own →
           </Link>
         </div>
       </header>
-    <div className="relative z-10 mx-auto max-w-5xl px-4 py-8 space-y-6">
+    <div className="mx-auto max-w-6xl px-4 py-8 space-y-6">
       {/* Header */}
-      <div className="flex items-end justify-between">
+      <div className="reliquary-page-head">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">{displayName}&apos;s Grail</h1>
-          <p className="mt-0.5 text-sm text-zinc-500">
+          <p className="reliquary-kicker">Published register</p>
+          <h1 className="reliquary-page-title mt-3">{displayName}&apos;s Grail</h1>
+          <p className="mt-3 text-sm text-zinc-500">
             {season ? season.name : "No active season"}
           </p>
         </div>
         <div className="flex items-center gap-3">
           {progress.total > 0 && (
             <p className="text-sm text-zinc-400">
-              <span className="text-2xl font-bold text-zinc-100">{progress.pct}%</span>
+              <span className="reliquary-serif text-4xl text-zinc-100">{progress.pct}%</span>
               {" "}— {progress.found} / {progress.total} items
             </p>
           )}
@@ -63,7 +62,7 @@ export default async function PublicGrailPage({ params }: Props) {
             href={filterForgeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+            className="reliquary-ghost"
           >
             Open in FilterForge →
           </a>
@@ -72,9 +71,9 @@ export default async function PublicGrailPage({ params }: Props) {
 
       {/* Progress bar */}
       {progress.total > 0 && (
-        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
+        <div className="h-0.5 w-full overflow-hidden bg-zinc-800">
           <div
-            className="h-full rounded-full bg-amber-500"
+            className="h-full bg-amber-500"
             style={{ width: `${progress.pct}%` }}
           />
         </div>
@@ -86,10 +85,10 @@ export default async function PublicGrailPage({ params }: Props) {
             <div
               key={a.key}
               title={a.description}
-              className="flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/60 px-2.5 py-1.5"
+              className="flex items-center gap-2 border border-zinc-800 bg-zinc-900 px-3 py-2"
             >
               <span className={`text-sm leading-none ${a.color}`}>{a.emoji}</span>
-              <span className="text-xs font-medium text-zinc-300">{a.name}</span>
+              <span className="reliquary-serif text-xs text-zinc-300">{a.name}</span>
             </div>
           ))}
         </div>
@@ -115,17 +114,14 @@ export default async function PublicGrailPage({ params }: Props) {
 
 function PrivateProfile({ username }: { username: string }) {
   return (
-    <div className="relative min-h-screen bg-zinc-950">
-      <div
-        className="pointer-events-none fixed inset-0 z-0"
-        style={{ background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(196,163,82,0.18) 0%, transparent 70%)" }}
-      />
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-xl flex-col items-center justify-center px-4 text-center">
-        <h1 className="text-2xl font-bold text-zinc-100">{username}&apos;s grail is private</h1>
+    <div className="min-h-screen bg-zinc-950">
+      <div className="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-center px-4 text-center">
+        <p className="reliquary-kicker">Sealed register</p>
+        <h1 className="mt-4 text-3xl text-zinc-100">{username}&apos;s grail is private</h1>
         <p className="mt-2 text-sm text-zinc-500">
           This player has chosen to hide their public profile.
         </p>
-        <Link href="/" className="mt-6 rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-200 hover:bg-zinc-700">
+        <Link href="/" className="reliquary-ghost mt-7">
           ← Back to Project Grail
         </Link>
       </div>

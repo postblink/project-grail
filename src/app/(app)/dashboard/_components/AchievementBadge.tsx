@@ -12,13 +12,13 @@ export function AchievementBadge({ achievement, size = "md" }: Props) {
   return (
     <div
       title={`${achievement.name}: ${achievement.description}`}
-      className={`flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/60 ${isSm ? "px-2.5 py-1.5" : "px-3 py-2"}`}
+      className={`flex items-center gap-3 bg-zinc-900 ${isSm ? "px-2.5 py-1.5" : "px-4 py-3"}`}
     >
       <span className={`${isSm ? "text-base" : "text-lg"} ${achievement.color} leading-none`}>
         {achievement.emoji}
       </span>
       <div>
-        <p className={`font-medium text-zinc-200 ${isSm ? "text-xs" : "text-sm"}`}>{achievement.name}</p>
+        <p className={`reliquary-serif text-zinc-200 ${isSm ? "text-xs" : "text-sm"}`}>{achievement.name}</p>
         {!isSm && (
           <p className="text-xs text-zinc-600">{achievement.description}</p>
         )}

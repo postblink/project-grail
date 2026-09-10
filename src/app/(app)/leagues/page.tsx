@@ -28,22 +28,31 @@ export default async function LeaguesPage() {
   const myLeagueIds = new Set(myMemberships.map((m) => m.league.id));
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-zinc-100">Leagues</h1>
+    <div className="space-y-7">
+      <header className="reliquary-page-head">
+        <div>
+          <p className="reliquary-kicker">Shared registers</p>
+          <h1 className="reliquary-page-title mt-3">Leagues</h1>
+          <p className="mt-3 max-w-2xl text-sm text-zinc-500">
+            Compare the hunt, pool the grail, or race for the final entry.
+          </p>
+        </div>
         <Link
           href="/leagues/create"
-          className="rounded-lg bg-amber-700 px-4 py-2 text-sm font-semibold text-amber-100 hover:bg-amber-600 transition-colors"
+          className="reliquary-action"
         >
           Create League
         </Link>
-      </div>
+      </header>
 
       {/* My leagues */}
       {myMemberships.length > 0 && (
-        <section>
-          <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">My Leagues</h2>
-          <div className="space-y-2">
+        <section className="reliquary-panel">
+          <div className="reliquary-panel-head">
+            <h2 className="reliquary-panel-title">My league entries</h2>
+            <span className="reliquary-kicker">{myMemberships.length} registered</span>
+          </div>
+          <div>
             {myMemberships.map(({ league, role }) => (
               <LeagueRow key={league.id} league={league} role={role} isMember />
             ))}
@@ -52,19 +61,20 @@ export default async function LeaguesPage() {
       )}
 
       {/* Public leagues */}
-      <section>
-        <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
-          Public Leagues
-        </h2>
+      <section className="reliquary-panel">
+        <div className="reliquary-panel-head">
+          <h2 className="reliquary-panel-title">Public registers</h2>
+          <span className="reliquary-kicker">{publicLeagues.length} open</span>
+        </div>
         {publicLeagues.length === 0 ? (
-          <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-6 text-center">
+          <div className="px-4 py-8 text-center">
             <p className="text-sm text-zinc-500">No public leagues yet this season.</p>
-            <Link href="/leagues/create" className="mt-2 inline-block text-sm text-amber-500 hover:text-amber-400">
+            <Link href="/leagues/create" className="mt-4 inline-flex reliquary-ghost">
               Create the first one →
             </Link>
           </div>
         ) : (
-          <div className="space-y-2">
+          <div>
             {publicLeagues.map((league) => (
               <LeagueRow
                 key={league.id}
@@ -92,25 +102,30 @@ function LeagueRow({
   return (
     <Link
       href={`/leagues/${league.slug}`}
-      className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 hover:border-zinc-700 transition-colors"
+      className="reliquary-table-row"
     >
       <div>
-        <span className="text-sm font-medium text-zinc-200">{league.name}</span>
-        <span className="ml-2 text-xs text-zinc-600">{league.season.name}</span>
+        <span className="text-sm font-semibold text-zinc-200">{league.name}</span>
+        <span className="ml-2 reliquary-serif text-xs italic text-zinc-600">{league.season.name}</span>
         {role === "commissioner" && (
-          <span className="ml-2 rounded bg-amber-900/40 px-1.5 py-0.5 text-xs text-amber-500">Commissioner</span>
+          <span className="ml-2 border-l border-amber-700 pl-2 text-[9px] font-bold uppercase tracking-[0.12em] text-amber-400">
+            Commissioner
+          </span>
         )}
         {role === "co_commissioner" && (
-          <span className="ml-2 rounded bg-zinc-800 px-1.5 py-0.5 text-xs text-zinc-400">Co-Commissioner</span>
+          <span className="ml-2 border-l border-zinc-700 pl-2 text-[9px] font-bold uppercase tracking-[0.12em] text-zinc-400">
+            Co-Commissioner
+          </span>
         )}
       </div>
-      <div className="flex items-center gap-3 text-xs text-zinc-500">
+      <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.1em] text-zinc-500">
         <span>{TYPE_LABELS[league.league_type] ?? league.league_type}</span>
         <span>{LADDER_LABELS[league.ladder_mode] ?? league.ladder_mode}</span>
-        <span>{league._count.members} {league._count.members === 1 ? "member" : "members"}</span>
-        {isMember && <span className="text-emerald-600">✓ Joined</span>}
-        <span className="text-zinc-600">→</span>
       </div>
+      <span className="text-right text-xs text-zinc-500">
+        {league._count.members} {league._count.members === 1 ? "hunter" : "hunters"}
+        {isMember && <span className="ml-3 text-emerald-500">✓</span>} →
+      </span>
     </Link>
   );
 }

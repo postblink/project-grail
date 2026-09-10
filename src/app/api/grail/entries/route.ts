@@ -125,7 +125,6 @@ export async function PATCH(req: NextRequest) {
         const milestone = checkMilestoneCrossed(prevFound, foundItems, totalItems);
         const announceableAchievements = newAchievements.filter(shouldAnnounceAchievement);
         const pctCurrent = Math.round((foundItems / totalItems) * 100);
-        const pctBefore = Math.round((Math.max(0, prevFound) / totalItems) * 100);
         const flushAfter = new Date(Date.now() + 3 * 60 * 1000);
 
         await Promise.allSettled(

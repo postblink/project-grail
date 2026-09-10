@@ -14,6 +14,11 @@ const AUTHED_NAV = [
 
 const ANON_NAV = [{ href: "/leagues", label: "Leagues", index: "I" }];
 
+/* Grail is a fan tool built on Blizzard IP, so support stays donation-shaped:
+   nothing here is ever gated behind it. Tips live on Ko-fi (0% platform cut on
+   one-off tips); recurring membership lives on Patreon. */
+const KOFI_URL = "https://ko-fi.com/postblink";
+
 export function NavBar({
   displayName,
   isAdmin,
@@ -89,6 +94,18 @@ export function NavBar({
               Sign in
             </Link>
           )}
+
+          <a
+            href={KOFI_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 block border-t border-zinc-800 pt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-600 transition-colors hover:text-amber-400"
+          >
+            Support the ledger
+            <span className="mt-1 block text-[10px] font-normal normal-case tracking-normal">
+              Ko-fi — opens in a new tab
+            </span>
+          </a>
         </div>
       </aside>
 
@@ -147,6 +164,15 @@ export function NavBar({
                   Sign in
                 </Link>
               )}
+              <a
+                href={KOFI_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-600"
+              >
+                Support
+              </a>
             </div>
           </div>
         )}

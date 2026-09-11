@@ -14,7 +14,7 @@ Track every unique, set item, runeword, and rune across the current season. Impo
 
 - 🛡️ **Solo grail tracking** — checklist UI for every PD2 item in the current season
 - ⚔️ **Armory import** — pull found items straight from the PD2 armory and shared stash, with a diff/confirm step before any writes
-- 👥 **Leagues** — three flavors (competitive, hybrid, cooperative) with leaderboards, missing-items views, team grails, and an activity feed
+- 👥 **Leagues** — competitive, hybrid, and cooperative play with leaderboards, missing-items views, team grails, and an activity feed
 - 🤖 **Discord webhooks** — batched item-find notifications with item images, milestone callouts, and achievement unlocks
 - 🏆 **Achievements** — milestones for item counts, percentage progress, first runes / runewords / set pieces, and full set completions
 - 🌐 **Public profiles** at `/grail/<username>` (with an opt-out toggle) and shareable league URLs
@@ -47,9 +47,9 @@ No Vercel-proprietary infra is required — the code is portable to any Node 20+
 ### Prerequisites
 
 - Node.js 20+
-- A Postgres database (local Docker, Supabase, Neon, Railway — anything that speaks Postgres)
+- A Postgres database (local Docker, Supabase, Neon, Railway, or another compatible provider)
 - A Discord application for OAuth (free, at [discord.com/developers](https://discord.com/developers/applications))
-- A Resend account for magic-link email (free tier is generous)
+- A Resend account for magic-link email
 
 ### Setup
 
@@ -128,7 +128,7 @@ The script reads `DATABASE_URL` from `.env`. Always double-check which database 
 
 ## Contributing
 
-Contributions welcome — bug reports, feature ideas, and PRs all good. Before opening a PR:
+Contributions are welcome: bug reports, feature ideas, and focused pull requests. Before opening a PR:
 
 1. Read `docs/PROJECT.md` for code conventions
 2. Make sure `npx tsc --noEmit` is clean

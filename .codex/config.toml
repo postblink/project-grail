@@ -1,3 +1,0 @@
-[mcp_servers.claudezilla]
-command = "node"
-args = ["/home/postblink/Dev Projects/Project Grail/claudezilla/mcp/server.js"]

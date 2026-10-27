@@ -130,14 +130,23 @@ rm .env
 
 ### Apply a pending Prisma migration to prod
 
-Migrations run automatically on the build server via the `postinstall` hook
-(`prisma generate`) and `prisma migrate deploy`. To run manually:
+Vercel uses the repository's `vercel.json` build command (`node scripts/vercel-build.mjs`).
+That command runs `prisma migrate deploy` before the Next.js build only when
+`VERCEL_ENV=production`; preview and local builds do not migrate a database.
+The migration command fails closed if the production migration cannot be applied,
+and the application build is not started afterward. The `postinstall` hook only
+runs `prisma generate`—it does not apply migrations. Season/item catalog seeding
+and switching the current season are separate admin actions; do not put those
+production data changes into the build.
+
+To run manually, use the approved production database connection through the
+project's secret-safe environment workflow, then run:
 
 ```bash
-cp .env.prod .env
 npx prisma migrate deploy
-rm .env
 ```
+
+Verify the target database before running this command. Never print or commit its URL.
 
 ### Manually fire the Discord-flush cron
 

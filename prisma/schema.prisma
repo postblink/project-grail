@@ -113,15 +113,15 @@ model User {
   created_at    DateTime  @default(now())
   deleted_at    DateTime?
 
-  accounts         Account[]
-  sessions         Session[]
-  grails           Grail[]
-  leagues_created  League[]         @relation("Commissioner")
-  league_members   LeagueMember[]
-  armory_imports   ArmoryImport[]
-  league_finds     LeagueGrailEntry[]
-  achievements     UserAchievement[]
-  discord_batches  DiscordBatch[]
+  accounts        Account[]
+  sessions        Session[]
+  grails          Grail[]
+  leagues_created League[]           @relation("Commissioner")
+  league_members  LeagueMember[]
+  armory_imports  ArmoryImport[]
+  league_finds    LeagueGrailEntry[]
+  achievements    UserAchievement[]
+  discord_batches DiscordBatch[]
 
   @@map("users")
 }
@@ -136,9 +136,9 @@ model Season {
   is_current Boolean   @default(false)
   created_at DateTime  @default(now())
 
-  grails            Grail[]
-  leagues           League[]
-  items_introduced  Item[]
+  grails           Grail[]
+  leagues          League[]
+  items_introduced Item[]
 
   @@map("seasons")
 }
@@ -180,12 +180,14 @@ model Grail {
 }
 
 model GrailEntry {
-  id             String       @id @default(cuid())
-  grail_id       String
-  item_id        String
-  found          Boolean      @default(false)
-  found_at       DateTime?
-  import_source  ImportSource @default(manual)
+  id                                String       @id @default(cuid())
+  grail_id                          String
+  item_id                           String
+  found                             Boolean      @default(false)
+  found_at                          DateTime?
+  import_source                     ImportSource @default(manual)
+  discovery_drop_attested           Boolean      @default(false)
+  discovery_identification_attested Boolean      @default(false)
 
   grail Grail @relation(fields: [grail_id], references: [id])
   item  Item  @relation(fields: [item_id], references: [id])
@@ -196,14 +198,14 @@ model GrailEntry {
 }
 
 model ArmoryImport {
-  id             String       @id @default(cuid())
-  grail_id       String
-  user_id        String
-  characters     String[]
-  status         ImportStatus
-  items_added    Int          @default(0)
-  error_details  String?
-  created_at     DateTime     @default(now())
+  id            String       @id @default(cuid())
+  grail_id      String
+  user_id       String
+  characters    String[]
+  status        ImportStatus
+  items_added   Int          @default(0)
+  error_details String?
+  created_at    DateTime     @default(now())
 
   grail Grail @relation(fields: [grail_id], references: [id])
   user  User  @relation(fields: [user_id], references: [id])
@@ -282,9 +284,9 @@ model LeagueGrailEntry {
   found_by_user_id String
   found_at         DateTime @default(now())
 
-  league       League @relation(fields: [league_id], references: [id])
-  item         Item   @relation(fields: [item_id], references: [id])
-  found_by     User   @relation(fields: [found_by_user_id], references: [id])
+  league   League @relation(fields: [league_id], references: [id])
+  item     Item   @relation(fields: [item_id], references: [id])
+  found_by User   @relation(fields: [found_by_user_id], references: [id])
 
   @@unique([league_id, item_id])
   @@map("league_grail_entries")

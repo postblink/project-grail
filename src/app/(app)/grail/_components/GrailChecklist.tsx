@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import type { GrailItemRow } from "@/lib/grail";
+import { isDiscoveryEligible } from "@/lib/discovery";
 import { WikiTooltip } from "./WikiTooltip";
 
 const CATEGORIES = ["unique", "set", "runeword", "rune"] as const;
@@ -36,11 +37,21 @@ interface Props {
   items: GrailItemRow[];
   setItems?: React.Dispatch<React.SetStateAction<GrailItemRow[]>>;
   readOnly?: boolean;
+  discoveryEnabled?: boolean;
   onAchievementsUnlocked?: (keys: string[]) => void;
 }
 
-export function GrailChecklist({ grailId, items, setItems, readOnly = false, onAchievementsUnlocked }: Props) {
-  const [, startTransition] = useTransition();
+type DiscoveryField = "discoveryDropAttested" | "discoveryIdentificationAttested";
+
+export function GrailChecklist({
+  grailId,
+  items,
+  setItems,
+  readOnly = false,
+  discoveryEnabled = false,
+  onAchievementsUnlocked,
+}: Props) {
+  const [isPending, startTransition] = useTransition();
 
   // Filters
   const [search, setSearch] = useState("");
@@ -50,7 +61,7 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
   const [filterType, setFilterType] = useState<ItemType | "all">("all");
 
   function toggle(itemId: string) {
-    if (readOnly || !setItems) return;
+    if (readOnly || !setItems || isPending) return;
     const item = items.find((i) => i.id === itemId);
     if (!item) return;
     const nextFound = !item.found;
@@ -59,7 +70,14 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
     setItems((prev) =>
       prev.map((i) =>
         i.id === itemId
-          ? { ...i, found: nextFound, found_at: nextFound ? new Date() : null }
+          ? {
+              ...i,
+              found: nextFound,
+              found_at: nextFound ? new Date() : null,
+              ...(nextFound
+                ? {}
+                : { discoveryDropAttested: false, discoveryIdentificationAttested: false }),
+            }
           : i
       )
     );
@@ -74,7 +92,13 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
         if (!res.ok) {
           setItems((prev) =>
             prev.map((i) =>
-              i.id === itemId ? { ...i, found: item.found, found_at: item.found_at } : i
+              i.id === itemId ? {
+                ...i,
+                found: item.found,
+                found_at: item.found_at,
+                discoveryDropAttested: item.discoveryDropAttested,
+                discoveryIdentificationAttested: item.discoveryIdentificationAttested,
+              } : i
             )
           );
         } else if (nextFound && onAchievementsUnlocked) {
@@ -86,9 +110,50 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
       } catch {
         setItems((prev) =>
           prev.map((i) =>
-            i.id === itemId ? { ...i, found: item.found, found_at: item.found_at } : i
+            i.id === itemId ? {
+              ...i,
+              found: item.found,
+              found_at: item.found_at,
+              discoveryDropAttested: item.discoveryDropAttested,
+              discoveryIdentificationAttested: item.discoveryIdentificationAttested,
+            } : i
           )
         );
+      }
+    });
+  }
+
+  function updateDiscoveryAttestation(itemId: string, field: DiscoveryField, value: boolean) {
+    if (readOnly || !setItems || !discoveryEnabled || isPending) return;
+    const item = items.find((i) => i.id === itemId);
+    if (!item || !item.found || (item.category !== "unique" && item.category !== "set")) return;
+
+    const next = { ...item, [field]: value };
+    setItems((prev) => prev.map((i) => (i.id === itemId ? next : i)));
+
+    startTransition(async () => {
+      try {
+        const res = await fetch("/api/grail/entries/discovery", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            grailId,
+            itemId,
+            discoveryDropAttested: next.discoveryDropAttested,
+            discoveryIdentificationAttested: next.discoveryIdentificationAttested,
+          }),
+        });
+        if (!res.ok) throw new Error("Unable to save Discovery attestation");
+        const data = await res.json() as {
+          entry: Pick<GrailItemRow, "discoveryDropAttested" | "discoveryIdentificationAttested">;
+        };
+        setItems((prev) => prev.map((i) => (i.id === itemId ? { ...i, ...data.entry } : i)));
+      } catch {
+        setItems((prev) => prev.map((i) => i.id === itemId ? {
+          ...i,
+          discoveryDropAttested: item.discoveryDropAttested,
+          discoveryIdentificationAttested: item.discoveryIdentificationAttested,
+        } : i));
       }
     });
   }
@@ -235,7 +300,15 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
                       </div>
                       <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
                         {setItems.map((item) => (
-                          <ItemRow key={item.id} item={item} onToggle={() => toggle(item.id)} readOnly={readOnly} />
+                          <ItemRow
+                            key={item.id}
+                            item={item}
+                            onToggle={() => toggle(item.id)}
+                            readOnly={readOnly}
+                            isPending={isPending}
+                            discoveryEnabled={discoveryEnabled}
+                            onDiscoveryChange={(field, value) => updateDiscoveryAttestation(item.id, field, value)}
+                          />
                         ))}
                       </div>
                     </div>
@@ -262,7 +335,15 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
             </div>
             <div className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
               {catItems.map((item) => (
-                <ItemRow key={item.id} item={item} onToggle={() => toggle(item.id)} readOnly={readOnly} />
+                <ItemRow
+                  key={item.id}
+                  item={item}
+                  onToggle={() => toggle(item.id)}
+                  readOnly={readOnly}
+                  isPending={isPending}
+                  discoveryEnabled={discoveryEnabled}
+                  onDiscoveryChange={(field, value) => updateDiscoveryAttestation(item.id, field, value)}
+                />
               ))}
             </div>
           </section>
@@ -276,67 +357,116 @@ export function GrailChecklist({ grailId, items, setItems, readOnly = false, onA
   );
 }
 
-function ItemRow({ item, onToggle, readOnly }: { item: GrailItemRow; onToggle: () => void; readOnly?: boolean }) {
+function ItemRow({
+  item,
+  onToggle,
+  readOnly,
+  isPending,
+  discoveryEnabled,
+  onDiscoveryChange,
+}: {
+  item: GrailItemRow;
+  onToggle: () => void;
+  readOnly?: boolean;
+  isPending: boolean;
+  discoveryEnabled: boolean;
+  onDiscoveryChange?: (field: DiscoveryField, value: boolean) => void;
+}) {
   const colors = CATEGORY_COLORS[item.category];
+  const showDiscovery = discoveryEnabled && item.found && (item.category === "unique" || item.category === "set");
+  const discoveryEligible = isDiscoveryEligible(item);
 
   return (
     <div
-      className={`reliquary-item-row group relative flex items-center gap-3 border px-3 py-2 transition-colors ${
+      className={`reliquary-item-row group relative border px-3 py-2 transition-colors ${
         item.found
           ? `${colors?.border ?? "border-amber-800/50"} ${colors?.bg ?? "bg-amber-900/20"}`
           : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"
       }`}
     >
-      {/* Toggle area */}
-      <button
-        onClick={onToggle}
-        disabled={readOnly}
-        className={`flex items-center gap-3 flex-1 min-w-0 text-left ${readOnly ? "cursor-default" : ""}`}
-      >
-        {/* Checkbox */}
-        <span
-          className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border text-xs transition-colors ${
-            item.found
-              ? `${colors?.badge ?? "bg-amber-600 text-zinc-950"} border-transparent`
-              : "border-zinc-600 bg-transparent"
-          }`}
+      <div className="flex items-center gap-3">
+        {/* Toggle area */}
+        <button
+          onClick={onToggle}
+          disabled={readOnly || isPending}
+          className={`flex items-center gap-3 flex-1 min-w-0 text-left ${readOnly ? "cursor-default" : ""}`}
         >
-          {item.found && "✓"}
-        </span>
-
-        <span className="flex-1 min-w-0">
+          {/* Checkbox */}
           <span
-            className={`block truncate text-sm font-medium transition-colors ${
+            className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border text-xs transition-colors ${
               item.found
-                ? (colors?.found ?? "text-amber-200")
-                : (colors?.name ?? "text-zinc-300")
+                ? `${colors?.badge ?? "bg-amber-600 text-zinc-950"} border-transparent`
+                : "border-zinc-600 bg-transparent"
             }`}
           >
-            {item.name}
+            {item.found && "✓"}
           </span>
-          {item.item_type && (
-            <span className="text-xs text-zinc-600">{item.item_type}</span>
-          )}
-          {item.set_name && (
-            <span className="text-xs text-zinc-600">{item.set_name}</span>
-          )}
-        </span>
-      </button>
 
-      {/* Right side badges + wiki link */}
-      <div className="flex flex-shrink-0 items-center gap-1.5">
+          <span className="flex-1 min-w-0">
+            <span
+              className={`block truncate text-sm font-medium transition-colors ${
+                item.found
+                  ? (colors?.found ?? "text-amber-200")
+                  : (colors?.name ?? "text-zinc-300")
+              }`}
+            >
+              {item.name}
+            </span>
+            {item.item_type && (
+              <span className="text-xs text-zinc-600">{item.item_type}</span>
+            )}
+            {item.set_name && (
+              <span className="text-xs text-zinc-600">{item.set_name}</span>
+            )}
+          </span>
+        </button>
 
-        {item.wiki_url && (
-          <WikiTooltip
-            wikiUrl={item.wiki_url}
-            wikiImageUrl={item.wiki_image_url}
-            itemName={item.name}
-            itemType={item.item_type}
-            setName={item.set_name}
-            category={item.category}
-          />
-        )}
+        {/* Right side badges + wiki link */}
+        <div className="flex flex-shrink-0 items-center gap-1.5">
+
+          {item.wiki_url && (
+            <WikiTooltip
+              wikiUrl={item.wiki_url}
+              wikiImageUrl={item.wiki_image_url}
+              itemName={item.name}
+              itemType={item.item_type}
+              setName={item.set_name}
+              category={item.category}
+            />
+          )}
+        </div>
       </div>
+
+      {showDiscovery && (
+        <details className="ml-7 mt-2 border-t border-zinc-800 pt-2 text-xs">
+          <summary className="cursor-pointer text-zinc-400 hover:text-zinc-200">
+            Discovery attestation: {discoveryEligible ? "both conditions self-attested" : "incomplete"}
+          </summary>
+          <div className="mt-2 space-y-2 text-zinc-400">
+            <label className="flex items-start gap-2">
+              <input
+                type="checkbox"
+                checked={item.discoveryDropAttested}
+                disabled={readOnly || isPending}
+                onChange={(event) => onDiscoveryChange?.("discoveryDropAttested", event.target.checked)}
+                className="mt-0.5 accent-cyan-500"
+              />
+              <span>I was in the same act when it dropped (required for a party find).</span>
+            </label>
+            <label className="flex items-start gap-2">
+              <input
+                type="checkbox"
+                checked={item.discoveryIdentificationAttested}
+                disabled={readOnly || isPending}
+                onChange={(event) => onDiscoveryChange?.("discoveryIdentificationAttested", event.target.checked)}
+                className="mt-0.5 accent-cyan-500"
+              />
+              <span>I was present when the item was identified.</span>
+            </label>
+            <p className="text-zinc-600">Both are required. These are self-reported; Project Grail cannot verify game events or official Discovery status.</p>
+          </div>
+        </details>
+      )}
     </div>
   );
 }

@@ -6280,5 +6280,65 @@
     "pd2_exclusive": false,
     "is_active": true,
     "wiki_url": "https://wiki.projectdiablo2.com/wiki/Trang-Oul's_Wing"
+  },
+  {
+    "name": "Warriv's Warder",
+    "category": "unique",
+    "item_type": "shields",
+    "set_name": null,
+    "pd2_exclusive": true,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Warriv's_Warder",
+    "season_introduced": "s14-alliance"
+  },
+  {
+    "name": "Spectral Plate",
+    "category": "unique",
+    "item_type": "chests",
+    "set_name": null,
+    "pd2_exclusive": true,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Spectral_Plate",
+    "season_introduced": "s14-alliance"
+  },
+  {
+    "name": "Madness",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": true,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Madness",
+    "season_introduced": "s14-alliance"
+  },
+  {
+    "name": "Finesse",
+    "category": "runeword",
+    "item_type": "chest",
+    "set_name": null,
+    "pd2_exclusive": true,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Finesse",
+    "season_introduced": "s14-alliance"
+  },
+  {
+    "name": "Jealousy",
+    "category": "runeword",
+    "item_type": "weapon",
+    "set_name": null,
+    "pd2_exclusive": true,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Jealousy",
+    "season_introduced": "s14-alliance"
+  },
+  {
+    "name": "Deception",
+    "category": "runeword",
+    "item_type": "helm",
+    "set_name": null,
+    "pd2_exclusive": true,
+    "is_active": true,
+    "wiki_url": "https://wiki.projectdiablo2.com/wiki/Deception",
+    "season_introduced": "s14-alliance"
   }
 ]

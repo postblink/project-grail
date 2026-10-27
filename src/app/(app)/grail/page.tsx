@@ -9,6 +9,7 @@ import { getCurrentSeason, getOrCreateGrail, getGrailItems } from "@/lib/grail";
 import { GrailView } from "./_components/GrailView";
 import { ShareGrailButton } from "./_components/ShareGrailButton";
 import { buildFilterForgeUrl } from "@/lib/filterforge";
+import { S14_DISCOVERY_SEASON_SLUG } from "@/lib/discovery";
 
 export default async function GrailPage() {
   const session = await auth();
@@ -65,7 +66,12 @@ export default async function GrailPage() {
           Open in FilterForge →
         </a>
       </header>
-      <GrailView grailId={grail.id} initialItems={items} pd2Linked={pd2Linked} />
+      <GrailView
+        grailId={grail.id}
+        initialItems={items}
+        pd2Linked={pd2Linked}
+        discoveryEnabled={season.slug === S14_DISCOVERY_SEASON_SLUG}
+      />
     </div>
   );
 }

@@ -49,6 +49,10 @@ export async function PATCH(req: NextRequest) {
       found,
       found_at: found ? new Date() : null,
       import_source: "manual",
+      ...(found ? {} : {
+        discovery_drop_attested: false,
+        discovery_identification_attested: false,
+      }),
     },
     create: {
       grail_id: grailId,

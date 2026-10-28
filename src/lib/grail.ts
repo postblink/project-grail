@@ -36,6 +36,8 @@ export interface GrailItemRow {
   wiki_image_url: string;
   found: boolean;
   found_at: Date | null;
+  discoveryDropAttested: boolean;
+  discoveryIdentificationAttested: boolean;
 }
 
 export async function getGrailItems(grailId: string): Promise<GrailItemRow[]> {
@@ -47,7 +49,13 @@ export async function getGrailItems(grailId: string): Promise<GrailItemRow[]> {
     }),
     db.grailEntry.findMany({
       where: { grail_id: grailId },
-      select: { item_id: true, found: true, found_at: true },
+      select: {
+        item_id: true,
+        found: true,
+        found_at: true,
+        discovery_drop_attested: true,
+        discovery_identification_attested: true,
+      },
     }),
   ]);
 
@@ -61,6 +69,8 @@ export async function getGrailItems(grailId: string): Promise<GrailItemRow[]> {
       wiki_image_url: wikiImageUrl(item.name, item.category),
       found: entry?.found ?? false,
       found_at: entry?.found_at ?? null,
+      discoveryDropAttested: entry?.discovery_drop_attested ?? false,
+      discoveryIdentificationAttested: entry?.discovery_identification_attested ?? false,
     };
   });
 }

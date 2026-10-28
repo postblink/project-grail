@@ -40,6 +40,12 @@ and public sharing for public accounts.
 
 Achievements record progress milestones, first finds, category milestones, and set completions.
 
+## Season 14 Discovery compatibility
+
+Project Grail supports **self-attested Discovery tracking** on the Season 14 personal grail, as described in the [Season 14 patch notes](https://wiki.projectdiablo2.com/wiki/Patch:Season_14). A found Unique or Set item counts only after the player attests to both conditions in the patch notes: being in the same act at a party member's drop, and being present when the item is identified. Armory imports never set either attestation; unchecking or resetting a find clears them.
+
+These records are user assertions, not game-verified provenance. Project Grail does not claim to verify the official Discovery Aura unlock or ranking. The 18 Special Edition artwork options are cosmetic variants of existing named items, not separate Grail or Discovery identities: a normal or Special Edition find checks the same canonical item and contributes once to overall progress and achievements. Variant appearance is not tracked separately.
+
 ## Armory import
 
 Armory import is a user-initiated snapshot. It is not background synchronization and it never

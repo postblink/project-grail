@@ -30,7 +30,12 @@ export async function POST(req: NextRequest) {
 
   await db.grailEntry.updateMany({
     where: { grail_id: grailId },
-    data: { found: false, found_at: null },
+    data: {
+      found: false,
+      found_at: null,
+      discovery_drop_attested: false,
+      discovery_identification_attested: false,
+    },
   });
 
   return NextResponse.json({ ok: true });

@@ -19,6 +19,7 @@ interface SeedItem {
   pd2_exclusive: boolean;
   is_active: boolean;
   wiki_url: string | null;
+  season_introduced?: string | null;
 }
 
 const SEED_DATA_PATH = path.join(
@@ -48,6 +49,20 @@ async function main() {
     },
   });
 
+  // Make the season available without making it current; an admin can set it current later.
+  const season14 = await prisma.season.upsert({
+    where: { slug: "s14-alliance" },
+    update: {},
+    create: {
+      name: "Season 14: Alliance",
+      slug: "s14-alliance",
+      start_date: new Date("2026-10-23"),
+      is_active: true,
+      is_current: false,
+    },
+    select: { id: true },
+  });
+
   const rawItems: SeedItem[] = JSON.parse(fs.readFileSync(SEED_DATA_PATH, "utf8"));
 
   let created = 0;
@@ -62,6 +77,10 @@ async function main() {
 
     const existing = await prisma.item.findUnique({ where: { name: item.name } });
 
+    const seasonIntroducedId = item.season_introduced === "s14-alliance"
+      ? season14.id
+      : undefined;
+
     await prisma.item.upsert({
       where: { name: item.name },
       update: {
@@ -71,6 +90,7 @@ async function main() {
         pd2_exclusive: item.pd2_exclusive,
         is_active: item.is_active,
         wiki_url: item.wiki_url,
+        ...(seasonIntroducedId ? { season_introduced_id: seasonIntroducedId } : {}),
       },
       create: {
         name: item.name,
@@ -80,6 +100,7 @@ async function main() {
         pd2_exclusive: item.pd2_exclusive,
         is_active: item.is_active,
         wiki_url: item.wiki_url,
+        ...(seasonIntroducedId ? { season_introduced_id: seasonIntroducedId } : {}),
       },
     });
 

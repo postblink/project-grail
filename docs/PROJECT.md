@@ -139,6 +139,10 @@ Key relationships to keep in mind:
   the admin panel's JSON import tool.
 - Never hard-code item names or IDs in application logic. Always reference items by
   their database ID.
+- Special Edition artwork is a cosmetic variant of an existing canonical item, not a
+  separate catalog/Grail identity. A find of either appearance marks the same entry and
+  contributes once to overall progress, achievements, and category totals; do not add
+  duplicate item rows or a separate variant checklist count.
 - The `is_active` flag controls whether an item appears in new grails for the current
   season. Inactive items (removed from the game) must still be stored and displayed
   in historical grails — never delete item records.
@@ -152,6 +156,8 @@ Key relationships to keep in mind:
 - Grail entries created via armory import carry `import_source = 'armory'`. Entries
   created by manual check-off carry `import_source = 'manual'`. This distinction is
   stored but not prominently surfaced in the UI — it is for debugging and auditing only.
+- Season 14 personal grails store separate self-attestations for party-drop act presence
+  and identification presence. Armory imports never infer either value; reset/uncheck clears both.
 
 ### Armory Import
 
@@ -164,9 +170,11 @@ way online ladder players will bulk-populate their grail at the start of a sessi
 - `dschu012/D2SLib` — the underlying `.d2s` parsing library the above is built on.
 - `pd2.tools/tools/character-export` — live example of this pattern in production.
 
-**Armory endpoint:** `https://www.projectdiablo2.com/character/{characterName}`
-This is a public endpoint — no authentication is required to fetch it. The response
-contains character data including equipped items and inventory.
+**Armory endpoints:**
+- Character snapshots: `https://api.projectdiablo2.com/game/character/{characterName}` (public).
+- Shared stash: `https://api.projectdiablo2.com/game/stash/{pd2Sub}` (requires a linked PD2 account).
+
+The parser reads character and mercenary items plus root-level and per-tab shared-stash items/currency, and matches supported Unique, Set, Runeword, and Rune names to the catalog. It handles generic tab arrays; verify the new Season 14 Unique/Set stash tabs against an actual S14 API payload before claiming live compatibility.
 
 **Implementation rules:**
 - Armory fetches are always user-initiated. Never poll the armory automatically.
@@ -185,13 +193,12 @@ contains character data including equipped items and inventory.
   any item in the database, log it and skip it — do not crash or abort the import.
 
 **What the armory does NOT expose:**
-- The shared stash (items stored there must be manually checked off)
-- Items the character previously held but has since traded or dropped
+- Items no longer present in the included character snapshots or linked shared-stash snapshot at import time (including items previously held but since traded or dropped)
 - Characters the user did not include in the import
+- Shared-stash contents when the user has no linked PD2 account or the stash endpoint is unavailable
 
 Always make the snapshot nature of imports clear in the UI copy. Suggested message:
-*"Import reflects your characters' current inventory. Items in your shared stash or
-previously traded away will need to be checked off manually."*
+*"Import reflects the current items on the included characters and, when available, the linked shared stash. Items outside that snapshot (including previously held items that have been traded or dropped) will need to be checked off manually."*
 
 ---
 

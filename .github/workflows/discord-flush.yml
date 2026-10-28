@@ -6,6 +6,8 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch: # allow manual runs
 
+permissions: {}
+
 jobs:
   flush:
     runs-on: ubuntu-latest

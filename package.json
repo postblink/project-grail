@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx --test src/lib/discovery.test.ts scripts/vercel-build.test.mjs",
+    "test": "tsx --test src/lib/discovery.test.ts src/auth.config.test.ts scripts/vercel-build.test.mjs",
     "postinstall": "prisma generate",
     "reset-prod": "DATABASE_URL=$PROD_DATABASE_URL tsx --tsconfig tsconfig.scripts.json scripts/reset-user-data.ts"
   },
